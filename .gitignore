@@ -1,0 +1,48 @@
+# Environments & caches (C1-a: pinned to H:\ but never committed)
+.venv/
+06_src/.venv/
+.cache/
+
+# Secrets — never committed (C2)
+*.env
+.env
+.env.*
+*.pem
+*.key
+secrets*
+
+# Model weights — never committed (C2)
+*.safetensors
+*.gguf
+*.onnx
+*.pt
+*.pth
+*.ckpt
+*.h5
+
+# Python build/test artefacts
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Built from 02_data/penalty_rows/*.yaml — the reviewable text is the tracked source (D-055's
+# principle applied to penalty rows), not the binary derived from it.
+02_data/penalties.sqlite3
+
+# Editor/OS noise
+.vscode/
+.idea/
+Thumbs.db
+desktop.ini
+.writetest
+07_runtime/
+02_data/corpus/
+.coldclone/
+publish/

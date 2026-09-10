@@ -1,0 +1,26 @@
+# SYNTHETIC FIXTURE DATA — NOT LAW. Every row below is invented for harness smoke runs while the
+# penalty database has no verified rows (D-065 first step). Section numbers are deliberately
+# fake (9xx) so nothing here can be mistaken for a real offence. No real accused person's data.
+version_id: FIXTURE-smoke-batch0-v1
+rows:
+  - regime: BNS_2023
+    section: '901'          # "Synthetic offence A" — plain 3-year term
+    variant: null
+    kinds: [TERM]
+    term_months: 36
+    fine_also: true
+  - regime: BNS_2023
+    section: '902'          # "Synthetic offence B" — 10-year term
+    variant: null
+    kinds: [TERM]
+    term_months: 120
+  - regime: BNS_2023
+    section: '903'          # "Synthetic offence C" — death or life (gate-1 exerciser)
+    variant: null
+    kinds: [DEATH, LIFE]
+    fine_also: true
+  - regime: BNS_2023
+    section: '905'          # "Synthetic offence E" — 6-month term (gate-0 exerciser)
+    variant: null
+    kinds: [TERM]
+    term_months: 6

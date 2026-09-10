@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bail Reckoner — Section 479 BNSS 2023 computation</title>
+<!--
+  THE SERVER-RENDERED INTERFACE (stack RULED server-first, D-084, 2026-08-26 — the
+  divergence from the Extended Abstract's React line is recorded on the D-027 pattern).
+  Began life as the D-077 stack-neutral demonstrator; the ruling promoted this path.
+  Plain HTML and fetch() over /v1/*; a React client remains addable over the same API.
+  Interface chrome is localisable (D-030/D-087/D-090): English complete, Hindi/Telugu
+  dictionaries EMPTY awaiting human-reviewed translation — never machine-filled.
+  Documents are English-only in every language setting (D-087).
+
+  Design rules, all hard (D-077):
+   - No colour, icon, badge or tick encodes status. The single blue is an interactive
+     affordance (links, buttons) and appears identically for every outcome.
+   - The report pane renders the canonical fixed-layout text artefact byte-for-byte in
+     monospace. The UI frames the document; it never re-typesets the computation, so it can
+     never say something the regression artefact does not.
+   - Nothing sits behind a disclosure toggle. The working is the product.
+   - Affirmation checkboxes are never pre-ticked and state what is being affirmed where
+     they are ticked.
+-->
+<style>
+  /* No CDN fonts (Abhishek, 2026-08-19): the deployment targets include offline and
+     intermittently connected terminals, so the demonstrator uses system stacks only —
+     nothing on this page depends on the network except the API itself. The committed
+     frontend may self-host EB Garamond/Lato (OFL) per the design spec; whatever it does,
+     the document pane's alignment must never depend on a downloadable font, which is why
+     --mono is a pure system stack. */
+  :root {
+    --paper: #FAFAF7; --ink: #161A1D; --muted: #5A6167;
+    --rule: #C9CCCE; --interactive: #1D4ED8;
+    --serif: Georgia, "Times New Roman", serif;
+    --sans: "Segoe UI", system-ui, -apple-system, sans-serif;
+    --mono: Consolas, "Courier New", monospace;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--paper); color: var(--ink);
+    font-family: var(--sans); font-size: 16px; line-height: 1.55;
+  }
+  main { max-width: 76ch; margin: 0 auto; padding: 2.5rem 1.25rem 5rem; }
+  h1 { font-family: var(--serif); font-weight: 500; font-size: 2rem; margin: 0; letter-spacing: 0.01em; }
+  h1 + p.masthead { margin: 0.25rem 0 0; color: var(--muted); }
+  header.doc { border-bottom: 3px double var(--ink); padding-bottom: 1.25rem; margin-bottom: 1.5rem; }
+  h2 {
+    font-family: var(--serif); font-weight: 600; font-size: 1.15rem;
+    border-bottom: 1px solid var(--rule); padding-bottom: 0.35rem; margin: 2.25rem 0 1rem;
+  }
+  /* The provenance warning: emphasis by border, weight and position — never colour. */
+  .data-warning {
+    border: 2px solid var(--ink); padding: 0.9rem 1.1rem; margin: 1.5rem 0;
+    font-weight: 700;
+  }
+  .data-warning p { margin: 0; }
+  fieldset { border: 1px solid var(--rule); padding: 1rem 1.25rem 1.25rem; margin: 0 0 1.25rem; }
+  legend { font-family: var(--serif); font-weight: 600; padding: 0 0.5rem; }
+  label { display: block; margin: 0.75rem 0 0.2rem; font-weight: 700; font-size: 0.95rem; }
+  .hint { font-weight: 400; color: var(--muted); font-size: 0.9rem; margin: 0.1rem 0 0; }
+  input[type="date"], input[type="text"], select {
+    font: inherit; padding: 0.45rem 0.55rem; border: 1px solid var(--ink);
+    background: #fff; width: 100%; max-width: 26rem; min-height: 44px;
+  }
+  .affirmation { display: grid; grid-template-columns: 2rem 1fr; gap: 0.5rem; align-items: start; margin: 0.9rem 0; }
+  .affirmation input[type="checkbox"] { width: 1.35rem; height: 1.35rem; margin-top: 0.2rem; }
+  .affirmation span { font-weight: 400; }
+  button {
+    font: inherit; font-weight: 700; cursor: pointer; min-height: 44px;
+    padding: 0.6rem 1.4rem; border: 2px solid var(--interactive);
+    background: var(--interactive); color: #fff;
+  }
+  button.secondary { background: #fff; color: var(--interactive); }
+  button:focus-visible, input:focus-visible, select:focus-visible, a:focus-visible {
+    outline: 3px solid var(--interactive); outline-offset: 2px;
+  }
+  a { color: var(--interactive); }
+  /* The document pane: the canonical text artefact, byte-for-byte, framed like a filed page. */
+  .document-frame {
+    border: 1px solid var(--ink); background: #fff; margin-top: 1rem;
+    box-shadow: 4px 4px 0 var(--rule);
+  }
+  pre.canonical {
+    margin: 0; padding: 1.5rem; overflow-x: auto;
+    font-family: var(--mono); font-size: 0.83rem; line-height: 1.45;
+  }
+  .refusal { border: 1px solid var(--ink); background: #fff; padding: 1rem 1.25rem; margin-top: 1rem; }
+  .refusal h3 { font-family: var(--serif); margin: 0 0 0.5rem; }
+  footer { margin-top: 3rem; border-top: 1px solid var(--rule); padding-top: 1rem; color: var(--muted); font-size: 0.9rem; }
+  @media (prefers-reduced-motion: no-preference) {
+    button { transition: background 150ms ease-out, color 150ms ease-out; }
+  }
+</style>
+</head>
+<body>
+<main>
+  <header class="doc">
+    <h1 data-i18n="title">Bail Reckoner</h1>
+    <p class="masthead" data-i18n="masthead">Computation of statutory entitlement to release under Section 479,
+    Bharatiya Nagarik Suraksha Sanhita, 2023 · SIH1702, Ministry of Law &amp; Justice ·
+    a decision-support aid, never an autonomous decision-maker</p>
+    <p>
+      <label for="lang">Interface language</label>
+      <select id="lang">
+        <option value="en" selected>English</option>
+        <option value="hi">Hindi</option>
+        <option value="te">Telugu</option>
+      </select>
+    </p>
+    <div id="lang-note" hidden role="status">
+      Interface text for this language awaits a human-reviewed translation and is shown
+      in English (D-090). Machine translation is never used for it. Generated documents
+      are English-only in every language setting (D-087) — a recorded scope limit.
+    </div>
+  </header>
+
+  <div class="data-warning" role="status" aria-live="polite" id="meta-warning">
+    <p>Loading system status…</p>
+  </div>
+
+  <p><em>This page is the server-rendered interface (stack ruled server-first, D-084;
+  the divergence from the Extended Abstract's React line is recorded). It exercises the
+  same API contract a React client would.</em></p>
+
+  <h2>Part 0 — Extraction from text (optional)</h2>
+  <p class="hint">Paste a SYNTHETIC or redacted fact pattern only — real charge sheets are
+  sensitive personal data and must never be entered. The extractor is deterministic (no
+  model). What it finds are candidates, not findings: each one, including any it could not
+  resolve, is shown below with its source text, and nothing enters the computation until a
+  named person confirms it. Unresolved candidates are displayed, never omitted — an omitted
+  candidate would be indistinguishable from no candidate.</p>
+  <textarea id="extract-text" rows="4" style="width:100%; font: inherit; border:1px solid var(--ink); padding:0.5rem;" aria-label="Synthetic fact pattern to extract from"></textarea>
+  <p><button type="button" class="secondary" id="btn-extract">Extract candidate offences</button></p>
+  <div id="candidates" aria-live="polite"></div>
+
+  <form id="compute-form">
+    <h2>Part I — Dates</h2>
+    <fieldset>
+      <legend>Custody dates</legend>
+      <label for="arrest">Date of arrest</label>
+      <input type="date" id="arrest" name="arrest" required>
+      <label for="remand">Date of first remand (if different)</label>
+      <input type="date" id="remand" name="remand">
+      <p class="hint">Which date the period runs from is unsettled; both are shown and any
+      divergence is stated in the computation.</p>
+      <label for="asof">Computed as on</label>
+      <input type="date" id="asof" name="asof" required>
+    </fieldset>
+
+    <h2>Part II — Case and offence</h2>
+    <fieldset>
+      <legend>The pending case</legend>
+      <label for="caseref">Case reference</label>
+      <input type="text" id="caseref" name="caseref" required maxlength="120"
+             placeholder="">
+      <label for="regime">Enactment</label>
+      <select id="regime" name="regime">
+        <option value="BNS_2023">Bharatiya Nyaya Sanhita, 2023</option>
+        <option value="IPC_1860">Indian Penal Code, 1860</option>
+        <option value="NDPS_1985">NDPS Act, 1985</option>
+      </select>
+      <label for="section">Section charged</label>
+      <input type="text" id="section" name="section" required maxlength="32">
+      <label for="variant">Punishment limb or quantity band (where the section has more than one)</label>
+      <input type="text" id="variant" name="variant" maxlength="64">
+      <p class="hint">The maximum sentence is never entered here. It is resolved from the
+      verified penalty database, and where it cannot be resolved the computation abstains
+      rather than guesses.</p>
+      <label for="label">Offence description</label>
+      <input type="text" id="label" name="label" required maxlength="200">
+    </fieldset>
+
+    <h2>Part III — Declarations and affirmations</h2>
+    <fieldset>
+      <legend>Prior conviction</legend>
+      <label for="prior">Prior-conviction status</label>
+      <select id="prior" name="prior">
+        <option value="UNKNOWN">Unknown — apply the one-half threshold</option>
+        <option value="NONE_DECLARED">Declared never convicted (self-declaration)</option>
+        <option value="KNOWN_PRIOR">Known prior conviction</option>
+      </select>
+      <div class="affirmation">
+        <input type="checkbox" id="prior-verified" name="prior-verified">
+        <span><strong>Affirmation:</strong> I affirm that the prior-conviction status stated
+        above has been verified against records, not merely declared. The one-third bond
+        route asserts to a court that the person has never been convicted; without this
+        affirmation no application on that route will be generated.</span>
+      </div>
+    </fieldset>
+    <fieldset>
+      <legend>Completeness of the case list</legend>
+      <div class="affirmation">
+        <input type="checkbox" id="list-verified" name="list-verified">
+        <span><strong>Affirmation:</strong> I affirm that the case listed above is the only
+        case pending against this person, verified against court records. Section 479(2)
+        turns on every pending case; an undisclosed pending case would change the result.</span>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Data source for this computation</legend>
+      <label for="mode">Resolve maxima from</label>
+      <select id="mode" name="mode">
+        <option value="verified">Verified penalty database (currently empty — every
+        computation abstains)</option>
+        <option value="synthetic">SYNTHETIC test fixtures — demonstration only, not law</option>
+      </select>
+    </fieldset>
+
+    <button type="submit">Compute the entitlement report</button>
+    <button type="button" class="secondary" id="btn-application">Generate s.479(3) application draft</button>
+  </form>
+
+  <h2>The computed document</h2>
+  <p class="hint">Rendered exactly as the canonical fixed-layout text artefact — the same
+  bytes the regression tests pin. Every flag and every line of per-offence working is in the
+  document itself; nothing is summarised away or hidden behind a toggle.</p>
+  <div id="output" aria-live="polite"></div>
+
+  <footer>
+    <p id="meta-versions">Versions load with the page.</p>
+    <p>No model and no chat sits on any path that reaches the computation. Every output
+    carries an empty "Legally reviewed by" field that only a human may sign.</p>
+  </footer>
+</main>
+
+<script>
+"use strict";
+const $ = (id) => document.getElementById(id);
+
+async function loadMeta() {
+  try {
+    const meta = await (await fetch("/v1/meta")).json();
+    $("meta-warning").innerHTML = "<p>" + escapeHtml(meta.data_warning) + "</p>";
+    $("meta-versions").textContent =
+      "Statute version " + meta.statute_version +
+      " · report language " + meta.report_language_version +
+      " · " + meta.sources_line;
+  } catch {
+    $("meta-warning").innerHTML = "<p>The computation service could not be reached. " +
+      "Nothing on this page can compute without it. Start the API and reload.</p>";
+  }
+}
+
+function requestBody() {
+  const offence = {
+    regime: $("regime").value,
+    section: $("section").value.trim(),
+    label: $("label").value.trim(),
+  };
+  const variant = $("variant").value.trim();
+  if (variant) offence.variant = variant;
+  const body = {
+    date_of_arrest: $("arrest").value,
+    evaluated_on: $("asof").value,
+    cases: [{ case_ref: $("caseref").value.trim(), offences: [offence] }],
+    prior_conviction_status: $("prior").value,
+    case_list_verified: $("list-verified").checked,
+    prior_conviction_verified: $("prior-verified").checked,
+    mode: $("mode").value,
+  };
+  const remand = $("remand").value;
+  if (remand) body.date_of_first_remand = remand;
+  return body;
+}
+
+function escapeHtml(text) {
+  const div = document.createElement("div");
+  div.textContent = text;
+  return div.innerHTML;
+}
+
+function showDocument(warning, text, urgentNotice) {
+  // DETAINED_BEYOND_MAXIMUM renders as page chrome in plain HTML ABOVE the pane, in
+  // addition to its place inside the canonical text (Abhishek, 2026-08-19): on a narrow
+  // viewport the pane pans horizontally, and nothing safety-critical may hide behind a
+  // horizontal scroll. This is a restatement of ONE flag outside the artefact — never a
+  // second rendering of the document.
+  const urgent = urgentNotice
+    ? '<div class="data-warning" role="alert"><p>' + escapeHtml(urgentNotice.heading) +
+      "</p><p>" + escapeHtml(urgentNotice.body) + "</p></div>"
+    : "";
+  $("output").innerHTML =
+    urgent +
+    '<div class="data-warning"><p>' + escapeHtml(warning) + "</p></div>" +
+    '<div class="document-frame"><pre class="canonical">' + escapeHtml(text) + "</pre></div>";
+}
+
+function showRefusal(warning, reasons) {
+  $("output").innerHTML =
+    '<div class="data-warning"><p>' + escapeHtml(warning) + "</p></div>" +
+    '<div class="refusal"><h3>No application was generated</h3>' +
+    reasons.map((r) => "<p>" + escapeHtml(r.text) + "</p>").join("") + "</div>";
+}
+
+function showErrors(detail) {
+  const items = (detail || []).map((d) =>
+    "<p>" + escapeHtml((d.loc || []).join(".") + ": " + d.msg) + "</p>").join("");
+  $("output").innerHTML = '<div class="refusal"><h3>The form could not be submitted</h3>' +
+    (items || "<p>Check every required field and try again.</p>") + "</div>";
+}
+
+async function post(path) {
+  const response = await fetch(path, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(requestBody()),
+  });
+  return { status: response.status, body: await response.json() };
+}
+
+$("compute-form").addEventListener("submit", async (event) => {
+  event.preventDefault();
+  const { status, body } = await post("/v1/reports");
+  if (status !== 200) return showErrors(body.detail);
+  showDocument(body.data_warning, body.rendered_text, body.report.urgent_notice);
+});
+
+$("btn-application").addEventListener("click", async () => {
+  if (!$("compute-form").reportValidity()) return;
+  const { status, body } = await post("/v1/applications");
+  if (status !== 200) return showErrors(body.detail);
+  if (body.kind === "refusal") return showRefusal(body.data_warning, body.refusal_reasons);
+  showDocument(body.data_warning, body.rendered_text, null);
+});
+
+const REGIME_NAMES = {IPC_1860: "Indian Penal Code, 1860", BNS_2023: "Bharatiya Nyaya Sanhita, 2023", NDPS_1985: "NDPS Act, 1985"};
+
+$("btn-extract").addEventListener("click", async () => {
+  const text = $("extract-text").value.trim();
+  if (!text) return;
+  const response = await fetch("/v1/extract", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ text }),
+  });
+  const body = await response.json();
+  if (response.status !== 200) { $("candidates").innerHTML = "<p>The text could not be processed.</p>"; return; }
+  let html = '<div class="data-warning"><p>' + escapeHtml(body.data_note) + "</p></div>";
+  if (!body.candidates.length) {
+    html += "<p>No candidate offences were found in the text. This is a statement about the extractor, not about the text: a section it does not recognise produces no candidate.</p>";
+  }
+  body.candidates.forEach((c, i) => {
+    // Refusals are shown, not omitted: an unresolved candidate renders with its question.
+    const status = c.unresolved
+      ? "<strong>Unresolved:</strong> a section was found but the enactment is not named in the text. Choose the enactment below, or discard this candidate knowingly."
+      : "Enactment read from the text: " + escapeHtml(REGIME_NAMES[c.regime]);
+    const options = Object.entries(REGIME_NAMES).map(([value, name]) =>
+      '<option value="' + value + '"' + (value === c.regime ? " selected" : "") + ">" + name + "</option>").join("");
+    const blank = c.unresolved ? '<option value="" selected>— choose the enactment —</option>' : "";
+    html += '<fieldset><legend>Candidate ' + (i + 1) + ": " + escapeHtml(c.matched_text) + "</legend>" +
+      "<p>" + status + "</p>" +
+      '<p class="hint">Source text: “…' + escapeHtml(c.source_snippet) + '…”</p>' +
+      '<label for="cand-regime-' + i + '">Enactment</label>' +
+      '<select id="cand-regime-' + i + '">' + blank + options + "</select>" +
+      '<label for="cand-label-' + i + '">Offence description (as you confirm it)</label>' +
+      '<input type="text" id="cand-label-' + i + '" maxlength="200">' +
+      '<label for="cand-confirmer-' + i + '">Confirmed by (name, required)</label>' +
+      '<input type="text" id="cand-confirmer-' + i + '" maxlength="120">' +
+      '<p><button type="button" data-idx="' + i + '" data-section="' + escapeHtml(c.section) + '" class="secondary btn-confirm">Confirm against the source text and fill Part II</button></p>' +
+      "</fieldset>";
+  });
+  $("candidates").innerHTML = html;
+  document.querySelectorAll(".btn-confirm").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const i = btn.dataset.idx;
+      const regime = $("cand-regime-" + i).value;
+      const label = $("cand-label-" + i).value.trim();
+      const confirmer = $("cand-confirmer-" + i).value.trim();
+      if (!regime) { alert("The enactment is unresolved. Choose it — the machine does not guess."); return; }
+      if (!label) { alert("State the offence description you are confirming."); return; }
+      if (!confirmer) { alert("Confirmation requires a named person. It is never automatic."); return; }
+      $("regime").value = regime;
+      $("section").value = btn.dataset.section;
+      $("label").value = label + " (confirmed by " + confirmer + " against the shown source text)";
+      $("section").scrollIntoView({ block: "center" });
+    });
+  });
+});
+
+loadMeta();
+
+// Interface-chrome localisation (D-030 at M7, scope per D-087/D-090 option (b)).
+// English is complete; the hi/te dictionaries are DELIBERATELY EMPTY and stay empty
+// until a human-reviewed translation exists — machine translation is never used for
+// them (council-reviewed, D-090: unreviewed legal-adjacent language is the no-advocate
+// problem in a new costume). An empty dictionary falls back to English with a visible
+// note, never silently. Documents are English-only in every language setting (D-087).
+var I18N = {
+  en: {},  // the page's own text IS the English dictionary
+  hi: {},  // awaiting a human-reviewed translation — do not machine-fill
+  te: {}   // awaiting a human-reviewed translation — do not machine-fill
+};
+var ENGLISH_BASELINE = {};
+document.querySelectorAll('[data-i18n]').forEach(function (el) {
+  ENGLISH_BASELINE[el.getAttribute('data-i18n')] = el.textContent;
+});
+document.getElementById('lang').addEventListener('change', function () {
+  var lang = this.value;
+  var dict = I18N[lang] || {};
+  var translated = Object.keys(dict).length > 0;
+  document.querySelectorAll('[data-i18n]').forEach(function (el) {
+    var key = el.getAttribute('data-i18n');
+    el.textContent = (translated && dict[key]) ? dict[key] : ENGLISH_BASELINE[key];
+  });
+  document.getElementById('lang-note').hidden = (lang === 'en' || translated);
+});
+</script>
+</body>
+</html>

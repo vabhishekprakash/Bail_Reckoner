@@ -1,0 +1,105 @@
+==============================================================================
+ SECTION 479 BNSS 2023 — ENTITLEMENT COMPUTATION REPORT
+==============================================================================
+This document computes a statutory entitlement under Section 479 of the
+Bharatiya Nagarik Suraksha Sanhita, 2023. It does not decide bail and does not
+predict outcomes. Every figure in it is for a human to verify and act on.
+
+STATUS
+  No statutory entitlement identified on these inputs — human review required.
+
+  This is not a finding that bail should be refused. It means the s.479(1)
+  route is not established on these inputs.
+
+LEGAL BASIS
+  On the inputs provided, an investigation, inquiry or trial in more than one
+  offence or in multiple cases is pending, which Section 479(2) makes a bar to
+  release on bail under this route.
+  Provision:            s.479(2)
+    "Notwithstanding anything in sub-section (1), and subject to the third
+    proviso thereof, where an investigation, inquiry or trial in more than one
+    offence or in multiple cases are pending against a person, he shall not be
+    released on bail by the Court."
+
+TWO QUALIFYING DATES ARISE
+  Two qualifying dates arise on these inputs because the law is unsettled:
+  measuring against the highest charged maximum, the qualifying date is 1
+  January 2029; measuring each offence against its own maximum, the earliest
+  threshold was reached on 1 July 2024. Which rule Section 479(1) requires has
+  not been settled; this report does not choose.
+
+CUSTODY
+  Date of arrest:       1 January 2024
+  Computed as on:       1 January 2025
+  Custody undergone:    367 days
+  Effective custody:    367 days
+
+CASE FIR 21/2024, PS Eta  (pending)
+  Offence: Synthetic offence G
+    Section:            s.907 (synthetic)
+    Maximum sentence:   1 year
+    Fraction applied:   one-half
+    Threshold:          6 months
+    Status: threshold reached on 1 July 2024 — does not by itself establish
+    release: the Section 479(2) multiple-case bar applies on these inputs
+
+CASE FIR 34/2024, PS Theta  (pending)
+  Offence: Synthetic offence H
+    Section:            s.908 (synthetic)
+    Maximum sentence:   10 years
+    Fraction applied:   one-half
+    Threshold:          60 months
+    Status: threshold not yet reached; reached on 1 January 2029 on these
+    inputs
+
+CASES CONSIDERED
+  The Section 479(2) multiple-case assessment was computed over the following
+  cases, as supplied with the inputs:
+    - FIR 21/2024, PS Eta
+    - FIR 34/2024, PS Theta
+  An undisclosed pending case would change this result.
+
+FOR HUMAN ATTENTION
+  * The list of pending cases considered was supplied with the inputs and has
+    not been verified against court records. Section 479(2) turns on every
+    pending case; an undisclosed pending case would change this result.
+  * Custody has passed the maximum sentence prescribed for at least one
+    charged offence, but not the highest maximum among all charged offences.
+    Which of those the third proviso to Section 479(1) measures against is an
+    unsettled question of law. This report does not decide it; the matter
+    requires human review.
+  * A lower charged offence's own release threshold has been reached, while
+    the threshold computed from the highest charged maximum has not. Which of
+    those Section 479(1) requires is an unsettled question of law. Both dates
+    are shown in this report with the rule that yields each; this report does
+    not choose between them, and the matter requires human review.
+  * The custody undergone has not yet reached the applicable threshold. This
+    is not a finding against the person; the qualifying date is stated in this
+    report and the computation should be repeated on or before that date.
+
+  Maximum sentences in this report are taken from the central enactments and
+  assume national uniformity. A State amendment altering a maximum that is
+  absent from the stored consolidation cannot be detected by this system;
+  where one is printed in the stored text it is flagged, but silence does not
+  establish that none exists.
+
+  The special statutes checked for stringent bail tests are those recorded in
+  this system: the NDPS Act, the PMLA, the UAPA, the Companies Act and POCSO.
+  The Supreme Court's Category C list in Satender Kumar Antil is itself
+  non-exhaustive ("... etc."), so a special statute with a stringent bail bar
+  outside the recorded set cannot be detected by this system, and silence
+  about one does not establish that none applies.
+
+------------------------------------------------------------------------------
+Legally reviewed by: ______________________    Date: ____________
+
+This report was generated from the inputs recorded above and can be re-derived
+against the statute version stamped below.
+  Statute version:      BNSS 2023@2025-10-06+dt-0.2.0+20976f7d
+  Language version:     0.1.0 (7327dc09f645)
+  Law in force on:      2025-01-01
+  Inputs hash:          14225712b6245a2daa1c758787a7f44fa7904cac629ce22ac2541d683d88fd76
+  Computed on:          2025-01-01
+  Statutory sources on record: 13 accepted documents in 01_law/ (SOURCES.md;
+  SHA-256 recorded at acquisition and re-verified by test)
+==============================================================================

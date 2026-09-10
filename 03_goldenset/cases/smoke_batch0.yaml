@@ -1,0 +1,385 @@
+# SYNTHETIC SMOKE CASES — NOT the golden set, NOT advocate-verified, no real person's data.
+# Ten hand-written cases proving the harness end-to-end against the SYNTHETIC fixture rows
+# (D-065 first step). Expected values were computed BY HAND from the fixture maxima and the
+# recorded arithmetic conventions (OLQ-9 inclusive day counting; OLQ-10 calendar months,
+# fractional months floored) — conventions which are themselves unverified design choices.
+# Every case pins the fixture version; if the fixture changes, these go STALE, not wrong.
+cases:
+  - case_id: SMOKE-01-threshold-crossed
+    tier: 1
+    smoke: true
+    scope_479_2: NARROW
+    inputs:
+      date_of_arrest: 2024-01-01
+      evaluated_on: 2026-01-01
+      date_of_first_remand: null
+      prior_conviction_status: KNOWN_PRIOR
+      excluded_days: 0
+      custody_breaks: []
+      cases:
+        - case_ref: SYN-FIR-1
+          is_pending: true
+          offences:
+            - ref: {regime: BNS_2023, section: '901', variant: null}
+              label: Synthetic offence A
+    expected:
+      verdict: ENTITLEMENT_ESTABLISHED
+      gate_fired: null
+      qualifying_date: 2025-07-01     # arrest + 18m (half of 36)
+      flags: [EXCLUSION_STATUS_UNVERIFIED, CASE_LIST_UNVERIFIED]
+      contested: false
+    derived_against:
+      statute_version: FIXTURE-smoke-batch0-v1
+      derived_by: "hand: session agent (smoke — not a labelled golden case)"
+    notes: "Half of 36 months from 2024-01-01 is 2025-07-01; evaluated later, so crossed."
+
+  - case_id: SMOKE-02-not-yet-entitled
+    tier: 1
+    smoke: true
+    scope_479_2: NARROW
+    inputs:
+      date_of_arrest: 2025-06-01
+      evaluated_on: 2026-01-01
+      date_of_first_remand: null
+      prior_conviction_status: KNOWN_PRIOR
+      excluded_days: 0
+      custody_breaks: []
+      cases:
+        - case_ref: SYN-FIR-1
+          is_pending: true
+          offences:
+            - ref: {regime: BNS_2023, section: '901', variant: null}
+              label: Synthetic offence A
+    expected:
+      verdict: NO_ENTITLEMENT_IDENTIFIED
+      gate_fired: 5
+      qualifying_date: 2026-12-01
+      flags: [NOT_YET_ENTITLED, CASE_LIST_UNVERIFIED]
+      contested: false
+    derived_against:
+      statute_version: FIXTURE-smoke-batch0-v1
+      derived_by: "hand: session agent (smoke — not a labelled golden case)"
+    notes: "Qualifying date computed and reported; a negative gate 5 is not a finding against."
+
+  - case_id: SMOKE-03-gate1-death-or-life
+    tier: 1
+    smoke: true
+    scope_479_2: NARROW
+    inputs:
+      date_of_arrest: 2024-01-01
+      evaluated_on: 2026-01-01
+      date_of_first_remand: null
+      prior_conviction_status: KNOWN_PRIOR
+      excluded_days: 0
+      custody_breaks: []
+      cases:
+        - case_ref: SYN-FIR-1
+          is_pending: true
+          offences:
+            - ref: {regime: BNS_2023, section: '903', variant: null}
+              label: Synthetic offence C
+    expected:
+      verdict: NO_ENTITLEMENT_IDENTIFIED
+      gate_fired: 1
+      qualifying_date: null
+      flags: [MAXIMUM_NOT_COMPUTABLE, CASE_LIST_UNVERIFIED]
+      contested: false
+    derived_against:
+      statute_version: FIXTURE-smoke-batch0-v1
+      derived_by: "hand: session agent (smoke — not a labelled golden case)"
+    notes: "Death/life prescribed: barred by the main clause; no term, so no arithmetic."
+
+  - case_id: SMOKE-04-gate0-cap-reached
+    tier: 1
+    smoke: true
+    scope_479_2: NARROW
+    inputs:
+      date_of_arrest: 2025-01-01
+      evaluated_on: 2026-01-01
+      date_of_first_remand: null
+      prior_conviction_status: KNOWN_PRIOR
+      excluded_days: 0
+      custody_breaks: []
+      cases:
+        - case_ref: SYN-FIR-1
+          is_pending: true
+          offences:
+            - ref: {regime: BNS_2023, section: '905', variant: null}
+              label: Synthetic offence E
+    expected:
+      verdict: ENTITLEMENT_ESTABLISHED
+      gate_fired: null
+      qualifying_date: 2025-04-01     # half of 6m = 3m
+      flags: [DETAINED_BEYOND_MAXIMUM, EXCLUSION_STATUS_UNVERIFIED, CASE_LIST_UNVERIFIED]
+      contested: false
+    derived_against:
+      statute_version: FIXTURE-smoke-batch0-v1
+      derived_by: "hand: session agent (smoke — not a labelled golden case)"
+    notes: "Custody passed the 6-month maximum on 2025-07-01: the most urgent flag, surfaced."
+
+  - case_id: SMOKE-05-gate2-bar-does-not-mask-gate0
+    tier: 2
+    smoke: true
+    scope_479_2: NARROW
+    inputs:
+      date_of_arrest: 2025-01-01
+      evaluated_on: 2026-01-01
+      date_of_first_remand: null
+      prior_conviction_status: KNOWN_PRIOR
+      excluded_days: 0
+      custody_breaks: []
+      cases:
+        - case_ref: SYN-FIR-1
+          is_pending: true
+          offences:
+            - ref: {regime: BNS_2023, section: '905', variant: null}
+              label: Synthetic offence E
+        - case_ref: SYN-FIR-2
+          is_pending: true
+          offences:
+            - ref: {regime: BNS_2023, section: '901', variant: null}
+              label: Synthetic offence A
+    expected:
+      verdict: NO_ENTITLEMENT_IDENTIFIED
+      gate_fired: 2
+      qualifying_date: 2026-07-01     # governing max is 36m; half = 18m from 2025-01-01
+      flags: [NOT_YET_ENTITLED, CONTESTED_CAP_BASIS, CONTESTED_THRESHOLD_BASIS, CASE_LIST_UNVERIFIED]
+      contested: false
+    derived_against:
+      statute_version: FIXTURE-smoke-batch0-v1
+      derived_by: "hand: session agent (smoke — not a labelled golden case)"
+    depends_on_olq: [OLQ-11, OLQ-2]
+    notes: >
+      The case that raised OLQ-11 on the first smoke run: hand-labelled expecting
+      DETAINED_BEYOND_MAXIMUM (custody passed offence E's own 6-month maximum on 2025-07-01),
+      while gate 0 measured the cap against the governing 36-month maximum (D-039), exposing a
+      conservatism inversion. Per D-066 the engine now flags the band instead of picking a
+      reading: custody here sits between the lowest cap (2025-07-01) and the governing cap
+      (2028-01-01), so CONTESTED_CAP_BASIS is expected — and it must survive the gate-2 bar,
+      since s.479(2) is expressly subject to the third proviso. Resolving OLQ-11 relabels this
+      case; find it and its siblings with `depends_on_olq`.
+
+  - case_id: SMOKE-06-contested-single-fir-multi-section
+    tier: 2
+    smoke: true
+    scope_479_2: NARROW
+    inputs:
+      date_of_arrest: 2019-01-01
+      evaluated_on: 2026-01-01
+      date_of_first_remand: null
+      prior_conviction_status: KNOWN_PRIOR
+      excluded_days: 0
+      custody_breaks: []
+      cases:
+        - case_ref: SYN-FIR-1
+          is_pending: true
+          offences:
+            - ref: {regime: BNS_2023, section: '901', variant: null}
+              label: Synthetic offence A
+            - ref: {regime: BNS_2023, section: '902', variant: null}
+              label: Synthetic offence B
+    expected:
+      verdict: NO_ENTITLEMENT_IDENTIFIED
+      gate_fired: 2
+      qualifying_date: 2024-01-01     # half of 120m = 60m from 2019-01-01
+      flags: [CONTESTED_479_2_SCOPE, CASE_LIST_UNVERIFIED]
+      contested: true
+    derived_against:
+      statute_version: FIXTURE-smoke-batch0-v1
+      derived_by: "hand: session agent (smoke — not a labelled golden case)"
+    notes: >
+      One FIR, two sections, NARROW scope: threshold crossed, but whether s.479(2) fires is
+      genuinely unsettled (OLQ-5), so the engine routes to a human. Scored as abstention.
+
+  - case_id: SMOKE-07-first-time-offender-one-third
+    tier: 1
+    smoke: true
+    scope_479_2: NARROW
+    inputs:
+      date_of_arrest: 2025-01-01
+      evaluated_on: 2026-02-01
+      date_of_first_remand: null
+      prior_conviction_status: NONE_DECLARED
+      excluded_days: 0
+      custody_breaks: []
+      cases:
+        - case_ref: SYN-FIR-1
+          is_pending: true
+          offences:
+            - ref: {regime: BNS_2023, section: '901', variant: null}
+              label: Synthetic offence A
+    expected:
+      verdict: ENTITLEMENT_ESTABLISHED
+      gate_fired: null
+      qualifying_date: 2026-01-01     # third of 36m = 12m
+      flags: [EXCLUSION_STATUS_UNVERIFIED, CASE_LIST_UNVERIFIED]
+      contested: false
+    derived_against:
+      statute_version: FIXTURE-smoke-batch0-v1
+      derived_by: "hand: session agent (smoke — not a labelled golden case)"
+    notes: "First proviso: one-third on bond. Half (18m) not reached; one-third governs."
+
+  - case_id: SMOKE-08-excluded-days-shift-across-threshold
+    tier: 1
+    smoke: true
+    scope_479_2: NARROW
+    inputs:
+      date_of_arrest: 2024-01-01
+      evaluated_on: 2025-07-05
+      date_of_first_remand: null
+      prior_conviction_status: KNOWN_PRIOR
+      excluded_days: 10
+      custody_breaks: []
+      cases:
+        - case_ref: SYN-FIR-1
+          is_pending: true
+          offences:
+            - ref: {regime: BNS_2023, section: '901', variant: null}
+              label: Synthetic offence A
+    expected:
+      verdict: NO_ENTITLEMENT_IDENTIFIED
+      gate_fired: 5
+      qualifying_date: 2025-07-11     # 2025-07-01 + 10 excluded days
+      flags: [NOT_YET_ENTITLED, CASE_LIST_UNVERIFIED]
+      contested: false
+    derived_against:
+      statute_version: FIXTURE-smoke-batch0-v1
+      derived_by: "hand: session agent (smoke — not a labelled golden case)"
+    notes: >
+      The s.479(1) Explanation case the council flagged: without the 10 court-determined
+      excluded days this would have crossed on 2025-07-01; with them, not yet. The exclusion is
+      an input — the engine must never compute one (OLQ-7).
+
+  - case_id: SMOKE-09-unknown-prior-takes-half
+    tier: 2
+    smoke: true
+    scope_479_2: NARROW
+    inputs:
+      date_of_arrest: 2025-06-01
+      evaluated_on: 2026-01-01
+      date_of_first_remand: null
+      prior_conviction_status: UNKNOWN
+      excluded_days: 0
+      custody_breaks: []
+      cases:
+        - case_ref: SYN-FIR-1
+          is_pending: true
+          offences:
+            - ref: {regime: BNS_2023, section: '901', variant: null}
+              label: Synthetic offence A
+    expected:
+      verdict: NO_ENTITLEMENT_IDENTIFIED
+      gate_fired: 5
+      qualifying_date: 2026-12-01
+      flags: [PRIOR_STATUS_UNVERIFIED, NOT_YET_ENTITLED, CASE_LIST_UNVERIFIED]
+      contested: false
+    derived_against:
+      statute_version: FIXTURE-smoke-batch0-v1
+      derived_by: "hand: session agent (smoke — not a labelled golden case)"
+    notes: "Unknown prior status takes the conservative half and says so (D-051)."
+
+  - case_id: SMOKE-10-offence-not-in-database
+    tier: 1
+    smoke: true
+    scope_479_2: NARROW
+    inputs:
+      date_of_arrest: 2024-01-01
+      evaluated_on: 2026-01-01
+      date_of_first_remand: null
+      prior_conviction_status: KNOWN_PRIOR
+      excluded_days: 0
+      custody_breaks: []
+      cases:
+        - case_ref: SYN-FIR-1
+          is_pending: true
+          offences:
+            - ref: {regime: BNS_2023, section: '999', variant: null}
+              label: Synthetic offence with no row
+    expected:
+      verdict: NO_ENTITLEMENT_IDENTIFIED
+      gate_fired: 5
+      qualifying_date: null
+      flags: [OFFENCE_NOT_IN_DATABASE, CASE_LIST_UNVERIFIED]
+      contested: false
+    derived_against:
+      statute_version: FIXTURE-smoke-batch0-v1
+      derived_by: "hand: session agent (smoke — not a labelled golden case)"
+    notes: >
+      No verified row: the engine abstains rather than guessing. Pins CURRENT behaviour,
+      including that gate_fired reads 5 (the threshold could not be tested) rather than a
+      dedicated marker — if that attribution is ever changed, this case changes with reasoning.
+
+  - case_id: SMOKE-11-cap-band-lower-edge
+    tier: 1
+    smoke: true
+    scope_479_2: NARROW
+    inputs:
+      date_of_arrest: 2025-01-01
+      evaluated_on: 2025-07-01
+      date_of_first_remand: null
+      prior_conviction_status: KNOWN_PRIOR
+      excluded_days: 0
+      custody_breaks: []
+      cases:
+        - case_ref: SYN-FIR-1
+          is_pending: true
+          offences:
+            - ref: {regime: BNS_2023, section: '905', variant: null}
+              label: Synthetic offence E
+        - case_ref: SYN-FIR-2
+          is_pending: true
+          offences:
+            - ref: {regime: BNS_2023, section: '901', variant: null}
+              label: Synthetic offence A
+    expected:
+      verdict: NO_ENTITLEMENT_IDENTIFIED
+      gate_fired: 2
+      qualifying_date: 2026-07-01     # half of governing 36m from 2025-01-01
+      flags: [CONTESTED_CAP_BASIS, CONTESTED_THRESHOLD_BASIS, NOT_YET_ENTITLED, CASE_LIST_UNVERIFIED]
+      contested: false
+    derived_against:
+      statute_version: FIXTURE-smoke-batch0-v1
+      derived_by: "hand: session agent (smoke — not a labelled golden case)"
+    depends_on_olq: [OLQ-11, OLQ-2]
+    notes: >
+      Lower band edge (D-066): evaluated exactly on the day custody reaches the lowest charged
+      maximum (6m from 2025-01-01). The contested-cap flag fires from this day, and survives
+      the gate-2 bar — the exact population OLQ-11 affects.
+
+  - case_id: SMOKE-12-cap-band-upper-edge
+    tier: 1
+    smoke: true
+    scope_479_2: NARROW
+    inputs:
+      date_of_arrest: 2025-01-01
+      evaluated_on: 2028-01-01
+      date_of_first_remand: null
+      prior_conviction_status: KNOWN_PRIOR
+      excluded_days: 0
+      custody_breaks: []
+      cases:
+        - case_ref: SYN-FIR-1
+          is_pending: true
+          offences:
+            - ref: {regime: BNS_2023, section: '905', variant: null}
+              label: Synthetic offence E
+        - case_ref: SYN-FIR-2
+          is_pending: true
+          offences:
+            - ref: {regime: BNS_2023, section: '901', variant: null}
+              label: Synthetic offence A
+    expected:
+      verdict: NO_ENTITLEMENT_IDENTIFIED
+      gate_fired: 2
+      qualifying_date: 2026-07-01
+      flags: [DETAINED_BEYOND_MAXIMUM, CASE_LIST_UNVERIFIED]
+      contested: false
+    derived_against:
+      statute_version: FIXTURE-smoke-batch0-v1
+      derived_by: "hand: session agent (smoke — not a labelled golden case)"
+    depends_on_olq: [OLQ-11]
+    notes: >
+      Upper band edge (D-066): evaluated exactly on the day custody reaches the governing
+      36-month maximum. The definite DETAINED_BEYOND_MAXIMUM replaces the contested flag, and
+      survives the gate-2 bar (D-034). Gate 5's threshold was crossed back in 2026 but the
+      verdict is controlled by the gate-2 bar.

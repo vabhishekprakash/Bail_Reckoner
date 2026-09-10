@@ -1,0 +1,91 @@
+==============================================================================
+ SECTION 479 BNSS 2023 — ENTITLEMENT COMPUTATION REPORT
+==============================================================================
+This document computes a statutory entitlement under Section 479 of the
+Bharatiya Nagarik Suraksha Sanhita, 2023. It does not decide bail and does not
+predict outcomes. Every figure in it is for a human to verify and act on.
+
+STATUS
+  No statutory entitlement identified on these inputs — human review required.
+
+  This is not a finding that bail should be refused. It means the s.479(1)
+  route is not established on these inputs.
+
+LEGAL BASIS
+  On the inputs provided, an investigation, inquiry or trial in more than one
+  offence or in multiple cases is pending, which Section 479(2) makes a bar to
+  release on bail under this route.
+  Provision:            s.479(2)
+    "Notwithstanding anything in sub-section (1), and subject to the third
+    proviso thereof, where an investigation, inquiry or trial in more than one
+    offence or in multiple cases are pending against a person, he shall not be
+    released on bail by the Court."
+
+CUSTODY
+  Date of arrest:       10 August 2024
+  Computed as on:       1 August 2026
+  Custody undergone:    722 days
+  Effective custody:    722 days
+
+CASE FIR 55/2023, PS Alpha  (pending)
+  Offence: Synthetic offence B
+    Section:            s.902 (synthetic)
+    Maximum sentence:   3 years
+    Fraction applied:   one-half
+    Threshold:          18 months
+    Status: threshold reached on 10 February 2026 — does not by itself
+    establish release: the Section 479(2) multiple-case bar applies on these
+    inputs
+
+CASE FIR 91/2024, PS Beta  (pending)
+  Offence: Synthetic offence C
+    Section:            s.903 (synthetic)
+    Maximum sentence:   3 years
+    Fraction applied:   one-half
+    Threshold:          18 months
+    Status: threshold reached on 10 February 2026 — does not by itself
+    establish release: the Section 479(2) multiple-case bar applies on these
+    inputs
+
+CASES CONSIDERED
+  The Section 479(2) multiple-case assessment was computed over the following
+  cases, as supplied with the inputs:
+    - FIR 55/2023, PS Alpha
+    - FIR 91/2024, PS Beta
+  An undisclosed pending case would change this result.
+
+FOR HUMAN ATTENTION
+  * The list of pending cases considered was supplied with the inputs and has
+    not been verified against court records. Section 479(2) turns on every
+    pending case; an undisclosed pending case would change this result.
+  * Whether this is a first conviction could not be verified, so the one-half
+    threshold was applied. If first-time status is established, the one-third
+    threshold under the first proviso to Section 479(1) may apply instead,
+    which would advance the qualifying date.
+
+  Maximum sentences in this report are taken from the central enactments and
+  assume national uniformity. A State amendment altering a maximum that is
+  absent from the stored consolidation cannot be detected by this system;
+  where one is printed in the stored text it is flagged, but silence does not
+  establish that none exists.
+
+  The special statutes checked for stringent bail tests are those recorded in
+  this system: the NDPS Act, the PMLA, the UAPA, the Companies Act and POCSO.
+  The Supreme Court's Category C list in Satender Kumar Antil is itself
+  non-exhaustive ("... etc."), so a special statute with a stringent bail bar
+  outside the recorded set cannot be detected by this system, and silence
+  about one does not establish that none applies.
+
+------------------------------------------------------------------------------
+Legally reviewed by: ______________________    Date: ____________
+
+This report was generated from the inputs recorded above and can be re-derived
+against the statute version stamped below.
+  Statute version:      BNSS 2023@2025-10-06+dt-0.2.0+20976f7d
+  Language version:     0.1.0 (7327dc09f645)
+  Law in force on:      2026-08-01
+  Inputs hash:          b7e4a51283b7783912d72541eb79795ba3d684073c6462892d5ef17c58cee2d3
+  Computed on:          2026-08-01
+  Statutory sources on record: 13 accepted documents in 01_law/ (SOURCES.md;
+  SHA-256 recorded at acquisition and re-verified by test)
+==============================================================================

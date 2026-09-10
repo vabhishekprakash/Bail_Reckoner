@@ -1,0 +1,174 @@
+# ============================================================================
+# REPORT LANGUAGE — the words a reader sees (D-068, executing D-058)
+# ============================================================================
+# Report wording is legal wording. By D-055's own test — if answering a legal
+# question would change it, it is data — it lives here, where a lawyer can read
+# and diff it, not inside a renderer.
+#
+# Rules this file obeys:
+#  * NO internal gate vocabulary. A reader never sees "gate 2" or an enum name.
+#  * Statutory QUOTES are not here — they come only from the decision table,
+#    which is keyed to the gazette-verified text. This file holds prose ABOUT
+#    the law, never the law itself.
+#  * Every Flag in the engine must have an entry here, and every entry must
+#    name a real Flag. The loader enforces both directions, so a new flag
+#    cannot ship without its reader-facing words being written deliberately.
+# ============================================================================
+
+language_version: "0.1.0"
+
+facilitator_line: >-
+  This document computes a statutory entitlement under Section 479 of the Bharatiya Nagarik
+  Suraksha Sanhita, 2023. It does not decide bail and does not predict outcomes. Every figure
+  in it is for a human to verify and act on.
+
+verdicts:
+  ENTITLEMENT_ESTABLISHED: >-
+    Statutory entitlement to release under Section 479(1), BNSS 2023 is established on the
+    inputs provided.
+  NO_ENTITLEMENT_IDENTIFIED: >-
+    No statutory entitlement identified on these inputs — human review required.
+
+# Mandated on every report whose status is negative, verbatim (Abhishek, 2026-08-13):
+barred_report_notice: >-
+  This is not a finding that bail should be refused. It means the s.479(1) route is not
+  established on these inputs.
+
+# The legal reason accompanying a negative status, keyed by the internal gate id.
+# The id never appears in output; only this prose and the quoted provision do.
+reasons:
+  "1": >-
+    Section 479(1) does not apply here: death or imprisonment for life is specified as one of
+    the punishments for a charged offence.
+  "2": >-
+    On the inputs provided, an investigation, inquiry or trial in more than one offence or in
+    multiple cases is pending, which Section 479(2) makes a bar to release on bail under this
+    route.
+  "3": >-
+    A special statute with its own bail test applies to a charged offence. The Section 479
+    computation is shown in full below; the statutory test must be applied by the reviewing
+    authority.
+  "5": >-
+    The custody undergone has not yet reached the period Section 479(1) specifies. The date on
+    which it will, on these inputs, is computed below.
+  data_gap: >-
+    The computation is incomplete: at least one charged offence lacks a verified maximum
+    sentence, and no figure was assumed in its place. The findings below state which.
+
+offence_status:
+  crossed_entitled: "threshold reached on {date}"
+  crossed_not_entitled: "threshold reached on {date} — does not by itself establish release: {reason_short}"
+  not_crossed: "threshold not yet reached; reached on {date} on these inputs"
+  not_computable: "no threshold can be computed: {why}"
+
+reason_short:
+  "1": "death or life imprisonment is specified for a charged offence"
+  "2": "the Section 479(2) multiple-case bar applies on these inputs"
+  "3": "a special-statute bail test remains to be applied"
+  data_gap: "the computation is incomplete for at least one charged offence"
+
+contested_threshold_line: >-
+  Two qualifying dates arise on these inputs because the law is unsettled: measuring against
+  the highest charged maximum, the qualifying date is {governing_date}; measuring each offence
+  against its own maximum, the earliest threshold was reached on {lowest_crossed_date}. Which
+  rule Section 479(1) requires has not been settled; this report does not choose.
+
+uniformity_note: >-
+  Maximum sentences in this report are taken from the central enactments and assume national
+  uniformity. A State amendment altering a maximum that is absent from the stored
+  consolidation cannot be detected by this system; where one is printed in the stored text it
+  is flagged, but silence does not establish that none exists.
+
+special_statute_set_note: >-
+  The special statutes checked for stringent bail tests are those recorded in this system:
+  the NDPS Act, the PMLA, the UAPA, the Companies Act and POCSO. The Supreme Court's
+  Category C list in Satender Kumar Antil is itself non-exhaustive ("... etc."), so a
+  special statute with a stringent bail bar outside the recorded set cannot be detected by
+  this system, and silence about one does not establish that none applies.
+
+cases_considered_intro: >-
+  The Section 479(2) multiple-case assessment was computed over the following cases, as
+  supplied with the inputs:
+cases_considered_caveat: >-
+  An undisclosed pending case would change this result.
+
+urgent_block_heading: "MOST URGENT — READ FIRST"
+urgent_block_body: >-
+  On the inputs provided, the custody undergone has reached the maximum period of imprisonment
+  prescribed for the offence. Section 479(1)'s third proviso does not permit detention during
+  investigation, inquiry or trial beyond that maximum. This condition is surfaced above
+  everything else in this report and is not affected by any other finding below.
+
+discretionary_caption: >-
+  Matters of judicial discretion, reproduced verbatim for human consideration. They carry no
+  weight in the computation above and are never scored.
+
+flags:
+  DETAINED_BEYOND_MAXIMUM: >-
+    Custody has reached the maximum period of imprisonment prescribed for the offence
+    (Section 479(1), third proviso). This is the most urgent condition this document can
+    report; see the notice at the top of this report.
+  CONTESTED_CAP_BASIS: >-
+    Custody has passed the maximum sentence prescribed for at least one charged offence, but
+    not the highest maximum among all charged offences. Which of those the third proviso to
+    Section 479(1) measures against is an unsettled question of law. This report does not
+    decide it; the matter requires human review.
+  CASE_LIST_UNVERIFIED: >-
+    The list of pending cases considered was supplied with the inputs and has not been
+    verified against court records. Section 479(2) turns on every pending case; an
+    undisclosed pending case would change this result.
+  SPECIAL_STATUTE_TEST_REQUIRED: >-
+    A charged offence falls under a special statute with its own bail test. The Section 479
+    arithmetic is shown in full; the special statute's test must be applied by the reviewing
+    authority and is not applied here.
+  SPECIAL_STATUTE_UNASSESSED: >-
+    A charged offence falls under a special statute for which this system has not verified
+    whether a bail restriction exists. Nothing should be inferred from its absence here.
+  CONTESTED_THRESHOLD_BASIS: >-
+    A lower charged offence's own release threshold has been reached, while the threshold
+    computed from the highest charged maximum has not. Which of those Section 479(1) requires
+    is an unsettled question of law. Both dates are shown in this report with the rule that
+    yields each; this report does not choose between them, and the matter requires human
+    review.
+  CONTESTED_SPECIAL_STATUTE_SCOPE: >-
+    A charged offence sits under a special statute whose bail restriction attaches to
+    specific enumerated offences, and whether this charge falls within those words has not
+    been determined. This report does not decide it; the matter requires human review against
+    the provision's own scope words.
+  CONTESTED_479_2_SCOPE: >-
+    A single case charges more than one offence. Whether Section 479(2)'s bar extends to that
+    situation is an unsettled question of law; this report does not decide it, and the matter
+    requires human review.
+  PRIOR_STATUS_UNVERIFIED: >-
+    Whether this is a first conviction could not be verified, so the one-half threshold was
+    applied. If first-time status is established, the one-third threshold under the first
+    proviso to Section 479(1) may apply instead, which would advance the qualifying date.
+  EXCLUSION_STATUS_UNVERIFIED: >-
+    This computation assumes no period of detention is excluded under the Explanation to
+    Section 479(1) (delay in proceedings caused by the accused). If a court has determined
+    such a period, the qualifying date moves later by that period.
+  OFFENCE_NOT_IN_DATABASE: >-
+    At least one charged offence has no verified maximum-sentence record in this system. No
+    figure was assumed for it; the computation for that offence is incomplete and the matter
+    requires human review.
+  MAXIMUM_NOT_COMPUTABLE: >-
+    For at least one charged offence the prescribed punishment does not yield a definite term
+    of imprisonment to compute against (for example, a fine-only provision). No figure was
+    assumed.
+  NOT_YET_ENTITLED: >-
+    The custody undergone has not yet reached the applicable threshold. This is not a finding
+    against the person; the qualifying date is stated in this report and the computation
+    should be repeated on or before that date.
+  STATE_AMENDMENT_UNASSESSED: >-
+    A charged section carries a State amendment that this system has not evaluated. The
+    maximum sentence used here is the central enactment's; the State amendment may prescribe
+    a different one.
+  ARREST_REMAND_DIVERGENCE: >-
+    The date of arrest and the date of first remand differ. Which date the Section 479 period
+    runs from is unsettled; this computation runs from the date of arrest and shows both
+    dates.
+
+footer_review_line: "Legally reviewed by: ______________________    Date: ____________"
+footer_caption: >-
+  This report was generated from the inputs recorded above and can be re-derived against the
+  statute version stamped below.

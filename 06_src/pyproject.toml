@@ -1,0 +1,111 @@
+[project]
+name = "bail-reckoner"
+version = "0.0.1"
+description = "AI-Powered Bail Reckoner (SIH1702) — computes statutory entitlement to release under Section 479 BNSS 2023, shows the arithmetic, cites the provision behind every step. Decision-support aid; never an autonomous decision-maker."
+requires-python = ">=3.11"
+# Runtime dependencies are intentionally empty. Per D-050 the engine (Layer C) is stdlib-only:
+# frozen dataclasses, enum, datetime, fractions. Every future dependency is a C4 decision —
+# proposed in DECISIONS.md with options and trade-offs, pinned on approval.
+dependencies = []
+
+[project.optional-dependencies]
+# Dev toolchain pinned per D-050. hypothesis backs the property tests on the calendar-date
+# arithmetic that D-047 introduces (month-end and leap-year edge cases).
+dev = [
+    "pytest==9.1.1",
+    # Test toolchain only: starlette's TestClient imports httpx2 (httpx's v2 line under
+    # Pydantic maintenance — verified against installed metadata and code, D-078 context);
+    # nothing at runtime does.
+    "httpx2==2.12.0",
+    "ruff==0.16.2",
+    "mypy==2.3.0",
+    "hypothesis==6.165.5",
+    # Dev-only rasteriser for the D-073 layout gate (D-085, Abhishek 2026-08-26): PDFium is
+    # Chrome's PDF engine, so rendering the preview through it covers the dominant viewer
+    # family. Never a runtime dependency — the PDF renderer itself stays stdlib-only (D-073).
+    "pypdfium2==5.13.0",
+    "pillow==12.3.0",  # pypdfium2's image writer; same D-085 scope, dev-only
+    # Dev-only OCR engine for the second extraction channel (D-089, Abhishek 2026-08-29):
+    # reads rasterised pages, never the PDF text layer — disjoint failure modes from the
+    # text-layer extractor. Chosen over pytesseract (needs a system binary this machine
+    # lacks) and EasyOCR (downloads models at first run): RapidOCR ships its ONNX models
+    # in the wheel, so the install is the whole dependency. Never a runtime dependency.
+    "rapidocr-onnxruntime==1.4.4",
+]
+# Statutory-source tooling (M0/M1): reading bare-act PDFs and loading the versioned decision
+# table. Deliberately NOT engine dependencies — Layer C receives already-parsed typed values, so
+# its purity (D-050) stays visible in the dependency graph itself. pyyaml is here, not in `dev`,
+# because the decision table (D-055) is a shipped artefact rather than a test fixture.
+statutes = [
+    "pypdf==6.15.0",
+    "pyyaml==6.0.3",
+]
+
+# M7 API layer. Approval source: D-079 (explicit ratification by Abhishek, 2026-08-19).
+# Plan-naming alone is intent, not approval — D-078's ruling; the earlier justification by
+# CLAUDE.md's M7 naming is superseded. Engine purity untouched: Layer C imports none of
+# these; the API imports Layer C.
+api = [
+    "fastapi==0.141.1",
+    "uvicorn==0.52.4",
+]
+
+# Layer A retrieval (M4). Approval source: D-080/D-081 (rank_bm25, sentence-transformers —
+# each its own entry per D-078's ruling; Abhishek named the stack in the build directive).
+# FAISS declined in D-082 (exact numpy search is complete recall at this corpus scale).
+# The engine imports none of these — enforced structurally by test_engine_boundary.py.
+retrieval = [
+    "rank-bm25==0.2.2",
+    "sentence-transformers==6.0.0",
+]
+
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["bail_reckoner*"]
+
+[tool.setuptools.package-data]
+# schema.sql is read at runtime by PenaltyRepository; without this it is absent from an installed
+# package and the database cannot be created.
+bail_reckoner = ["statutes/*.sql", "api/static/*.html"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+# E,F pyflakes/pycodestyle; I import order; B bugbear; UP pyupgrade; ANN annotations.
+select = ["E", "F", "I", "B", "UP", "ANN"]
+
+[tool.mypy]
+# Analysis target 3.12: numpy's stubs (pulled in by sentence-transformers' typed tree) use
+# 3.12-only `type` statements and mypy parses installed stubs regardless of follow_imports.
+# The pinned interpreter is CPython 3.12.13; the package floor in requires-python stays
+# 3.11. Risk accepted: mypy would tolerate 3.12-only syntax we do not write.
+python_version = "3.12"
+strict = true
+
+# Layer A's third-party tree is not analysed: sentence-transformers ships types that pull
+# numpy's stubs, which need a 3.12-only parse our 3.11 floor forbids, and rank_bm25 ships
+# none at all. The boundary stays typed on our side (the Retriever protocol); these
+# overrides never touch first-party code.
+[[tool.mypy.overrides]]
+module = [
+    "rank_bm25", "rank_bm25.*",
+    "sentence_transformers", "sentence_transformers.*",
+    "numpy", "numpy.*",
+    "torch", "torch.*",
+    "transformers", "transformers.*",
+    "pypdfium2", "pypdfium2.*",
+    "rapidocr_onnxruntime", "rapidocr_onnxruntime.*",
+]
+ignore_missing_imports = true
+follow_imports = "skip"
+
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+addopts = "--strict-markers"
