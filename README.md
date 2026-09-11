@@ -72,12 +72,6 @@ sometimes cite that log's entry numbers (D-numbers) or its files by name
 (DECISIONS.md, CLAUDE.md, PROGRESS.md, OPEN_ITEMS.yaml); those live with the
 private record, not in this repository.
 
-## Team
 
-Final-year B.Tech major project, CSE (AI and ML), Marri Laxman Reddy Institute of
-Technology and Management, Hyderabad, 2026-27. Vallamalla Abhishek Prakash (lead),
-Revuru Arya, Modhumpally Arvind, Boru Vimala. Problem statement SIH1702, Ministry of
-Law and Justice, Government of India.
-
-No advocate reviewed this project, and the record says so wherever it matters. It is a
+No advocate reviewed this project. It is a
 decision-support aid. It is never a decision-maker.
