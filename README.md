@@ -29,6 +29,10 @@ of substituting something plausible. The same defect (a plausible answer where a
 refusal belongs) was found and eliminated six separate times during construction, each
 time converted into a rule with a test.
 
+The git history here starts at a handful of commits because the original repository was
+lost and the finished project was re-uploaded. The commit count is not the development
+record.
+
 ## What is inside
 
 A pure decision engine with no model, no network and no file access in the decision
