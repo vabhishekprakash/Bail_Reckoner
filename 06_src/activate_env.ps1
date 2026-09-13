@@ -1,9 +1,9 @@
 # activate_env.ps1 — Bail Reckoner environment pins (C1-a)
-# Dot-source this before any Python/pip/model work:  . H:\Bail_Reckoner\06_src\activate_env.ps1
-# Pins every tool cache inside H:\Bail_Reckoner\.cache\ per RULES.md C1-a.
+# Dot-source this before any Python/pip/model work:  . .\06_src\activate_env.ps1
+# Pins every tool cache inside the repo's .cache\ per RULES.md C1-a.
 # If any tool ignores these pins, report it in PROGRESS.md — do not hide it.
 
-$root = 'H:\Bail_Reckoner'
+$root = Split-Path -Parent $PSScriptRoot
 
 $env:PIP_CACHE_DIR          = "$root\.cache\pip"
 $env:HF_HOME                = "$root\.cache\hf"

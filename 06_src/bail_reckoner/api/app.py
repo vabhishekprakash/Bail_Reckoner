@@ -52,7 +52,7 @@ from bail_reckoner.statutes.sources import source_inventory_line
 
 __all__ = ["create_app", "DEFAULT_AUDIT_PATH", "DEFAULT_REPOSITORY_PATH"]
 
-# Runtime artefacts stay on H:\ (C1); both are derived/append-only and gitignored.
+# Runtime artefacts stay inside the repo (C1); both are derived/append-only and gitignored.
 DEFAULT_REPOSITORY_PATH = Path(__file__).resolve().parents[3] / ".cache" / "api_penalty.sqlite3"
 DEFAULT_AUDIT_PATH = Path(__file__).resolve().parents[3] / "07_runtime" / "audit_log.jsonl"
 

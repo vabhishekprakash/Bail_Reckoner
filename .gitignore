@@ -1,4 +1,4 @@
-# Environments & caches (C1-a: pinned to H:\ but never committed)
+# Environments & caches (C1-a: pinned inside the repo but never committed)
 .venv/
 06_src/.venv/
 .cache/

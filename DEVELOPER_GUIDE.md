@@ -208,7 +208,7 @@ legal-adjacent language was firmly rejected on review.
 
 ## 7. What this project is not
 
-Not operational. Not advocate-reviewed. Never tested on a real charge sheet, by
+Not operational. Not legally reviewed. Never tested on a real charge sheet, by
 design: no real accused person's data exists anywhere in it. Carrying no model in
 Layer B. And not finished in the everyday sense. It is complete only in the sense the
 project defines: every machine-completable surface built, tested and truthful, and

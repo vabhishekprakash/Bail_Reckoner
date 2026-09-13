@@ -50,13 +50,15 @@ results, and dense embeddings scored 0.000 on citation-style queries.
 
 ```
 cd 06_src
-python -m venv .venv && .venv\Scripts\pip install -r requirements.lock
+py -3.12 -m venv .venv && .venv\Scripts\pip install -r requirements.lock
 .venv\Scripts\python -m pytest -q          # full suite, ~10 minutes
 .venv\Scripts\uvicorn --factory bail_reckoner.api.app:create_app
 ```
 
-A fresh clone needs the retrieval corpus rebuilt once (call `build_corpus()` from
-`bail_reckoner.retrieval.corpus`). Start with [DEVELOPER_GUIDE.md](DEVELOPER_GUIDE.md).
+Python 3.12 or newer is required: the lockfile pins numpy 2.5.2, which will not
+install on 3.11. A fresh clone needs the retrieval corpus rebuilt once (call
+`build_corpus()` from `bail_reckoner.retrieval.corpus`). Start with
+[DEVELOPER_GUIDE.md](DEVELOPER_GUIDE.md).
 
 ## How AI was used
 
@@ -74,5 +76,5 @@ private record, not in this repository, as do the Extended Abstract and the
 presentation deck that several documents cite for the project's original scope.
 
 
-No advocate reviewed this project. It is a
+No legal professional reviewed this project. It is a
 decision-support aid. It is never a decision-maker.
