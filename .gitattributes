@@ -1,0 +1,7 @@
+06_src/tests/golden/*.txt text eol=lf
+02_data/report_language/*.yaml text eol=lf
+02_data/decision_table/*.yaml text eol=lf
+*.pdf binary
+*.pptx binary
+*.sqlite3 binary
+*.png binary

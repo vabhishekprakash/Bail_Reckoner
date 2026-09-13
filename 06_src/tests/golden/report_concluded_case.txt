@@ -1,0 +1,75 @@
+==============================================================================
+ SECTION 479 BNSS 2023 — ENTITLEMENT COMPUTATION REPORT
+==============================================================================
+This document computes a statutory entitlement under Section 479 of the
+Bharatiya Nagarik Suraksha Sanhita, 2023. It does not decide bail and does not
+predict outcomes. Every figure in it is for a human to verify and act on.
+
+STATUS
+  Statutory entitlement to release under Section 479(1), BNSS 2023 is
+  established on the inputs provided.
+
+CUSTODY
+  Date of arrest:       1 June 2022
+  Computed as on:       1 August 2026
+  Custody undergone:    1523 days
+  Effective custody:    1523 days
+
+CASE FIR 12/2022, PS Epsilon  (pending)
+  Offence: Synthetic offence E
+    Section:            s.905 (synthetic)
+    Maximum sentence:   7 years
+    Fraction applied:   one-half
+    Threshold:          42 months
+    Status: threshold reached on 1 December 2025
+
+CASE SC 3/2019, PS Zeta (concluded)  (not pending)
+  Offence: Synthetic offence F
+    Section:            s.906 (synthetic)
+    Maximum sentence:   no definite term prescribed
+    Status: no threshold can be computed: Case not pending: this offence takes
+    no part in the s.479(1) computation (D-072). Listed for the record only.
+    Note: Case not pending: this offence takes no part in the s.479(1)
+    computation (D-072). Listed for the record only.
+
+CASES CONSIDERED
+  The Section 479(2) multiple-case assessment was computed over the following
+  cases, as supplied with the inputs:
+    - FIR 12/2022, PS Epsilon
+  An undisclosed pending case would change this result.
+
+FOR HUMAN ATTENTION
+  * The list of pending cases considered was supplied with the inputs and has
+    not been verified against court records. Section 479(2) turns on every
+    pending case; an undisclosed pending case would change this result.
+  * This computation assumes no period of detention is excluded under the
+    Explanation to Section 479(1) (delay in proceedings caused by the
+    accused). If a court has determined such a period, the qualifying date
+    moves later by that period.
+
+  Maximum sentences in this report are taken from the central enactments and
+  assume national uniformity. A State amendment altering a maximum that is
+  absent from the stored consolidation cannot be detected by this system;
+  where one is printed in the stored text it is flagged, but silence does not
+  establish that none exists.
+
+  The special statutes checked for stringent bail tests are those recorded in
+  this system: the NDPS Act, the PMLA, the UAPA, the Companies Act and POCSO.
+  The Supreme Court's Category C list in Satender Kumar Antil is itself
+  non-exhaustive ("... etc."), so a special statute with a stringent bail bar
+  outside the recorded set cannot be detected by this system, and silence
+  about one does not establish that none applies.
+
+------------------------------------------------------------------------------
+Legally reviewed by: ______________________    Date: ____________
+
+This report was generated from the inputs recorded above and can be re-derived
+against the statute version stamped below.
+  Statute version:      BNSS 2023@2025-10-06+dt-0.2.0+20976f7d
+  Language version:     0.1.0 (7327dc09f645)
+  Law in force on:      2026-08-01
+  Inputs hash:          e53ba1f70c69d9727a2a8e1df0f1403156f5507847e0a132b6945015eb3f5194
+  Computed on:          2026-08-01
+  Statutory sources on record: 13 accepted documents in 01_law/ (SOURCES.md;
+  SHA-256 recorded at acquisition and re-verified by test)
+==============================================================================

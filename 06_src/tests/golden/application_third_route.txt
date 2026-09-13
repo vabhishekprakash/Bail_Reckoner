@@ -1,0 +1,136 @@
+==============================================================================
+ APPLICATION UNDER SECTION 479(3), BHARATIYA NAGARIK SURAKSHA SANHITA, 2023
+==============================================================================
+DRAFT — prepared as a decision-support aid for the Superintendent of the jail.
+It has no effect until reviewed, completed and signed by the officer named in
+Section 479(3). Every computed figure below must be verified against the
+jail's own records before filing.
+
+IN THE COURT OF: __________________________________
+Case / Application No.: __________________________________
+Name of the person detained: __________________________________
+Jail: __________________________________
+
+The applicant, being the Superintendent of the jail named in the heading of
+this application, where the person named in that heading is detained, submits
+this application under sub-section (3) of Section 479 of the Bharatiya Nagarik
+Suraksha Sanhita, 2023, and states as follows:
+
+1. The person named in the heading of this application has been in custody in
+   connection with the case(s) listed in this application since 1 June 2022.
+   As computed on 1 August 2026, the custody undergone is 1523 days, of which
+   1523 days count toward the period specified in sub-section (1) of Section
+   479.
+
+2. No offence charged in the case(s) listed in this application carries death
+   or imprisonment for life as one of the punishments specified for it, so the
+   exclusion in the parenthesis to sub-section (1) of Section 479 does not
+   apply.
+
+3. The applicable period is one-third of the maximum period of imprisonment
+   specified for the offence. This application has been prepared on the basis
+   that the person is a first-time offender who has never been convicted of
+   any offence in the past; the applicant must confirm that status against
+   records before filing. On completion of that period the first proviso to
+   sub-section (1) provides for release by the Court on bond.
+
+4. On 1 October 2024, the custody undergone completed one-third of the maximum
+   period of imprisonment specified for the offence charged, being the period
+   mentioned in sub-section (1) of Section 479 applicable to this person.
+
+5. The case(s) to which this application relates, and the offence(s) charged
+   in them, are listed below with the maximum period of imprisonment specified
+   for each offence. This application has been prepared on the basis that the
+   list is complete and that no other case is pending against this person; the
+   applicant must confirm the list's completeness against court records before
+   filing.
+
+CASE FIR 201/2022, PS Test-Town
+  Offence: Synthetic offence A
+    Section:            s.901 (synthetic)
+    Maximum sentence:   7 years
+    Fraction applied:   one-third
+    Threshold:          28 months
+    Threshold status:   completed on 1 October 2024
+    Punishment provision, verbatim:
+      "SYNTHETIC FIXTURE TEXT, not a statute: whoever commits the synthetic
+      offence shall be punished with imprisonment for a term which may extend
+      to 7 years."
+    Source: SYNTHETIC fixture; no source exists
+
+CUSTODY, AS COMPUTED
+  Date of arrest:       1 June 2022
+  Computed as on:       1 August 2026
+  Custody undergone:    1523 days
+  Effective custody:    1523 days
+
+STATUTORY BASIS
+  s.479(3):
+    "The Superintendent of jail, where the accused person is detained, on
+    completion of one-half or one-third of the period mentioned in sub-section
+    (1), as the case may be, shall forthwith make an application in writing to
+    the Court to proceed under sub-section (1) for the release of such person
+    on bail."
+
+  s.479(1):
+    "(1) Where a person has, during the period of investigation, inquiry or
+    trial under this Sanhita of an offence under any law (not being an offence
+    for which the punishment of death or life imprisonment has been specified
+    as one of the punishments under that law) undergone detention for a period
+    extending up to one-half of the maximum period of imprisonment specified
+    for that offence under that law, he shall be released by the Court on
+    bail:
+    Provided that where such person is a first-time offender (who has never
+    been convicted of any offence in the past) he shall be released on bond by
+    the Court, if he has undergone detention for the period extending up to
+    one-third of the maximum period of imprisonment specified for such offence
+    under that law:
+    Provided further that the Court may, after hearing the Public Prosecutor
+    and for reasons to be recorded by it in writing, order the continued
+    detention of such person for a period longer than one-half of the said
+    period or release him on bail bond instead of his bond:
+    Provided also that no such person shall in any case be detained during the
+    period of investigation, inquiry or trial for more than the maximum period
+    of imprisonment provided for the said offence under that law.
+    Explanation.—In computing the period of detention under this section for
+    granting bail, the period of detention passed due to delay in proceeding
+    caused by the accused shall be excluded."
+
+  The maximum periods of imprisonment stated in this application are taken
+  from the central enactments as recorded. A State amendment not printed in
+  the stored consolidation cannot be detected by this system; the applicant
+  should confirm against any State amendment applicable in this jurisdiction
+  before filing.
+
+  The special enactments checked for their own bail restrictions are those
+  recorded in the system that produced this application; the Supreme Court's
+  Category C list in Satender Kumar Antil is itself non-exhaustive. The
+  applicant should confirm before filing that no other special enactment with
+  its own bail restriction applies to the offence charged.
+
+PRAYER
+  It is therefore prayed that this Court may proceed under sub-section (1) of
+  Section 479 of the Bharatiya Nagarik Suraksha Sanhita, 2023 for the release
+  of the person named in the heading of this application, as that sub-section
+  provides.
+
+Place: __________________________________
+Date: __________________________________
+Signature of the applicant: __________________________________
+Name: __________________________________
+Designation (Superintendent of the jail): __________________________________
+
+------------------------------------------------------------------------------
+Legally reviewed by: ______________________    Date: ____________
+
+This draft was generated from the inputs recorded in the eligibility report
+bearing the same inputs hash, and can be re-derived against the statute
+version stamped below.
+  Statute version:      BNSS 2023@2025-10-06+dt-0.2.0+20976f7d
+  Language version:     0.1.0 (a17caefb3b98)
+  Law in force on:      2026-08-01
+  Inputs hash:          c53ed99bd3e634ab12e59c1830e743ae81db964a6b8c617e9ef49ceb3c1d1183
+  Computed on:          2026-08-01
+  Statutory sources on record: 13 accepted documents in 01_law/ (SOURCES.md;
+  SHA-256 recorded at acquisition and re-verified by test)
+==============================================================================

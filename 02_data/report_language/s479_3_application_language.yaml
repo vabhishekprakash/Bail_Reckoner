@@ -1,0 +1,130 @@
+# ============================================================================
+# s.479(3) APPLICATION LANGUAGE — the filing's own prose (D-071, executing D-058)
+# ============================================================================
+# Same contract as report_language.yaml: wording a court will read is legal
+# wording, so it lives here as versioned, lawyer-diffable data — never in a
+# renderer. Statutory QUOTES are NOT here: s.479(1) and s.479(3) are quoted
+# only from the verified decision table, which carries a statute_version.
+# This file's prose is the project's own and carries this file's hash instead;
+# the two provenance chains must not mix.
+#
+# Placeholders are filled ONLY with values the engine computed and can cite.
+# Court identity, case numbers, officer name and designation, and the date of
+# signature are BLANKS — pre-asserting facts on a public officer's behalf is
+# the filled-in-reviewer-field failure in a more consequential place.
+# ============================================================================
+
+language_version: "0.1.0"
+
+title: "APPLICATION UNDER SECTION 479(3), BHARATIYA NAGARIK SURAKSHA SANHITA, 2023"
+
+draft_notice: >-
+  DRAFT — prepared as a decision-support aid for the Superintendent of the jail. It has no
+  effect until reviewed, completed and signed by the officer named in Section 479(3). Every
+  computed figure below must be verified against the jail's own records before filing.
+
+opening: >-
+  The applicant, being the Superintendent of the jail named in the heading of this application,
+  where the person named in that heading is detained, submits this application under
+  sub-section (3) of Section 479 of the Bharatiya Nagarik Suraksha Sanhita, 2023, and states
+  as follows:
+
+# On the plural "case(s)/offence(s)" wording: a multi-offence application is NOT currently
+# reachable. Every pending route is closed by the refusal conditions — multiple pending cases
+# hit the s.479(2) bar, a single case charging several offences is CONTESTED (blocking
+# generation), and the BROAD scope bars multiple offences outright. The only path to a
+# multi-section filing would be a non-pending (concluded) case in the inputs, and that path
+# is held pending a decision on whether non-pending offences belong in the s.479(1)
+# arithmetic at all (D-072). The plural is kept because the contested question (OLQ-5) may be
+# resolved by law in favour of generation, and the wording must not silently assert
+# single-offence-ness it has not checked.
+# Numbered body paragraphs, in filing order. Placeholders are engine-computed values only.
+body:
+  detention: >-
+    The person named in the heading of this application has been in custody in connection with
+    the case(s) listed in this application since {arrest_date}. As computed on {evaluated_on}, the custody undergone is
+    {custody_days} days, of which {effective_custody_days} days count toward the period
+    specified in sub-section (1) of Section 479.
+  no_exclusion: >-
+    No offence charged in the case(s) listed in this application carries death or imprisonment
+    for life as one of the punishments specified for it, so the exclusion in the parenthesis to
+    sub-section (1) of Section 479 does not apply.
+  threshold: >-
+    On {threshold_date}, the custody undergone completed {fraction_word} of the maximum period
+    of imprisonment specified for the offence charged, being the period mentioned in
+    sub-section (1) of Section 479 applicable to this person.
+  cases: >-
+    The case(s) to which this application relates, and the offence(s) charged in them, are
+    listed below with the maximum period of imprisonment specified for each offence. This
+    application has been prepared on the basis that the list is complete and that no other
+    case is pending against this person; the applicant must confirm the list's completeness
+    against court records before filing.
+
+route:
+  standard: >-
+    The applicable period is one-half of the maximum period of imprisonment specified for the
+    offence, on completion of which sub-section (1) provides for release by the Court on bail.
+  first_time: >-
+    The applicable period is one-third of the maximum period of imprisonment specified for the
+    offence. This application has been prepared on the basis that the person is a first-time
+    offender who has never been convicted of any offence in the past; the applicant must
+    confirm that status against records before filing. On completion of that period the first
+    proviso to sub-section (1) provides for release by the Court on bond.
+
+# Placed in the statutory basis section, immediately after the punishment provision quotes —
+# not the footer: the footer carries reproducibility metadata; this is a qualification on a
+# substantive assertion and belongs where the assertion is (Abhishek, 2026-08-19). Worded
+# officer-facing: the final clause is the point — the officer can act on it, which the
+# report's reader frequently cannot.
+uniformity_note: >-
+  The maximum periods of imprisonment stated in this application are taken from the central
+  enactments as recorded. A State amendment not printed in the stored consolidation cannot be
+  detected by this system; the applicant should confirm against any State amendment applicable
+  in this jurisdiction before filing.
+
+special_statute_set_note: >-
+  The special enactments checked for their own bail restrictions are those recorded in the
+  system that produced this application; the Supreme Court's Category C list in Satender
+  Kumar Antil is itself non-exhaustive. The applicant should confirm before filing that no
+  other special enactment with its own bail restriction applies to the offence charged.
+
+prayer: >-
+  It is therefore prayed that this Court may proceed under sub-section (1) of Section 479 of
+  the Bharatiya Nagarik Suraksha Sanhita, 2023 for the release of the person named in the
+  heading of this application, as that sub-section provides.
+
+# Reader-facing refusal reasons. One per hard condition; the generator refuses — it never
+# emits a silent empty filing, which would repeat the not-found-versus-not-present defect.
+refusals:
+  not_established: >-
+    No application can be generated: statutory entitlement under Section 479(1) is not
+    established on these inputs. The eligibility report states the reason and the provision.
+  case_list_unverified: >-
+    No application can be generated: the list of pending cases has not been verified against
+    court records. Section 479(2) turns on every pending case, and this application would
+    assert the list's completeness to a court. Verify the list and recompute.
+  contested: >-
+    No application can be generated: an unsettled question of law affects this computation and
+    has been routed for human review. The eligibility report names it. A filing cannot rest on
+    a reading this project has declined to choose.
+  prior_unverified: >-
+    No application can be generated on the one-third route: the declaration that this person
+    has never been convicted has not been verified against records, and this application would
+    assert that status to a court. Verify the status and recompute, or the one-half route
+    applies.
+
+blanks:
+  court: "IN THE COURT OF"
+  case_number: "Case / Application No."
+  person: "Name of the person detained"
+  jail: "Jail"
+  place: "Place"
+  signature_date: "Date"
+  signature: "Signature of the applicant"
+  officer_name: "Name"
+  designation: "Designation (Superintendent of the jail)"
+
+review_line: "Legally reviewed by: ______________________    Date: ____________"
+footer_caption: >-
+  This draft was generated from the inputs recorded in the eligibility report bearing the same
+  inputs hash, and can be re-derived against the statute version stamped below.

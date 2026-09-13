@@ -1,0 +1,269 @@
+# DEFERRED DRAFT — compounding status per BNSS s.359 (D-090 item 3; D-036 vi).
+# NOT part of the 86-row review queue and NOT review-first: verify the penalty
+# rows in REVIEW_QUEUE_2026-08-26.yaml FIRST. This tier exists so the recorded
+# criterion is not silently cut; it is display-only and feeds NO gate.
+# APPROVAL: implementation of the deferred tier is PENDING Abhishek (D-090).
+#
+# REVIEWER ACTION per row: open the stored BNSS PDF at s.359, read the TABLE row
+# for the section, set `compoundable` (true/false/with_court_permission) from the
+# TABLE AS PRINTED, quote the table entry into `table_entry_as_printed`, sign and
+# set status VERIFIED. The `detector_state` is a machine estimate over squeezed
+# text: LISTED_NEAR_* means the bare section number appears in that region of the
+# extracted s.359 text — column structure is NOT parsed, and a number can appear
+# in a neighbouring row's text. NOT_LOCATED means the detector found no
+# occurrence; that is a REPORTED GAP, not a finding of non-compoundability —
+# absence from the tables is a legal conclusion only a page-reading supports.
+#
+# Source: BNSS_2023_Act46_IndiaCode_asOn_2025-10-06.pdf (SOURCES.md entry, SHA
+# integrity-tested), s.359. Date basis: as-on 2025-10-06.
+
+drafted_on: 2026-09-02
+status_tier: DEFERRED_DRAFT
+row_count: 19
+rows:
+  - seed_key: 'theft'
+    regime: BNS_2023
+    section: '303'
+    label: 'Theft'
+    compoundable: null       # REVIEWER: from the s.359 table as printed
+    table_entry_as_printed: null   # REVIEWER: quote the table row verbatim
+    detector_state: 'LISTED_NEAR_TABLE_1_S359_1'
+    detector_occurrences: 1
+    detector_context: ' wound the religious feelings of any person. 302 The person whose religious feelings are intended to be wounded. Theft. 303(2) The owner of the property stolen. Dishonest misappropriation of property. 314 The owner of the property misappropriated. Criminal breach of trust by a ca'
+    status: DEFERRED_DRAFT
+    verified_by: null
+    verified_on: null
+
+  - seed_key: 'murder'
+    regime: BNS_2023
+    section: '103'
+    label: 'Murder'
+    compoundable: null       # REVIEWER: from the s.359 table as printed
+    table_entry_as_printed: null   # REVIEWER: quote the table row verbatim
+    detector_state: 'NOT_LOCATED_IN_S359_TEXT'
+    detector_occurrences: 0
+    detector_context: ''
+    status: DEFERRED_DRAFT
+    verified_by: null
+    verified_on: null
+
+  - seed_key: 'culpable_homicide'
+    regime: BNS_2023
+    section: '105'
+    label: 'Culpable homicide not amounting to murder'
+    compoundable: null       # REVIEWER: from the s.359 table as printed
+    table_entry_as_printed: null   # REVIEWER: quote the table row verbatim
+    detector_state: 'NOT_LOCATED_IN_S359_TEXT'
+    detector_occurrences: 0
+    detector_context: ''
+    status: DEFERRED_DRAFT
+    verified_by: null
+    verified_on: null
+
+  - seed_key: 'death_by_negligence'
+    regime: BNS_2023
+    section: '106'
+    label: 'Causing death by negligence'
+    compoundable: null       # REVIEWER: from the s.359 table as printed
+    table_entry_as_printed: null   # REVIEWER: quote the table row verbatim
+    detector_state: 'NOT_LOCATED_IN_S359_TEXT'
+    detector_occurrences: 0
+    detector_context: ''
+    status: DEFERRED_DRAFT
+    verified_by: null
+    verified_on: null
+
+  - seed_key: 'attempt_murder'
+    regime: BNS_2023
+    section: '109'
+    label: 'Attempt to murder'
+    compoundable: null       # REVIEWER: from the s.359 table as printed
+    table_entry_as_printed: null   # REVIEWER: quote the table row verbatim
+    detector_state: 'NOT_LOCATED_IN_S359_TEXT'
+    detector_occurrences: 0
+    detector_context: ''
+    status: DEFERRED_DRAFT
+    verified_by: null
+    verified_on: null
+
+  - seed_key: 'voluntarily_causing_hurt'
+    regime: BNS_2023
+    section: '115'
+    label: 'Voluntarily causing hurt'
+    compoundable: null       # REVIEWER: from the s.359 table as printed
+    table_entry_as_printed: null   # REVIEWER: quote the table row verbatim
+    detector_state: 'LISTED_NEAR_TABLE_1_S359_1'
+    detector_occurrences: 1
+    detector_context: 'or detaining with criminal intent a married woman. 84 The husband of the woman and the woman. Voluntarily causing hurt. 115(2) The person to whom the hurt is caused. Voluntarily causing hurt on provocation. 122(1) The person to whom the hurt is caused. Voluntarily causing grievou'
+    status: DEFERRED_DRAFT
+    verified_by: null
+    verified_on: null
+
+  - seed_key: 'grievous_hurt'
+    regime: BNS_2023
+    section: '117'
+    label: 'Voluntarily causing grievous hurt'
+    compoundable: null       # REVIEWER: from the s.359 table as printed
+    table_entry_as_printed: null   # REVIEWER: quote the table row verbatim
+    detector_state: 'LISTED_NEAR_TABLE_2_S359_2'
+    detector_occurrences: 1
+    detector_context: 'person so marrying. Causing miscarriage. 88 The woman to whom miscarriage is caused. Voluntarily causing grievous hurt. 117(2) The person to whom hurt is caused. 1 2 3 Causing hurt by doing an act so rashly and negligently as to endanger human life or the personal safety of other'
+    status: DEFERRED_DRAFT
+    verified_by: null
+    verified_on: null
+
+  - seed_key: 'wrongful_restraint'
+    regime: BNS_2023
+    section: '126'
+    label: 'Wrongful restraint'
+    compoundable: null       # REVIEWER: from the s.359 table as printed
+    table_entry_as_printed: null   # REVIEWER: quote the table row verbatim
+    detector_state: 'LISTED_NEAR_TABLE_1_S359_1'
+    detector_occurrences: 1
+    detector_context: 'e and sudden provocation. 122(2) The person to whom the hurt is caused. Wrongfully restraining or confining any person. 126(2), 127(2) The person restrained or confined. Wrongfully confining a person for three days or more. 127(3) The person confined. Wrongfully confining a perso'
+    status: DEFERRED_DRAFT
+    verified_by: null
+    verified_on: null
+
+  - seed_key: 'using_forged_document'
+    regime: BNS_2023
+    section: '340'
+    label: 'Using as genuine a forged document'
+    compoundable: null       # REVIEWER: from the s.359 table as printed
+    table_entry_as_printed: null   # REVIEWER: quote the table row verbatim
+    detector_state: 'NOT_LOCATED_IN_S359_TEXT'
+    detector_occurrences: 0
+    detector_context: ''
+    status: DEFERRED_DRAFT
+    verified_by: null
+    verified_on: null
+
+  - seed_key: 'robbery'
+    regime: BNS_2023
+    section: '309'
+    label: 'Robbery'
+    compoundable: null       # REVIEWER: from the s.359 table as printed
+    table_entry_as_printed: null   # REVIEWER: quote the table row verbatim
+    detector_state: 'NOT_LOCATED_IN_S359_TEXT'
+    detector_occurrences: 0
+    detector_context: ''
+    status: DEFERRED_DRAFT
+    verified_by: null
+    verified_on: null
+
+  - seed_key: 'criminal_breach_of_trust'
+    regime: BNS_2023
+    section: '316'
+    label: 'Criminal breach of trust'
+    compoundable: null       # REVIEWER: from the s.359 table as printed
+    table_entry_as_printed: null   # REVIEWER: quote the table row verbatim
+    detector_state: 'LISTED_NEAR_TABLE_1_S359_1'
+    detector_occurrences: 3
+    detector_context: 'ion of property. 314 The owner of the property misappropriated. Criminal breach of trust by a carrier, wharfinger, etc. 316(3) The owner of the property in respect of which the breach of trust has been committed. 1 2 3 Dishonestly receiving stolen property knowing it to be stolen'
+    status: DEFERRED_DRAFT
+    verified_by: null
+    verified_on: null
+
+  - seed_key: 'cheating'
+    regime: BNS_2023
+    section: '318'
+    label: 'Cheating'
+    compoundable: null       # REVIEWER: from the s.359 table as printed
+    table_entry_as_printed: null   # REVIEWER: quote the table row verbatim
+    detector_state: 'LISTED_NEAR_TABLE_1_S359_1'
+    detector_occurrences: 3
+    detector_context: 'concealment or disposal of stolen property, knowing it to be stolen. 317(5) The owner of the property stolen. Cheating. 318(2) The person cheated. Cheating by personation. 319(2) The person cheated. Fraudulent removal or concealment of property, etc., to prevent distribution amon'
+    status: DEFERRED_DRAFT
+    verified_by: null
+    verified_on: null
+
+  - seed_key: 'receiving_stolen_property'
+    regime: BNS_2023
+    section: '317'
+    label: 'Dishonestly receiving stolen property'
+    compoundable: null       # REVIEWER: from the s.359 table as printed
+    table_entry_as_printed: null   # REVIEWER: quote the table row verbatim
+    detector_state: 'LISTED_NEAR_TABLE_1_S359_1'
+    detector_occurrences: 2
+    detector_context: 't of which the breach of trust has been committed. 1 2 3 Dishonestly receiving stolen property knowing it to be stolen. 317(2) The owner of the property stolen. Assisting in the concealment or disposal of stolen property, knowing it to be stolen. 317(5) The owner of the property '
+    status: DEFERRED_DRAFT
+    verified_by: null
+    verified_on: null
+
+  - seed_key: 'mischief'
+    regime: BNS_2023
+    section: '324'
+    label: 'Mischief'
+    compoundable: null       # REVIEWER: from the s.359 table as printed
+    table_entry_as_printed: null   # REVIEWER: quote the table row verbatim
+    detector_state: 'LISTED_NEAR_TABLE_1_S359_1'
+    detector_occurrences: 2
+    detector_context: '. 323 The person affected thereby. Mischief, when the only loss or damage caused is loss or damage to a private person. 324(2), 324(4) The person to whom the loss or damage is caused. Mischief by killing or maiming animal. 325 The owner of the animal. Mischief by injury to works '
+    status: DEFERRED_DRAFT
+    verified_by: null
+    verified_on: null
+
+  - seed_key: 'house_trespass'
+    regime: BNS_2023
+    section: '331'
+    label: 'House-trespass'
+    compoundable: null       # REVIEWER: from the s.359 table as printed
+    table_entry_as_printed: null   # REVIEWER: quote the table row verbatim
+    detector_state: 'NOT_LOCATED_IN_S359_TEXT'
+    detector_occurrences: 0
+    detector_context: ''
+    status: DEFERRED_DRAFT
+    verified_by: null
+    verified_on: null
+
+  - seed_key: 'criminal_intimidation'
+    regime: BNS_2023
+    section: '351'
+    label: 'Criminal intimidation'
+    compoundable: null       # REVIEWER: from the s.359 table as printed
+    table_entry_as_printed: null   # REVIEWER: quote the table row verbatim
+    detector_state: 'LISTED_NEAR_TABLE_1_S359_1'
+    detector_occurrences: 2
+    detector_context: 'd with a counterfeit property mark. 349 The person to whom loss or injury is caused by such use. Criminal intimidation. 351(2), 351(3) The person intimidated. Insult intended to provoke a breach of peace. 352 The person insulted. Inducing person to believe himself an object of di'
+    status: DEFERRED_DRAFT
+    verified_by: null
+    verified_on: null
+
+  - seed_key: 'cruelty_by_husband'
+    regime: BNS_2023
+    section: '85'
+    label: 'Cruelty by husband or relative of husband'
+    compoundable: null       # REVIEWER: from the s.359 table as printed
+    table_entry_as_printed: null   # REVIEWER: quote the table row verbatim
+    detector_state: 'NOT_LOCATED_IN_S359_TEXT'
+    detector_occurrences: 0
+    detector_context: ''
+    status: DEFERRED_DRAFT
+    verified_by: null
+    verified_on: null
+
+  - seed_key: 'kidnapping'
+    regime: BNS_2023
+    section: '137'
+    label: 'Kidnapping'
+    compoundable: null       # REVIEWER: from the s.359 table as printed
+    table_entry_as_printed: null   # REVIEWER: quote the table row verbatim
+    detector_state: 'NOT_LOCATED_IN_S359_TEXT'
+    detector_occurrences: 0
+    detector_context: ''
+    status: DEFERRED_DRAFT
+    verified_by: null
+    verified_on: null
+
+  - seed_key: 'rioting'
+    regime: BNS_2023
+    section: '191'
+    label: 'Rioting'
+    compoundable: null       # REVIEWER: from the s.359 table as printed
+    table_entry_as_printed: null   # REVIEWER: quote the table row verbatim
+    detector_state: 'NOT_LOCATED_IN_S359_TEXT'
+    detector_occurrences: 0
+    detector_context: ''
+    status: DEFERRED_DRAFT
+    verified_by: null
+    verified_on: null

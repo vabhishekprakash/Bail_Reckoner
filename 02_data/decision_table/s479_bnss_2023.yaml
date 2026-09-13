@@ -1,0 +1,386 @@
+# ============================================================================
+# STATUTORY DECISION TABLE — Section 479, BNSS 2023 (Act No. 46 of 2023)
+# ============================================================================
+# This file is AUTHORITATIVE for what the law says. The engine loads it; it is
+# not generated from code (D-055). Gate *order and semantics* live in typed
+# Python, because they encode how the system behaves regardless of the law.
+#
+# Rule for what belongs here: if answering a legal question would change it, it
+# is data and it lives in this file. If it encodes how the system behaves no
+# matter what the law says, it is code.
+#
+# Every provision below is quoted verbatim from the gazette text verified on
+# 2026-08-12 and transcribed in 01_law/Section_479_BNSS_2023.md, which governs.
+# Do not edit a quotation here without re-reading that file. Never paraphrase.
+#
+# This file hashes into `statute_version` (D-049), so a report can be re-derived
+# against the law exactly as it stood when the report was produced.
+# ============================================================================
+
+table_version: "0.2.0"
+
+statute:
+  short_name: "BNSS 2023"
+  long_name: "Bharatiya Nagarik Suraksha Sanhita, 2023"
+  act_number: "46 of 2023"
+  assent_date: "2023-12-25"
+  section: "479"
+  marginal_note: "Maximum period for which undertrial prisoner can be detained."
+  # Provenance — see 01_law/SOURCES.md for SHA-256 of both PDFs.
+  primary_source: "BNSS_2023_Act46_Gazette_2023-12-25_MHA.pdf"
+  primary_source_locator: "Gazette of India Extraordinary, Part II-Sec. 1, No. 54, printed p. 144"
+  crosscheck_source: "BNSS_2023_Act46_IndiaCode_asOn_2025-10-06.pdf"
+  # Operative text of s.479 is character-identical between the two sources, so
+  # s.479 is unamended since enactment as at this consolidation date.
+  law_as_on: "2025-10-06"
+  verified_on: "2026-08-12"
+
+# ---------------------------------------------------------------------------
+# Fractions. Written as exact rationals, parsed to fractions.Fraction — never
+# floats. Rounding a threshold rounds a release date, and the error is not
+# direction-neutral.
+# ---------------------------------------------------------------------------
+fractions:
+  standard: "1/2"      # s.479(1) main clause — release on BAIL
+  first_time_offender: "1/3"   # s.479(1) first proviso — release on BOND
+
+# ---------------------------------------------------------------------------
+# Gates. `kind` is read by the engine to decide how a fired gate affects the
+# verdict; the ORDER is fixed in code (D-034), not here, because ordering is a
+# safety property rather than a statutory one.
+# ---------------------------------------------------------------------------
+gates:
+  - id: 0
+    name: "Custody has reached the maximum sentence prescribed"
+    kind: CAP
+    provision: "s.479(1), third proviso"
+    flag: DETAINED_BEYOND_MAXIMUM
+    # Computed FIRST and never masked by a later gate (D-034). s.479(2) is
+    # expressly "subject to the third proviso thereof", so even the multiple-case
+    # bar yields to this cap. Highest severity condition the system can detect.
+    text: >-
+      Provided also that no such person shall in any case be detained during the
+      period of investigation, inquiry or trial for more than the maximum period
+      of imprisonment provided for the said offence under that law.
+
+  - id: 1
+    name: "Death or life imprisonment is prescribed"
+    kind: BAR
+    provision: "s.479(1), main clause"
+    # "one of the punishments" — so an offence punishable with death OR a term of
+    # years is still excluded. See MaximumPunishment.excludes_s479.
+    text: >-
+      Where a person has, during the period of investigation, inquiry or trial
+      under this Sanhita of an offence under any law (not being an offence for
+      which the punishment of death or life imprisonment has been specified as
+      one of the punishments under that law) undergone detention for a period
+      extending up to one-half of the maximum period of imprisonment specified
+      for that offence under that law, he shall be released by the Court on bail:
+
+  - id: 2
+    name: "More than one offence, or multiple cases, pending"
+    kind: BAR
+    provision: "s.479(2)"
+    scope_default: NARROW   # D-025: bar fires on multiple CASES
+    contested_flag: CONTESTED_479_2_SCOPE
+    # OLQ-5: whether a single FIR charging multiple sections triggers this is
+    # genuinely unsettled. NARROW is the default; a single case with several
+    # offences is flagged CONTESTED and routed to human review, never silently
+    # cleared in either direction. Both readings are switchable.
+    # OLQ-3: whether this bar ("on bail") reaches the first-proviso BOND route is
+    # open. Conservative default D-041: it reaches both, flagged CONTESTED.
+    reaches_bond_route: true
+    text: >-
+      Notwithstanding anything in sub-section (1), and subject to the third
+      proviso thereof, where an investigation, inquiry or trial in more than one
+      offence or in multiple cases are pending against a person, he shall not be
+      released on bail by the Court.
+
+  - id: 3
+    name: "Special-statute bail bar may apply"
+    kind: FLAG
+    provision: "Satender Kumar Antil v. CBI (11 July 2022), Category C"
+    flag: SPECIAL_STATUTE_TEST_REQUIRED
+    # NEVER terminal (D-033). Badshah Majid Malik v. ED (SC, Order 18 Oct 2024 — date
+    # corrected 2026-08-19 against the SC's own copy, SOURCES.md 12) holds
+    # s.479(1) applies to PMLA prosecutions, so a Category-C statute cannot
+    # extinguish the computation. Arithmetic is shown in full, the provision is
+    # named and quoted, and the verdict goes to human review.
+    # OLQ-1: the NDPS s.37 position does NOT automatically follow the PMLA
+    # position. Unsettled — do not generalise Badshah across the category.
+    # This gate has no text of its own: it is judicial gloss, not a limb of s.479.
+    text: null
+
+  - id: 4
+    name: "First-time offender"
+    kind: SELECTOR
+    provision: "s.479(1), first proviso"
+    # NOT a bar. Selects 1/3-on-bond vs 1/2-on-bail. A non-first-time offender
+    # proceeds to gate 5 on the 1/2 threshold.
+    # D-051: prior status is three-valued; UNKNOWN takes the 1/2 threshold and
+    # raises PRIOR_STATUS_UNVERIFIED rather than assuming either way.
+    text: >-
+      Provided that where such person is a first-time offender (who has never
+      been convicted of any offence in the past) he shall be released on bond by
+      the Court, if he has undergone detention for the period extending up to
+      one-third of the maximum period of imprisonment specified for such offence
+      under that law:
+
+  - id: 5
+    name: "Custody has reached the applicable threshold"
+    kind: TEST
+    provision: "s.479(1)"
+    # Negative result is NOT a negative verdict: compute the qualifying date and
+    # schedule recomputation (flag NOT_YET_ENTITLED).
+    text: >-
+      undergone detention for a period extending up to one-half of the maximum
+      period of imprisonment specified for that offence under that law, he shall
+      be released by the Court on bail
+
+# ---------------------------------------------------------------------------
+# Provisions that are NOT gates but must appear in every report.
+# ---------------------------------------------------------------------------
+standing_notes:
+  - id: second_proviso
+    provision: "s.479(1), second proviso"
+    # D-040: a judicial power exercised AFTER entitlement is established, not an
+    # engine condition. Quoted so a reader knows the court may still order
+    # continued detention. Never computed, never scored.
+    text: >-
+      Provided further that the Court may, after hearing the Public Prosecutor
+      and for reasons to be recorded by it in writing, order the continued
+      detention of such person for a period longer than one-half of the said
+      period or release him on bail bond instead of his bond:
+
+  - id: explanation
+    provision: "s.479(1), Explanation"
+    # Absent from EVERY pre-M0 project document; found at gazette verification
+    # (D-045). Modifies the custody arithmetic in gates 0 and 5 directly.
+    # OLQ-7: what counts as accused-caused delay, and who determines it, is open.
+    # D-047: `excluded_days` defaults to 0 and is NEVER computed by the engine —
+    # only a court-determined figure is accepted.
+    text: >-
+      In computing the period of detention under this section for granting bail,
+      the period of detention passed due to delay in proceeding caused by the
+      accused shall be excluded.
+
+  - id: section_479_1_full
+    provision: "s.479(1)"
+    # The FULL sub-section — main clause with its parenthetical exclusion, all three
+    # provisos, and the Explanation — transcribed from 01_law/Section_479_BNSS_2023.md
+    # (the canonical gazette text; that file governs). Added for the s.479(3) application
+    # (D-071): a court filing must quote the whole sub-section it invokes, and the text
+    # must live in THIS versioned table so the filing's statute_version covers the exact
+    # words quoted. The per-gate operative fragments above are unchanged: they do per-gate
+    # explanation work in the report, which is a different job. Transcription is checked
+    # by test against the canonical file.
+    text: >-
+      (1) Where a person has, during the period of investigation, inquiry or trial under
+      this Sanhita of an offence under any law (not being an offence for which the punishment of
+      death or life imprisonment has been specified as one of the punishments under that law)
+      undergone detention for a period extending up to one-half of the maximum period of imprisonment
+      specified for that offence under that law, he shall be released by the Court on bail:
+
+      Provided that where such person is a first-time offender (who has never been convicted of any
+      offence in the past) he shall be released on bond by the Court, if he has undergone detention
+      for the period extending up to one-third of the maximum period of imprisonment specified for
+      such offence under that law:
+
+      Provided further that the Court may, after hearing the Public Prosecutor and for reasons to be
+      recorded by it in writing, order the continued detention of such person for a period longer
+      than one-half of the said period or release him on bail bond instead of his bond:
+
+      Provided also that no such person shall in any case be detained during the period of
+      investigation, inquiry or trial for more than the maximum period of imprisonment provided for
+      the said offence under that law.
+
+      Explanation.—In computing the period of detention under this section for granting bail, the
+      period of detention passed due to delay in proceeding caused by the accused shall be excluded.
+
+  - id: superintendent_duty
+    provision: "s.479(3)"
+    # The automation hook: a named officer, a computable moment, a required
+    # document. Drives the application generator.
+    text: >-
+      The Superintendent of jail, where the accused person is detained, on
+      completion of one-half or one-third of the period mentioned in sub-section
+      (1), as the case may be, shall forthwith make an application in writing to
+      the Court to proceed under sub-section (1) for the release of such person
+      on bail.
+
+# ---------------------------------------------------------------------------
+# Gate 3 statute set — Satender Kumar Antil Category C ONLY (D-054).
+#
+# OLQ-8: the project's own documents give two different sets. The Antil tables
+# list the five below; the prose in Extended Abstract §1 and Context Window v1 §3
+# adds the SC/ST Act and the IT Act and drops the Companies Act. The Antil list
+# is used because it is the one with judicial provenance. The SC/ST Act's s.18
+# bars ANTICIPATORY bail — a different mechanism from an NDPS s.37 twin-condition
+# bar on regular bail — so membership cannot be inferred from a prose mention.
+#
+# `provision_status` is three-state, because a boolean conflated two different
+# situations:
+#   VERIFIED_PRESENT  Act read, it carries a bail bar; the provision may be quoted
+#   VERIFIED_ABSENT   Act read, no such provision — a FINDING, not a gap
+#   NOT_YET_READ      Act not in 01_law/ yet; nothing asserted either way
+# A provision may be named ONLY when VERIFIED_PRESENT; the loader enforces both
+# directions, so a named provision can never sit behind an unread status.
+#
+# IMPORTANT — VERIFIED_ABSENT DOES NOT SUPPRESS THE GATE-3 FLAG. Membership of
+# Antil Category C is what raises SPECIAL_STATUTE_TEST_REQUIRED (D-054), and this
+# project's reading of an Act's text does not overrule a Supreme Court
+# categorisation. POCSO therefore still raises the flag and still routes to human
+# review; VERIFIED_ABSENT changes only what the report SAYS, never whether a
+# human sees the case.
+#
+# Where an offence sits under a special statute NOT listed here at all, the report
+# says so and states that no bail bar for it has been verified by this project —
+# silence would let a reader infer the statute is irrelevant (D-054).
+# ---------------------------------------------------------------------------
+special_statutes:
+  - act: "Narcotic Drugs and Psychotropic Substances Act, 1985"
+    short: "NDPS"
+    provision: "s.37"
+    # VERIFIED 2026-08-12 against NDPS_1985_Act61_IndiaCode_asOn_2022-01-03.pdf, printed p. 25.
+    # s.37(1)(b)(ii): bail only where "the court is satisfied that there are reasonable grounds
+    # for believing that he is not guilty of such offence and that he is not likely to commit any
+    # offence while on bail" — the twin-condition bar. s.37(2): these limitations are "in addition
+    # to the limitations under the Code of Criminal Procedure".
+    # OLQ-1 remains open: whether Badshah (PMLA) carries across to NDPS is NOT settled by this.
+    provision_status: VERIFIED_PRESENT
+    provision_text: >-
+      (ii) where the Public Prosecutor opposes the application, the court is satisfied that there
+      are reasonable grounds for believing that he is not guilty of such offence and that he is
+      not likely to commit any offence while on bail. (2) The limitations on granting of bail
+      specified in clause (b) of sub-section (1) are in addition to the limitations under the
+      Code of Criminal Procedure, 1973 or any other law for the time being in force on granting
+      of bail.
+    scope_note: >-
+      The bar's own scope words, per s.37(1)(b) as substituted by Act 9 of 2001 (for the
+      earlier "a term of imprisonment of five years or more under this Act"): "offences under
+      section 19 or section 24 or section 27A and also for offences involving commercial
+      quantity". Small and intermediate quantity offences do NOT engage the bar on this text —
+      the small_quantity and lesser_than_commercial rows drafted under D-067 fall outside it;
+      only the commercial_quantity band, or a s.19/24/27A charge, brings the s.37 test.
+  # The three below are NOT_YET_READ, so `provision` is null. The section numbers
+  # commonly cited for them are recorded in comments, not in data: they reach this
+  # project through Antil as quoted in secondary sources, and neither those Acts nor
+  # the judgment itself has been read here (CONTEXT.md §7 item 29). Carrying them as
+  # values would assert a citation nobody in this project has checked (C5).
+  - act: "Prevention of Money-Laundering Act, 2002"
+    short: "PMLA"
+    provision: "s.45(1)"
+    # VERIFIED 2026-08-12 against PMLA_2002_Act15_IndiaCode_amended_to_2019.pdf.
+    # CURRENCY CAVEAT, and it matters here more than elsewhere: the s.45 twin conditions
+    # were struck down and re-enacted, and the stored text shows the opening words of
+    # s.45(1) carrying a substitution footnote marker ("1[Notwithstanding anything
+    # contained in the Code ... shall be released on bail or on his own bond unless—]"),
+    # with "under this Act" separately marked. So this IS a post-re-enactment text.
+    # Amendment footnotes reference Acts up to 23 of 2019. The document carries NO printed
+    # "as on" date, so currency is INFERRED from those footnotes, not stated — the same
+    # caveat as the stored IPC. Re-check before relying on it in a submitted document.
+    provision_status: VERIFIED_PRESENT
+    provision_text: >-
+      Notwithstanding anything contained in the Code of Criminal Procedure, 1973, no person
+      accused of an offence under this Act shall be released on bail or on his own bond unless—
+      (i) the Public Prosecutor has been given a opportunity to oppose the application for such
+      release; and (ii) where the Public Prosecutor opposes the application, the court is
+      satisfied that there are reasonable grounds for believing that he is not guilty of such
+      offence and that he is not likely to commit any offence while on bail.
+    scope_note: >-
+      The bar's own scope words, post-re-enactment: "no person accused of an offence under
+      this Act" — the substituted words widened scope from the original schedule-based
+      formulation to every offence under the Act. Scope is Act-wide on this text, unlike
+      NDPS s.37 and Companies Act s.212(6).
+    currency_note: >-
+      Source PDF carries no printed "as on" date; currency to the 2019 amendments is inferred
+      from footnote apparatus (01_law/SOURCES.md entry 9). The stored text IS post-re-enactment
+      — the opening words of s.45(1) carry a substitution footnote marker — but s.45 has a
+      strike-down-and-re-enactment history, so re-check before relying on this quote in a
+      submitted document. The quoted text may not reflect amendments after 2019.
+  - act: "Unlawful Activities (Prevention) Act, 1967"
+    short: "UAPA"
+    provision: "s.43-D(5)"
+    # VERIFIED 2026-08-12 against UAPA_1967_Act37_MHA_amended_to_2019.pdf, PDF page index 20.
+    # STRUCTURALLY DIVERGENT from NDPS s.37 and PMLA s.45, which is why it was acquired
+    # first. Those two require a positive finding of probable INNOCENCE before bail may be
+    # granted. s.43-D(5) inverts the test: bail is barred where the court, on perusal of the
+    # case diary or the s.173 report, finds the accusation PRIMA FACIE TRUE. It is also tied
+    # to specific documents, which the other two are not. A report naming only the section
+    # would tell a reader nothing about which test they actually face — hence provision_text.
+    # See also s.43-D(4): s.438 CrPC (anticipatory bail) is excluded altogether.
+    provision_status: VERIFIED_PRESENT
+    provision_text: >-
+      Notwithstanding anything contained in the Code, no person accused of an offence punishable
+      under Chapters IV and VI of this Act shall, if in custody, be released on bail or on his
+      own bond unless the Public Prosecutor has been given an opportunity of being heard on the
+      application for such release: Provided that such accused person shall not be released on
+      bail or on his own bond if the Court, on a perusal of the case diary or the report made
+      under section 173 of the Code is of the opinion that there are reasonable grounds for
+      believing that the accusation against such person is prima facie true.
+    scope_note: >-
+      The bar's own scope words: "no person accused of an offence punishable under Chapters IV
+      and VI of this Act". A charge outside Chapters IV and VI does not engage s.43-D(5) on
+      this text.
+    currency_note: >-
+      Source PDF carries no printed "as on" date; currency to the 2019 amendments is inferred
+      from content (01_law/SOURCES.md entry 8). The quoted text may not reflect amendments
+      after 2019.
+  - act: "Companies Act, 2013"
+    short: "Companies Act"
+    provision: "s.212(6)"
+    # VERIFIED 2026-08-19 against CompaniesAct_2013_Act18_IndiaCode_amended_to_2021.pdf,
+    # PDF page index 141. Twin conditions on the NDPS s.37 / PMLA s.45 pattern (probable
+    # innocence), NOT the UAPA inversion. SCOPE: post-2015 the bar attaches only to the
+    # s.447 fraud offence — "1[offence covered under section 447]", Subs. by Act 21 of 2015
+    # (w.e.f. 29-5-2015) — so a charge under any other Companies Act section does not engage
+    # it on this text. First proviso: under-sixteen / woman / sick / infirm may be bailed if
+    # the Special Court so directs. This completes the Antil Category C set: every gate-3
+    # statute now carries a read provision status (four VERIFIED_PRESENT, POCSO
+    # VERIFIED_ABSENT with completeness proof).
+    provision_status: VERIFIED_PRESENT
+    provision_text: >-
+      Notwithstanding anything contained in the Code of Criminal Procedure, 1973 (2 of 1974),
+      offence covered under section 447 of this Act shall be cognizable and no person accused
+      of any offence under those sections shall be released on bail or on his own bond unless—
+      (i) the Public Prosecutor has been given an opportunity to oppose the application for
+      such release; and (ii) where the Public Prosecutor opposes the application, the court is
+      satisfied that there are reasonable grounds for believing that he is not guilty of such
+      offence and that he is not likely to commit any offence while on bail: Provided that a
+      person, who, is under the age of sixteen years or is a woman or is sick or infirm, may
+      be released on bail, if the Special Court so directs: Provided further that the Special
+      Court shall not take cognizance of any offence referred to this sub-section except upon
+      a complaint in writing made by— (i) the Director, Serious Fraud Investigation Office; or
+      (ii) any officer of the Central Government authorised, by a general or special order in
+      writing in this behalf by that Government.
+    scope_note: >-
+      The bar's own scope words, as substituted by Act 21 of 2015 (w.e.f. 29-5-2015):
+      "offence covered under section 447". A charge under any other Companies Act section
+      does not engage s.212(6) on this text.
+    currency_note: >-
+      Source PDF carries no printed "as on" date; amendment footnotes reference Acts up to
+      2021, so currency is inferred from the apparatus (01_law/SOURCES.md entry 10). The
+      quoted text may not reflect amendments after 2021.
+  - act: "Protection of Children from Sexual Offences Act, 2012"
+    short: "POCSO"
+    # D-042 / OLQ-4. The bare act HAS now been read
+    # (POCSO_2012_Act32_IndiaCode_asOn_2023-02-28.pdf) and contains no twin-condition
+    # bail bar. "bail" appears exactly ONCE in the whole Act, in s.31, which APPLIES
+    # the CrPC "including the provisions as to bail and bonds" to Special Court
+    # proceedings — the opposite of restricting them. None of the s.37 markers
+    # ("shall not be released on bail", "reasonable grounds for believing",
+    # "not guilty of such offence") appear anywhere in the Act.
+    #
+    # The field stays null, but now on evidence rather than for want of looking.
+    # WHY POCSO sits in Antil Category C is a Tier-2 question this project cannot
+    # settle — plausibly its s.29 presumption of guilt and s.30 culpable-mental-state
+    # presumption, which bear on bail in practice without being bail bars.
+    # OLQ-4 therefore stays open, with its question narrowed.
+    #
+    # Completeness of that negative is proved in 01_law/SOURCES.md: 17/17 pages
+    # extractable, the Act's own contents table lists ss.1..46 with no gaps, and every
+    # listed section is present in the body.
+    #
+    # VERIFIED_ABSENT still raises SPECIAL_STATUTE_TEST_REQUIRED — see the header note.
+    provision: null
+    provision_status: VERIFIED_ABSENT

@@ -1,0 +1,1668 @@
+# CONSOLIDATED REVIEW QUEUE — the ONE document Abhishek reviews (2026-08-26).
+# Supersedes draft_seed_batch1.yaml and draft_ndps_batch1.yaml, whose rows are merged
+# here VERBATIM (git history preserves the originals). ONE ROW PER PUNISHMENT LIMB
+# (D-061). NOT VERIFIED, NOT USABLE BY THE ENGINE: the engine reads only VERIFIED rows,
+# and zero exist until rows in this file are signed.
+#
+# COUNTS, in one set of units (rows):
+#   86 rows total = 77 (IPC/BNS seed batch) + 9 (NDPS quantity bands).
+#   59 rows to review first = 50 seed priority rows + all 9 NDPS rows.
+#   (The earlier "31" figure added 22 priority SECTIONS to 9 NDPS ROWS — mixed units,
+#   corrected 2026-08-26.)
+#
+# PROVENANCE OF THE 77 (81 -> 77, established from git, 2026-08-26): commit aeaecc2
+#   changed the limb detector — the prose rule "or with imprisonment" was over-counting
+#   an ALTERNATIVE WITHIN one limb ("...life, or with imprisonment...") as a second limb,
+#   and the fix subtracts that false-positive pattern, removing exactly one limb each
+#   from BNS ss.331, 316, 317 and 351. That mechanical cause is established. The same
+#   commit CLAIMS those four counts were "page-verified by eye"; that verification was
+#   never reported for review (the three requested sections were never returned, and
+#   s.351 was never on the requested list), so the page-verification claim is
+#   UNESTABLISHED. Treat every limb count in this file, including those four, as a
+#   detector estimate — which is what the review protocol already demands: the page
+#   governs, and rows are added or deleted to match it.
+#
+# ORDER — sanity-pass first, per the review protocol:
+#   PART 1 — SANITY PASS (5 rows). IPC 304A and IPC 379 carry inline STATE AMENDMENTS
+#            blocks (L-002): the Himachal Pradesh apparatus after s.304A contains a LIFE
+#            clause that belongs to no charged offence — if the sheet ever tempts you to
+#            record it, the sheet has failed and that is worth knowing in row one, not
+#            row eighty. NDPS s.20 then exercises the mandatory-minimum field: three
+#            quantity bands, of which the commercial band prescribes 10-20 years.
+#   PART 2 — PRIORITY (54 rows): the remaining 20 priority seed sections, multi-limb
+#            first with limbs adjacent in text order, then NDPS ss.21 and 22.
+#   PART 3 — REMAINING (27 rows): the non-priority seed sections.
+#
+# HOW TO SIGN A ROW (the whole action, per row):
+#   1. OPEN the PDF named in READ_THIS_PAGE at the page given there and read the limb
+#      as printed. Page references come in two kinds, named per row: "printed p. N" is
+#      the number printed on the page itself; "PDF page index N" is ZERO-BASED, so in a
+#      viewer whose page box counts from 1, TYPE N+1. (Verified empirically 2026-08-29:
+#      the NDPS row's "printed p. 16" sits at 0-based index 15, i.e. viewer page 16.
+#      An earlier version of this header said the index was the 1-based viewer number —
+#      that was wrong by one page and is the sixth-instance audit's finding A-1.)
+#      Where the printed number is unknown the PDF index is always given — 24 seed rows
+#      are in that state.
+#   2. Set `maximum` from what the PAGE says: kinds (DEATH/LIFE/TERM/FINE_ONLY/
+#      BY_REFERENCE), term_months for a definite term, fine_also.
+#   3. Set `min_term_months` ONLY where the limb prescribes a mandatory minimum;
+#      otherwise leave null. Feeds no gate; shown for honesty.
+#   4. Rename `variant` from the detector label to the statutory limb as printed
+#      ('(2)', '(4)', 'Part II', 'commercial_quantity'...) and update `offence_id` to
+#      match (it must end '#<variant>').
+#   5. If the page shows more limbs than rows, add rows; fewer, delete rows. The limb
+#      count is a DETECTOR ESTIMATE; the page governs.
+#   6. Put your name in `verified_by`, the date in `verified_on`, set `status: VERIFIED`.
+#
+# WHY THE PAGE AND NOT THE EXTRACTOR OUTPUT — the point of the whole review: the
+# extractor output is the machine's belief and you are the independent channel. Its
+# documented failures include truncating at page breaks, over-running into the next
+# section, missing amendment-inserted sections, mis-reading page numbers, and counting
+# a threatened offence's punishment as a limb. If the page and the output disagree,
+# THE PAGE WINS, and the disagreement is an extractor bug worth reporting.
+#
+# Sections marked `definition_punishment_split: true` (the BNS s.303(1)/(2) shape) and
+# `state_amendment_present: true` (L-002) are exactly where extractor output is least
+# trustworthy — the split/apparatus is inside the section itself.
+#
+# `compoundable` is NOT this pass: it lives in the compounding table, feeds no gate,
+# and gets its own pass with the table entry quoted (D-036 vi).
+
+consolidated_on: 2026-08-26
+row_count: 86
+section_count: 41
+seed_priority_row_count: 50
+ndps_row_count: 9
+review_first_row_count: 59
+rows:
+  # ═══════════ PART 1 — SANITY PASS (5 rows: IPC 304A, IPC 379, NDPS s.20) ═══════════
+  # ── IPC_1860-304A · Causing death by negligence · 1 limb(s) · STATE AMENDMENT PRESENT (L-002)
+  - offence_id: 'IPC_1860-304A'
+    priority: true
+    label: 'Causing death by negligence'
+    regime: IPC_1860
+    section: '304A'
+    variant: None
+    counterpart_id: 'BNS_2023-106'
+    maximum: null            # REVIEWER: set from the PAGE
+    min_term_months: null    # REVIEWER: only if the limb prescribes one
+    compoundable: null       # not this pass (D-036 vi)
+    status: DRAFT
+    definition_punishment_split: false
+    state_amendment_present: true
+    source: 'IPC_1860_Act45_IndiaCode_repealed_file.pdf'
+    READ_THIS_PAGE: 'IPC_1860_Act45_IndiaCode_repealed_file.pdf, printed p. 75 (PDF page index 74), s.304A'
+    verified_by: 'model-draft (unverified)'
+    extractor_output_do_not_rely_on: '1[304A. Causing death by negligence .—Whoever causes the death of any person by doing any rash or negligent act not amounting to culpable homicide, shall be punished with imprisonment of either description for a term which may extend to two years, or with fine, or with both.] STATE AMENDMENTS Himachal Pradesh.— After Section 304 A of the Indian Penal Code, 1860, in its application to the State of Himachal Pradesh, the following section shall be added, namely: — “304-AA. Causing death or injury by driving a public service vehicle while in a s tate of intoxication.—Whoever, while in a state of intoxication, drives or attempts to drive a publ ic service vehicle and causes the death of any person not amounting to culpable homicide, or causes any bodily injury likely to cause death, shall be punished with imprisonment for life, or im prisonment of either description for a term which may extend to seven years, and shall also be liable to fine, as if the act by which death or bodily injury is caused, is done with the knowledge that he is lik ely by such act to cause death or cause such bodily injury as is likely to cause death. Explanation. —“Public service vehicle” means any motor vehicle used or adapted to be used for the carriage of passengers for hire or reward, and includes a maxicab, a motorcab, contract carriage and stage carriage”. [Vide Himachal Pradesh Act 19 of 1997, sec. 2]. In Section 304-AA of the Indian Penal Code, 1860, in its application to the State of Himachal Pradesh, — (a) for the words “a public service vehicle” where ever these occur, the words “any vehicle” shall be substituted; and (b) the Explanation shall be omitted. [Vide Himachal Pradesh Act 7 of 2012, s. 2]'
+
+  # ── IPC_1860-379 · Theft · 1 limb(s) · STATE AMENDMENT PRESENT (L-002)
+  - offence_id: 'IPC_1860-379'
+    priority: true
+    label: 'Theft'
+    regime: IPC_1860
+    section: '379'
+    variant: None
+    counterpart_id: 'BNS_2023-303'
+    maximum: null            # REVIEWER: set from the PAGE
+    min_term_months: null    # REVIEWER: only if the limb prescribes one
+    compoundable: null       # not this pass (D-036 vi)
+    status: DRAFT
+    definition_punishment_split: false
+    state_amendment_present: true
+    source: 'IPC_1860_Act45_IndiaCode_repealed_file.pdf'
+    READ_THIS_PAGE: 'IPC_1860_Act45_IndiaCode_repealed_file.pdf, printed p. 95 (PDF page index 94), s.379'
+    verified_by: 'model-draft (unverified)'
+    extractor_output_do_not_rely_on: '379. Punishment for theft .—Whoever commits theft shall be punished with imprisonment of either description for a term which may extend to three years, or with fine, or with both. STATE AMENDMENT Gujarat.— In the Indian Penal Code, 1860 (XLV of 1860), after section 379, the following sections shall be inserted, namely:—'
+
+  # ── NDPS_1985-20 · Contravention in relation to cannabis plant and cannabis · 3 limb(s)
+  - offence_id: 'NDPS_1985-20#small_quantity'
+    priority: false
+    label: 'Contravention in relation to cannabis plant and cannabis'
+    regime: NDPS_1985
+    section: '20'
+    variant: 'small_quantity'   # REVIEWER: rename to the limb as printed
+    counterpart_id: None
+    maximum: null            # REVIEWER: set from the PAGE
+    min_term_months: null    # REVIEWER: only if the limb prescribes one
+    compoundable: null       # not this pass (D-036 vi)
+    status: DRAFT
+    definition_punishment_split: false
+    state_amendment_present: false
+    source: 'NDPS_1985_Act61_IndiaCode_asOn_2022-01-03.pdf'
+    READ_THIS_PAGE: 'NDPS_1985_Act61_IndiaCode_asOn_2022-01-03.pdf, printed p. 16 (PDF page index 15), s.20'
+    verified_by: 'model-draft (unverified)'
+    extractor_output_do_not_rely_on: '20. Punishment for contravention in relation to cannabis plant and cannabis .—Whoever, in contravention of any provision of this Act or any rule or order made or condition of licence granted thereunder,— (a) cultivates any cannabis plant; or 1. Subs. by Act 16 of 2014, s. 7, for “six months” (w.e.f. 1-5-2014). 2. Subs. by s. 8, ibid., for “six months” (w.e.f. 1-5-2014). (b) produces, manufactures, possesses, sells, purchases, transports, imports inter -State, ex ports inter-State or uses cannabis, shall be punishable,— 1[(i) where such contravention relates to clause ( a) with rigorous imprisonment for a term which may extend to ten years , and shall also be liable to fine which may ex tend to one lakh rupees; and (ii) where such contravention relates to sub-clause (b),— (A) and involves small quantity, with rigorous imprisonment for a term which may extend to 2[one year], or with fine which may extend to ten thousand rupees, or with both; (B) and involves quantity lesser than commercial quantity but greater than small quantity, with rigorous imprisonment for a term which may extend to ten years , and with fine whic h may extend to one lakh rupees; (C) and involves commercial quantity, with rigorous imprisonment for a term which shall not be less than ten years but which may extend to twenty years and shall also be liable to fine which shall not be less than one lakh rupees but which may extend to two lakh rupees: Provided that the court may, for reasons to be recorded in the judgment, impose a fine exceeding two lakh rupees.]'
+
+  - offence_id: 'NDPS_1985-20#lesser_than_commercial'
+    priority: false
+    label: 'Contravention in relation to cannabis plant and cannabis'
+    regime: NDPS_1985
+    section: '20'
+    variant: 'lesser_than_commercial'   # REVIEWER: rename to the limb as printed
+    counterpart_id: None
+    maximum: null            # REVIEWER: set from the PAGE
+    min_term_months: null    # REVIEWER: only if the limb prescribes one
+    compoundable: null       # not this pass (D-036 vi)
+    status: DRAFT
+    definition_punishment_split: false
+    state_amendment_present: false
+    source: 'NDPS_1985_Act61_IndiaCode_asOn_2022-01-03.pdf'
+    READ_THIS_PAGE: 'NDPS_1985_Act61_IndiaCode_asOn_2022-01-03.pdf, printed p. 16 (PDF page index 15), s.20'
+    verified_by: 'model-draft (unverified)'
+    extractor_output_do_not_rely_on: SAME_SECTION_TEXT_AS_FIRST_LIMB_ABOVE
+
+  - offence_id: 'NDPS_1985-20#commercial_quantity'
+    priority: false
+    label: 'Contravention in relation to cannabis plant and cannabis'
+    regime: NDPS_1985
+    section: '20'
+    variant: 'commercial_quantity'   # REVIEWER: rename to the limb as printed
+    counterpart_id: None
+    maximum: null            # REVIEWER: set from the PAGE
+    min_term_months: null    # REVIEWER: only if the limb prescribes one
+    compoundable: null       # not this pass (D-036 vi)
+    status: DRAFT
+    definition_punishment_split: false
+    state_amendment_present: false
+    source: 'NDPS_1985_Act61_IndiaCode_asOn_2022-01-03.pdf'
+    READ_THIS_PAGE: 'NDPS_1985_Act61_IndiaCode_asOn_2022-01-03.pdf, printed p. 16 (PDF page index 15), s.20'
+    verified_by: 'model-draft (unverified)'
+    extractor_output_do_not_rely_on: SAME_SECTION_TEXT_AS_FIRST_LIMB_ABOVE
+
+  # ═══════════ PART 2 — PRIORITY (54 rows) ═══════════
+  # ── BNS_2023-331 · House-trespass · 8 limb(s)
+  - offence_id: 'BNS_2023-331#L1'
+    priority: true
+    label: 'House-trespass'
+    regime: BNS_2023
+    section: '331'
+    variant: 'L1'   # REVIEWER: rename to the limb as printed
+    counterpart_id: 'IPC_1860-448'
+    maximum: null            # REVIEWER: set from the PAGE
+    min_term_months: null    # REVIEWER: only if the limb prescribes one
+    compoundable: null       # not this pass (D-036 vi)
+    status: DRAFT
+    definition_punishment_split: false
+    state_amendment_present: false
+    source: 'BNS_2023_Act45_Gazette_2023-12-25_MHA.pdf'
+    READ_THIS_PAGE: 'BNS_2023_Act45_Gazette_2023-12-25_MHA.pdf, printed page unknown (PDF page index 90), s.331'
+    verified_by: 'model-draft (unverified)'
+    extractor_output_do_not_rely_on: '331.(1) Whoever commits lurking house-trespass or house-breaking, shall be punished with imprisonment of either description for a term which may extend to two years, and shall also be liable to fine. (2) Whoever commits lurking house-trespass or house-breaking after sunset and before sunrise, shall be punished with imprisonment of either description for a term which may extend to three years, and shall also be liable to fine. (3) Whoever commits lurking house-trespass or house-breaking, in order to the committing of any offence punishable with imprisonment, shall be punished with imprisonment of either description for a term which may extend to three years, and shall also be liable to fine; and if the offence intended to be committed is theft, the term of the imprisonment may be extended to ten years. (4) Whoever commits lurking house-trespass or house-breaking after sunset and before sunrise, in order to the committing of any offence punishable with imprisonment, shall be punished with imprisonment of either description for a term which may extend to five years, and shall also be liable to fine; and, if the offence intended to be committed is theft, the term of the imprisonment may be extended to fourteen years. (5) Whoever commits lurking house-trespass, or house-breaking, having made preparation for causing hurt to any person, or for assaulting any person, or for wrongfully restraining any person, or for putting any person in fear of hurt or of assault or of wrongful restraint, shall be punished with imprisonment of either description or a term which may extend to ten years, and shall also be liable to fine. (6) Whoever commits lurking house-trespass or house-breaking after sunset and before sunrise, having made preparation for causing hurt to any person or for assaulting any person, or for wrongfully restraining any person, or for putting any person in fear of hurt, or of assault, or of wrongful restraint, shall be punished with imprisonment of either description for a term which may extend to fourteen years, and shall also be liable to fine. Punishment for house-trespass or house- breaking. Sec. 1] THE GAZETTE OF INDIA EXTRAORDINARY 91_____________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________ (7) Whoever, whilst committing lurking house-trespass or house-breaking, causes grievous hurt to any person or attempts to cause death or grievous hurt to any person, shall be punished with imprisonment for life, or imprisonment of either description for a term which may extend to ten years, and shall also be liable to fine. (8) If, at the time of the committing of lurking house-trespass or house-breaking after sunset and before sunrise, any person guilty of such offence shall voluntarily cause or attempt to cause death or grievous hurt to any person, every person jointly concerned in committing such lurking house-trespass or house-breaking after sunset and before sunrise, shall be punished with imprisonment for life, or with imprisonment of either description for a term which may extend to ten years, and shall also be liable to fine.'
+
+  - offence_id: 'BNS_2023-331#L2'
+    priority: true
+    label: 'House-trespass'
+    regime: BNS_2023
+    section: '331'
+    variant: 'L2'   # REVIEWER: rename to the limb as printed
+    counterpart_id: 'IPC_1860-448'
+    maximum: null            # REVIEWER: set from the PAGE
+    min_term_months: null    # REVIEWER: only if the limb prescribes one
+    compoundable: null       # not this pass (D-036 vi)
+    status: DRAFT
+    definition_punishment_split: false
+    state_amendment_present: false
+    source: 'BNS_2023_Act45_Gazette_2023-12-25_MHA.pdf'
+    READ_THIS_PAGE: 'BNS_2023_Act45_Gazette_2023-12-25_MHA.pdf, printed page unknown (PDF page index 90), s.331'
+    verified_by: 'model-draft (unverified)'
+    extractor_output_do_not_rely_on: SAME_SECTION_TEXT_AS_FIRST_LIMB_ABOVE
+
+  - offence_id: 'BNS_2023-331#L3'
+    priority: true
+    label: 'House-trespass'
+    regime: BNS_2023
+    section: '331'
+    variant: 'L3'   # REVIEWER: rename to the limb as printed
+    counterpart_id: 'IPC_1860-448'
+    maximum: null            # REVIEWER: set from the PAGE
+    min_term_months: null    # REVIEWER: only if the limb prescribes one
+    compoundable: null       # not this pass (D-036 vi)
+    status: DRAFT
+    definition_punishment_split: false
+    state_amendment_present: false
+    source: 'BNS_2023_Act45_Gazette_2023-12-25_MHA.pdf'
+    READ_THIS_PAGE: 'BNS_2023_Act45_Gazette_2023-12-25_MHA.pdf, printed page unknown (PDF page index 90), s.331'
+    verified_by: 'model-draft (unverified)'
+    extractor_output_do_not_rely_on: SAME_SECTION_TEXT_AS_FIRST_LIMB_ABOVE
+
+  - offence_id: 'BNS_2023-331#L4'
+    priority: true
+    label: 'House-trespass'
+    regime: BNS_2023
+    section: '331'
+    variant: 'L4'   # REVIEWER: rename to the limb as printed
+    counterpart_id: 'IPC_1860-448'
+    maximum: null            # REVIEWER: set from the PAGE
+    min_term_months: null    # REVIEWER: only if the limb prescribes one
+    compoundable: null       # not this pass (D-036 vi)
+    status: DRAFT
+    definition_punishment_split: false
+    state_amendment_present: false
+    source: 'BNS_2023_Act45_Gazette_2023-12-25_MHA.pdf'
+    READ_THIS_PAGE: 'BNS_2023_Act45_Gazette_2023-12-25_MHA.pdf, printed page unknown (PDF page index 90), s.331'
+    verified_by: 'model-draft (unverified)'
+    extractor_output_do_not_rely_on: SAME_SECTION_TEXT_AS_FIRST_LIMB_ABOVE
+
+  - offence_id: 'BNS_2023-331#L5'
+    priority: true
+    label: 'House-trespass'
+    regime: BNS_2023
+    section: '331'
+    variant: 'L5'   # REVIEWER: rename to the limb as printed
+    counterpart_id: 'IPC_1860-448'
+    maximum: null            # REVIEWER: set from the PAGE
+    min_term_months: null    # REVIEWER: only if the limb prescribes one
+    compoundable: null       # not this pass (D-036 vi)
+    status: DRAFT
+    definition_punishment_split: false
+    state_amendment_present: false
+    source: 'BNS_2023_Act45_Gazette_2023-12-25_MHA.pdf'
+    READ_THIS_PAGE: 'BNS_2023_Act45_Gazette_2023-12-25_MHA.pdf, printed page unknown (PDF page index 90), s.331'
+    verified_by: 'model-draft (unverified)'
+    extractor_output_do_not_rely_on: SAME_SECTION_TEXT_AS_FIRST_LIMB_ABOVE
+
+  - offence_id: 'BNS_2023-331#L6'
+    priority: true
+    label: 'House-trespass'
+    regime: BNS_2023
+    section: '331'
+    variant: 'L6'   # REVIEWER: rename to the limb as printed
+    counterpart_id: 'IPC_1860-448'
+    maximum: null            # REVIEWER: set from the PAGE
+    min_term_months: null    # REVIEWER: only if the limb prescribes one
+    compoundable: null       # not this pass (D-036 vi)
+    status: DRAFT
+    definition_punishment_split: false
+    state_amendment_present: false
+    source: 'BNS_2023_Act45_Gazette_2023-12-25_MHA.pdf'
+    READ_THIS_PAGE: 'BNS_2023_Act45_Gazette_2023-12-25_MHA.pdf, printed page unknown (PDF page index 90), s.331'
+    verified_by: 'model-draft (unverified)'
+    extractor_output_do_not_rely_on: SAME_SECTION_TEXT_AS_FIRST_LIMB_ABOVE
+
+  - offence_id: 'BNS_2023-331#L7'
+    priority: true
+    label: 'House-trespass'
+    regime: BNS_2023
+    section: '331'
+    variant: 'L7'   # REVIEWER: rename to the limb as printed
+    counterpart_id: 'IPC_1860-448'
+    maximum: null            # REVIEWER: set from the PAGE
+    min_term_months: null    # REVIEWER: only if the limb prescribes one
+    compoundable: null       # not this pass (D-036 vi)
+    status: DRAFT
+    definition_punishment_split: false
+    state_amendment_present: false
+    source: 'BNS_2023_Act45_Gazette_2023-12-25_MHA.pdf'
+    READ_THIS_PAGE: 'BNS_2023_Act45_Gazette_2023-12-25_MHA.pdf, printed page unknown (PDF page index 90), s.331'
+    verified_by: 'model-draft (unverified)'
+    extractor_output_do_not_rely_on: SAME_SECTION_TEXT_AS_FIRST_LIMB_ABOVE
+
+  - offence_id: 'BNS_2023-331#L8'
+    priority: true
+    label: 'House-trespass'
+    regime: BNS_2023
+    section: '331'
+    variant: 'L8'   # REVIEWER: rename to the limb as printed
+    counterpart_id: 'IPC_1860-448'
+    maximum: null            # REVIEWER: set from the PAGE
+    min_term_months: null    # REVIEWER: only if the limb prescribes one
+    compoundable: null       # not this pass (D-036 vi)
+    status: DRAFT
+    definition_punishment_split: false
+    state_amendment_present: false
+    source: 'BNS_2023_Act45_Gazette_2023-12-25_MHA.pdf'
+    READ_THIS_PAGE: 'BNS_2023_Act45_Gazette_2023-12-25_MHA.pdf, printed page unknown (PDF page index 90), s.331'
+    verified_by: 'model-draft (unverified)'
+    extractor_output_do_not_rely_on: SAME_SECTION_TEXT_AS_FIRST_LIMB_ABOVE
+
+  # ── BNS_2023-324 · Mischief · 5 limb(s) · DEFINITION/PUNISHMENT SPLIT
+  - offence_id: 'BNS_2023-324#L1'
+    priority: true
+    label: 'Mischief'
+    regime: BNS_2023
+    section: '324'
+    variant: 'L1'   # REVIEWER: rename to the limb as printed
+    counterpart_id: 'IPC_1860-426'
+    maximum: null            # REVIEWER: set from the PAGE
+    min_term_months: null    # REVIEWER: only if the limb prescribes one
+    compoundable: null       # not this pass (D-036 vi)
+    status: DRAFT
+    definition_punishment_split: true
+    state_amendment_present: false
+    source: 'BNS_2023_Act45_Gazette_2023-12-25_MHA.pdf'
+    READ_THIS_PAGE: 'BNS_2023_Act45_Gazette_2023-12-25_MHA.pdf, printed p. 88 (PDF page index 87), s.324'
+    verified_by: 'model-draft (unverified)'
+    extractor_output_do_not_rely_on: '324.(1) Whoever with intent to cause, or knowing that he is likely to cause, wrongful loss or damage to the public or to any person, causes the destruction of any property, or any such change in any property or in the situation thereof as destroys or diminishes its value or utility, or affects it injuriously, commits mischief. Explanation 1.—It is not essential to the offence of mischief that the offender should intend to cause loss or damage to the owner of the property injured or destroyed. It is sufficient if he intends to cause, or knows that he is likely to cause, wrongful loss or damage to any person by injuring any property, whether it belongs to that person or not. Explanation 2.—Mischief may be committed by an act affecting property belonging to the person who commits the act, or to that person and others jointly. Illustrations. (a) A voluntarily burns a valuable security belonging to Z intending to cause wrongful loss to Z. A has committed mischief. (b) A introduces water into an ice-house belonging to Z and thus causes the ice to melt, intending wrongful loss to Z. A has committed mischief. (c) A voluntarily throws into a river a ring belonging to Z, with the intention of thereby causing wrongful loss to Z. A has committed mischief. (d) A, knowing that his effects are about to be taken in execution in order to satisfy a debt due from him to Z, destroys those effects, with the intention of thereby preventing Z from obtaining satisfaction of the debt, and of thus causing damage to Z. A has committed mischief. (e) A having insured a ship, voluntarily causes the same to be cast away, with the intention of causing damage to the underwriters. A has committed mischief. (f) A causes a ship to be cast away, intending thereby to cause damage to Z who has lent money on bottomry on the ship. A has committed mischief. (g) A, having joint property with Z in a horse, shoots the horse, intending thereby to cause wrongful loss to Z. A has committed mischief. (h) A causes cattle to enter upon a field belonging to Z, intending to cause and knowing that he is likely to cause damage to Z’s crop. A has committed mischief. (2) Whoever commits mischief shall be punished with imprisonment of either description for a term which may extend to six months, or with fine, or with both. (3) Whoever commits mischief and thereby causes loss or damage to any property including the property of Government or Local Authority shall be punished with imprisonment of either description for a term which may extend to one year, or with fine, or with both. (4) Whoever commits mischief and thereby causes loss or damage to the amount of twenty thousand rupees and more but less than one lakh rupees shall be punished with imprisonment of either description for a term which may extend to two years, or with fine, or with both. (5) Whoever commits mischief and thereby causes loss or damage to the amount of one lakh rupees or upwards, shall be punished with imprisonment of either description for a term which may extend to five years, or with fine, or with both. Dishonest or fraudulent removal or concealment of property. Mischief. 88 THE GAZETTE OF INDIA EXTRAORDINARY [Part II—_____________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________ (6) Whoever commits mischief, having made preparation for causing to any person death, or hurt, or wrongful restraint, or fear of death, or of hurt, or of wrongful restraint, shall be punished with imprisonment of either description for a term which may extend to five years, and shall also be liable to fine.'
+
+  - offence_id: 'BNS_2023-324#L2'
+    priority: true
+    label: 'Mischief'
+    regime: BNS_2023
+    section: '324'
+    variant: 'L2'   # REVIEWER: rename to the limb as printed
+    counterpart_id: 'IPC_1860-426'
+    maximum: null            # REVIEWER: set from the PAGE
+    min_term_months: null    # REVIEWER: only if the limb prescribes one
+    compoundable: null       # not this pass (D-036 vi)
+    status: DRAFT
+    definition_punishment_split: true
+    state_amendment_present: false
+    source: 'BNS_2023_Act45_Gazette_2023-12-25_MHA.pdf'
+    READ_THIS_PAGE: 'BNS_2023_Act45_Gazette_2023-12-25_MHA.pdf, printed p. 88 (PDF page index 87), s.324'
+    verified_by: 'model-draft (unverified)'
+    extractor_output_do_not_rely_on: SAME_SECTION_TEXT_AS_FIRST_LIMB_ABOVE
+
+  - offence_id: 'BNS_2023-324#L3'
+    priority: true
+    label: 'Mischief'
+    regime: BNS_2023
+    section: '324'
+    variant: 'L3'   # REVIEWER: rename to the limb as printed
+    counterpart_id: 'IPC_1860-426'
+    maximum: null            # REVIEWER: set from the PAGE
+    min_term_months: null    # REVIEWER: only if the limb prescribes one
+    compoundable: null       # not this pass (D-036 vi)
+    status: DRAFT
+    definition_punishment_split: true
+    state_amendment_present: false
+    source: 'BNS_2023_Act45_Gazette_2023-12-25_MHA.pdf'
+    READ_THIS_PAGE: 'BNS_2023_Act45_Gazette_2023-12-25_MHA.pdf, printed p. 88 (PDF page index 87), s.324'
+    verified_by: 'model-draft (unverified)'
+    extractor_output_do_not_rely_on: SAME_SECTION_TEXT_AS_FIRST_LIMB_ABOVE
+
+  - offence_id: 'BNS_2023-324#L4'
+    priority: true
+    label: 'Mischief'
+    regime: BNS_2023
+    section: '324'
+    variant: 'L4'   # REVIEWER: rename to the limb as printed
+    counterpart_id: 'IPC_1860-426'
+    maximum: null            # REVIEWER: set from the PAGE
+    min_term_months: null    # REVIEWER: only if the limb prescribes one
+    compoundable: null       # not this pass (D-036 vi)
+    status: DRAFT
+    definition_punishment_split: true
+    state_amendment_present: false
+    source: 'BNS_2023_Act45_Gazette_2023-12-25_MHA.pdf'
+    READ_THIS_PAGE: 'BNS_2023_Act45_Gazette_2023-12-25_MHA.pdf, printed p. 88 (PDF page index 87), s.324'
+    verified_by: 'model-draft (unverified)'
+    extractor_output_do_not_rely_on: SAME_SECTION_TEXT_AS_FIRST_LIMB_ABOVE
+
+  - offence_id: 'BNS_2023-324#L5'
+    priority: true
+    label: 'Mischief'
+    regime: BNS_2023
+    section: '324'
+    variant: 'L5'   # REVIEWER: rename to the limb as printed
+    counterpart_id: 'IPC_1860-426'
+    maximum: null            # REVIEWER: set from the PAGE
+    min_term_months: null    # REVIEWER: only if the limb prescribes one
+    compoundable: null       # not this pass (D-036 vi)
+    status: DRAFT
+    definition_punishment_split: true
+    state_amendment_present: false
+    source: 'BNS_2023_Act45_Gazette_2023-12-25_MHA.pdf'
+    READ_THIS_PAGE: 'BNS_2023_Act45_Gazette_2023-12-25_MHA.pdf, printed p. 88 (PDF page index 87), s.324'
+    verified_by: 'model-draft (unverified)'
+    extractor_output_do_not_rely_on: SAME_SECTION_TEXT_AS_FIRST_LIMB_ABOVE
+
+  # ── BNS_2023-316 · Criminal breach of trust · 4 limb(s) · DEFINITION/PUNISHMENT SPLIT
+  - offence_id: 'BNS_2023-316#L1'
+    priority: true
+    label: 'Criminal breach of trust'
+    regime: BNS_2023
+    section: '316'
+    variant: 'L1'   # REVIEWER: rename to the limb as printed
+    counterpart_id: 'IPC_1860-406'
+    maximum: null            # REVIEWER: set from the PAGE
+    min_term_months: null    # REVIEWER: only if the limb prescribes one
+    compoundable: null       # not this pass (D-036 vi)
+    status: DRAFT
+    definition_punishment_split: true
+    state_amendment_present: false
+    source: 'BNS_2023_Act45_Gazette_2023-12-25_MHA.pdf'
+    READ_THIS_PAGE: 'BNS_2023_Act45_Gazette_2023-12-25_MHA.pdf, printed p. 84 (PDF page index 83), s.316'
+    verified_by: 'model-draft (unverified)'
+    extractor_output_do_not_rely_on: '316. (1) Whoever, being in any manner entrusted with property, or with any dominion over property, dishonestly misappropriates or converts to his own use that property, or dishonestly uses or disposes of that property in violation of any direction of law prescribing the mode in which such trust is to be discharged, or of any legal contract, express or implied, which he has made touching the discharge of such trust, or wilfully suffers any other person so to do, commits criminal breach of trust. Explanation 1.—A person, being an employer of an establishment whether exempted under section 17 of the Employees’ Provident Funds and Miscellaneous Provisions Act, 1952 or not who deducts the employee’s contribution from the wages payable to the employee for credit to a Provident Fund or Family Pension Fund established by any law for the time being in force, shall be deemed to have been entrusted with the amount of the contribution so deducted by him and if he makes default in the payment of such contribution to the said Fund in violation of the said law, shall be deemed to have dishonestly used the amount of the said contribution in violation of a direction of law as aforesaid. Explanation 2.—A person, being an employer, who deducts the employees’ contribution from the wages payable to the employee for credit to the Employees’ State Insurance Fund held and administered by the Employees’ State Insurance Corporation established under the Employees’ State Insurance Act, 1948 shall be deemed to have been entrusted with the amount of the contribution so deducted by him and if he makes default in the payment of such contribution to the said Fund in violation of the said Act, shall be deemed to have dishonestly used the amount of the said contribution in violation of a direction of law as aforesaid. Illustrations. (a) A, being executor to the will of a deceased person, dishonestly disobeys the law which directs him to divide the effects according to the will, and appropriates them to his own use. A has committed criminal breach of trust. Dishonest misappropriation ofproperty possessed by deceased person at the time of his death. Criminal breach of trust. 19 of 1952. 34 of 1948. 84 THE GAZETTE OF INDIA EXTRAORDINARY [Part II—_____________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________ (b) A is a warehouse-keeper Z going on a journey, entrusts his furniture to A, under a contract that it shall be returned on payment of a stipulated sum for warehouse room. A dishonestly sells the goods. A has committed criminal breach of trust. (c) A, residing in Kolkata, is agent for Z, residing at Delhi. There is an express or implied contract between A and Z, that all sums remitted by Z to A shall be invested by A, according to Z’s direction. Z remits one lakh of rupees to A, with directions to A to invest the same in Company’s paper. A dishonestly disobeys the directions and employs the money in his own business. A has committed criminal breach of trust. (d) But if A, in illustration (c), not dishonestly but in good faith, believing that it will be more for Z’s advantage to hold shares in the Bank of Bengal, disobeys Z’s directions, and buys shares in the Bank of Bengal, for Z, instead of buying Company’s paper, here, though Z should suffer loss, and should be entitled to bring a civil action against A, on account of that loss, yet A, not having acted dishonestly, has not committed criminal breach of trust. (e) A, a revenue-officer, is entrusted with public money and is either directed by law, or bound by a contract, express or implied, with the Government, to pay into a certain treasury all the public money which he holds. A dishonestly appropriates the money. A has committed criminal breach of trust. (f) A, a carrier, is entrusted by Z with property to be carried by land or by water. A dishonestly misappropriates the property. A has committed criminal breach of trust. (2) Whoever commits criminal breach of trust shall be punished with imprisonment of either description for a term which may extend to five years, or with fine, or with both. (3) Whoever, being entrusted with property as a carrier, wharfinger or warehouse-keeper, commits criminal breach of trust in respect of such property, shall be punished with imprisonment of either description for a term which may extend to seven years, and shall also be liable to fine. (4) Whoever, being a clerk or servant or employed as a clerk or servant, and being in any manner entrusted in such capacity with property, or with any dominion over property, commits criminal breach of trust in respect of that property, shall be punished with imprisonment of either description for a term which may extend to seven years, and shall also be liable to fine. (5) Whoever, being in any manner entrusted with property, or with any dominion over property in his capacity of a public servant or in the way of his business as a banker, merchant, factor, broker, attorney or agent commits criminal breach of trust in respect of that property, shall be punished with imprisonment for life, or with imprisonment of either description for a term which may extend to ten years, and shall also be liable to fine. Of receiving stolen property'
+
+  - offence_id: 'BNS_2023-316#L2'
+    priority: true
+    label: 'Criminal breach of trust'
+    regime: BNS_2023
+    section: '316'
+    variant: 'L2'   # REVIEWER: rename to the limb as printed
+    counterpart_id: 'IPC_1860-406'
+    maximum: null            # REVIEWER: set from the PAGE
+    min_term_months: null    # REVIEWER: only if the limb prescribes one
+    compoundable: null       # not this pass (D-036 vi)
+    status: DRAFT
+    definition_punishment_split: true
+    state_amendment_present: false
+    source: 'BNS_2023_Act45_Gazette_2023-12-25_MHA.pdf'
+    READ_THIS_PAGE: 'BNS_2023_Act45_Gazette_2023-12-25_MHA.pdf, printed p. 84 (PDF page index 83), s.316'
+    verified_by: 'model-draft (unverified)'
+    extractor_output_do_not_rely_on: SAME_SECTION_TEXT_AS_FIRST_LIMB_ABOVE
+
+  - offence_id: 'BNS_2023-316#L3'
+    priority: true
+    label: 'Criminal breach of trust'
+    regime: BNS_2023
+    section: '316'
+    variant: 'L3'   # REVIEWER: rename to the limb as printed
+    counterpart_id: 'IPC_1860-406'
+    maximum: null            # REVIEWER: set from the PAGE
+    min_term_months: null    # REVIEWER: only if the limb prescribes one
+    compoundable: null       # not this pass (D-036 vi)
+    status: DRAFT
+    definition_punishment_split: true
+    state_amendment_present: false
+    source: 'BNS_2023_Act45_Gazette_2023-12-25_MHA.pdf'
+    READ_THIS_PAGE: 'BNS_2023_Act45_Gazette_2023-12-25_MHA.pdf, printed p. 84 (PDF page index 83), s.316'
+    verified_by: 'model-draft (unverified)'
+    extractor_output_do_not_rely_on: SAME_SECTION_TEXT_AS_FIRST_LIMB_ABOVE
+
+  - offence_id: 'BNS_2023-316#L4'
+    priority: true
+    label: 'Criminal breach of trust'
+    regime: BNS_2023
+    section: '316'
+    variant: 'L4'   # REVIEWER: rename to the limb as printed
+    counterpart_id: 'IPC_1860-406'
+    maximum: null            # REVIEWER: set from the PAGE
+    min_term_months: null    # REVIEWER: only if the limb prescribes one
+    compoundable: null       # not this pass (D-036 vi)
+    status: DRAFT
+    definition_punishment_split: true
+    state_amendment_present: false
+    source: 'BNS_2023_Act45_Gazette_2023-12-25_MHA.pdf'
+    READ_THIS_PAGE: 'BNS_2023_Act45_Gazette_2023-12-25_MHA.pdf, printed p. 84 (PDF page index 83), s.316'
+    verified_by: 'model-draft (unverified)'
+    extractor_output_do_not_rely_on: SAME_SECTION_TEXT_AS_FIRST_LIMB_ABOVE
+
+  # ── BNS_2023-103 · Murder · 3 limb(s)
+  - offence_id: 'BNS_2023-103#L1'
+    priority: true
+    label: 'Murder'
+    regime: BNS_2023
+    section: '103'
+    variant: 'L1'   # REVIEWER: rename to the limb as printed
+    counterpart_id: 'IPC_1860-302'
+    maximum: null            # REVIEWER: set from the PAGE
+    min_term_months: null    # REVIEWER: only if the limb prescribes one
+    compoundable: null       # not this pass (D-036 vi)
+    status: DRAFT
+    definition_punishment_split: false
+    state_amendment_present: false
+    source: 'BNS_2023_Act45_Gazette_2023-12-25_MHA.pdf'
+    READ_THIS_PAGE: 'BNS_2023_Act45_Gazette_2023-12-25_MHA.pdf, printed p. 34 (PDF page index 33), s.103'
+    verified_by: 'model-draft (unverified)'
+    extractor_output_do_not_rely_on: '103.(1) Whoever commits murder shall be punished with death or imprisonment for life, and shall also be liable to fine. (2) When a group of five or more persons acting in concert commits murder on the ground of race, caste or community, sex, place of birth, language, personal belief or any other similar ground each member of such group shall be punished with death or with imprisonment for life, and shall also be liable to fine.'
+
+  - offence_id: 'BNS_2023-103#L2'
+    priority: true
+    label: 'Murder'
+    regime: BNS_2023
+    section: '103'
+    variant: 'L2'   # REVIEWER: rename to the limb as printed
+    counterpart_id: 'IPC_1860-302'
+    maximum: null            # REVIEWER: set from the PAGE
+    min_term_months: null    # REVIEWER: only if the limb prescribes one
+    compoundable: null       # not this pass (D-036 vi)
+    status: DRAFT
+    definition_punishment_split: false
+    state_amendment_present: false
+    source: 'BNS_2023_Act45_Gazette_2023-12-25_MHA.pdf'
+    READ_THIS_PAGE: 'BNS_2023_Act45_Gazette_2023-12-25_MHA.pdf, printed p. 34 (PDF page index 33), s.103'
+    verified_by: 'model-draft (unverified)'
+    extractor_output_do_not_rely_on: SAME_SECTION_TEXT_AS_FIRST_LIMB_ABOVE
+
+  - offence_id: 'BNS_2023-103#L3'
+    priority: true
+    label: 'Murder'
+    regime: BNS_2023
+    section: '103'
+    variant: 'L3'   # REVIEWER: rename to the limb as printed
+    counterpart_id: 'IPC_1860-302'
+    maximum: null            # REVIEWER: set from the PAGE
+    min_term_months: null    # REVIEWER: only if the limb prescribes one
+    compoundable: null       # not this pass (D-036 vi)
+    status: DRAFT
+    definition_punishment_split: false
+    state_amendment_present: false
+    source: 'BNS_2023_Act45_Gazette_2023-12-25_MHA.pdf'
+    READ_THIS_PAGE: 'BNS_2023_Act45_Gazette_2023-12-25_MHA.pdf, printed p. 34 (PDF page index 33), s.103'
+    verified_by: 'model-draft (unverified)'
+    extractor_output_do_not_rely_on: SAME_SECTION_TEXT_AS_FIRST_LIMB_ABOVE
+
+  # ── BNS_2023-106 · Causing death by negligence · 3 limb(s)
+  - offence_id: 'BNS_2023-106#L1'
+    priority: true
+    label: 'Causing death by negligence'
+    regime: BNS_2023
+    section: '106'
+    variant: 'L1'   # REVIEWER: rename to the limb as printed
+    counterpart_id: 'IPC_1860-304A'
+    maximum: null            # REVIEWER: set from the PAGE
+    min_term_months: null    # REVIEWER: only if the limb prescribes one
+    compoundable: null       # not this pass (D-036 vi)
+    status: DRAFT
+    definition_punishment_split: false
+    state_amendment_present: false
+    source: 'BNS_2023_Act45_Gazette_2023-12-25_MHA.pdf'
+    READ_THIS_PAGE: 'BNS_2023_Act45_Gazette_2023-12-25_MHA.pdf, printed p. 34 (PDF page index 33), s.106'
+    verified_by: 'model-draft (unverified)'
+    extractor_output_do_not_rely_on: '106.(1) Whoever causes death of any person by doing any rash or negligent act not amounting to culpable homicide, shall be punished with imprisonment of either description for a term which may extend to five years, and shall also be liable to fine; and if such act is done by a registered medical practitioner while performing medical procedure, he shall be punished with imprisonment of either description for a term which may extend to two years, and shall also be liable to fine. Explanation.—For the purposes of this sub-section, “registered medical practitioner” means a medical practitioner who possesses any medical qualification recognised under the National Medical Commission Act, 2019 and whose name has been entered in the National Medical Register or a State Medical Register under that Act. (2) Whoever causes death of any person by rash and negligent driving of vehicle not amounting to culpable homicide, and escapes without reporting it to a police officer or a Magistrate soon after the incident, shall be punished with imprisonment of either description of a term which may extend to ten years, and shall also be liable to fine.'
+
+  - offence_id: 'BNS_2023-106#L2'
+    priority: true
+    label: 'Causing death by negligence'
+    regime: BNS_2023
+    section: '106'
+    variant: 'L2'   # REVIEWER: rename to the limb as printed
+    counterpart_id: 'IPC_1860-304A'
+    maximum: null            # REVIEWER: set from the PAGE
+    min_term_months: null    # REVIEWER: only if the limb prescribes one
+    compoundable: null       # not this pass (D-036 vi)
+    status: DRAFT
+    definition_punishment_split: false
+    state_amendment_present: false
+    source: 'BNS_2023_Act45_Gazette_2023-12-25_MHA.pdf'
+    READ_THIS_PAGE: 'BNS_2023_Act45_Gazette_2023-12-25_MHA.pdf, printed p. 34 (PDF page index 33), s.106'
+    verified_by: 'model-draft (unverified)'
+    extractor_output_do_not_rely_on: SAME_SECTION_TEXT_AS_FIRST_LIMB_ABOVE
+
+  - offence_id: 'BNS_2023-106#L3'
+    priority: true
+    label: 'Causing death by negligence'
+    regime: BNS_2023
+    section: '106'
+    variant: 'L3'   # REVIEWER: rename to the limb as printed
+    counterpart_id: 'IPC_1860-304A'
+    maximum: null            # REVIEWER: set from the PAGE
+    min_term_months: null    # REVIEWER: only if the limb prescribes one
+    compoundable: null       # not this pass (D-036 vi)
+    status: DRAFT
+    definition_punishment_split: false
+    state_amendment_present: false
+    source: 'BNS_2023_Act45_Gazette_2023-12-25_MHA.pdf'
+    READ_THIS_PAGE: 'BNS_2023_Act45_Gazette_2023-12-25_MHA.pdf, printed p. 34 (PDF page index 33), s.106'
+    verified_by: 'model-draft (unverified)'
+    extractor_output_do_not_rely_on: SAME_SECTION_TEXT_AS_FIRST_LIMB_ABOVE
+
+  # ── BNS_2023-309 · Robbery · 3 limb(s) · DEFINITION/PUNISHMENT SPLIT
+  - offence_id: 'BNS_2023-309#L1'
+    priority: true
+    label: 'Robbery'
+    regime: BNS_2023
+    section: '309'
+    variant: 'L1'   # REVIEWER: rename to the limb as printed
+    counterpart_id: 'IPC_1860-392'
+    maximum: null            # REVIEWER: set from the PAGE
+    min_term_months: null    # REVIEWER: only if the limb prescribes one
+    compoundable: null       # not this pass (D-036 vi)
+    status: DRAFT
+    definition_punishment_split: true
+    state_amendment_present: false
+    source: 'BNS_2023_Act45_Gazette_2023-12-25_MHA.pdf'
+    READ_THIS_PAGE: 'BNS_2023_Act45_Gazette_2023-12-25_MHA.pdf, printed page unknown (PDF page index 80), s.309'
+    verified_by: 'model-draft (unverified)'
+    extractor_output_do_not_rely_on: '309.(1) In all robbery there is either theft or extortion. (2) Theft is robbery if, in order to the committing of the theft, or in committing the theft, or in carrying away or attempting to carry away property obtained by the theft, the offender, for that end voluntarily causes or attempts to cause to any person death or hurt or wrongful restraint, or fear of instant death or of instant hurt, or of instant wrongful restraint. (3) Extortion is robbery if the offender, at the time of committing the extortion, is in the presence of the person put in fear, and commits the extortion by putting that person in fear of instant death, of instant hurt, or of instant wrongful restraint to that person or to some other person, and, by so putting in fear, induces the person so put in fear then and there to deliver up the thing extorted. Explanation.—The offender is said to be present if he is sufficiently near to put the other person in fear of instant death, of instant hurt, or of instant wrongful restraint. Illustrations. (a) A holds Z down, and fraudulently takes Z’s money and jewels from Z’s clothes, without Z’s consent. Here A has committed theft, and, in order to the committing of that theft, has voluntarily caused wrongful restraint to Z. A has therefore committed robbery. Robbery. Sec. 1] THE GAZETTE OF INDIA EXTRAORDINARY 81_____________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________ (b) A meets Z on the high road, shows a pistol, and demands Z’s purse. Z, in consequence, surrenders his purse. Here A has extorted the purse from Z by putting him in fear of instant hurt, and being at the time of committing the extortion in his presence. A has therefore committed robbery. (c) A meets Z and Z’s child on the high road. A takes the child, and threatens to fling it down a precipice, unless Z delivers his purse. Z, in consequence, delivers his purse. Here A has extorted the purse from Z, by causing Z to be in fear of instant hurt to the child who is there present. A has therefore committed robbery on Z. (d) A obtains property from Z by saying—“Y our child is in the hands of my gang, and will be put to death unless you send us ten thousand rupees”. This is extortion, and punishable as such; but it is not robbery, unless Z is put in fear of the instant death of his child. (4) Whoever commits robbery shall be punished with rigorous imprisonment for a term which may extend to ten years, and shall also be liable to fine; and, if the robbery be committed on the highway between sunset and sunrise, the imprisonment may be extended to fourteen years. (5) Whoever attempts to commit robbery shall be punished with rigorous imprisonment for a term which may extend to seven years, and shall also be liable to fine. (6) If any person, in committing or in attempting to commit robbery, voluntarily causes hurt, such person, and any other person jointly concerned in committing or attempting to commit such robbery, shall be punished with imprisonment for life, or with rigorous imprisonment for a term which may extend to ten years, and shall also be liable to fine.'
+
+  - offence_id: 'BNS_2023-309#L2'
+    priority: true
+    label: 'Robbery'
+    regime: BNS_2023
+    section: '309'
+    variant: 'L2'   # REVIEWER: rename to the limb as printed
+    counterpart_id: 'IPC_1860-392'
+    maximum: null            # REVIEWER: set from the PAGE
+    min_term_months: null    # REVIEWER: only if the limb prescribes one
+    compoundable: null       # not this pass (D-036 vi)
+    status: DRAFT
+    definition_punishment_split: true
+    state_amendment_present: false
+    source: 'BNS_2023_Act45_Gazette_2023-12-25_MHA.pdf'
+    READ_THIS_PAGE: 'BNS_2023_Act45_Gazette_2023-12-25_MHA.pdf, printed page unknown (PDF page index 80), s.309'
+    verified_by: 'model-draft (unverified)'
+    extractor_output_do_not_rely_on: SAME_SECTION_TEXT_AS_FIRST_LIMB_ABOVE
+
+  - offence_id: 'BNS_2023-309#L3'
+    priority: true
+    label: 'Robbery'
+    regime: BNS_2023
+    section: '309'
+    variant: 'L3'   # REVIEWER: rename to the limb as printed
+    counterpart_id: 'IPC_1860-392'
+    maximum: null            # REVIEWER: set from the PAGE
+    min_term_months: null    # REVIEWER: only if the limb prescribes one
+    compoundable: null       # not this pass (D-036 vi)
+    status: DRAFT
+    definition_punishment_split: true
+    state_amendment_present: false
+    source: 'BNS_2023_Act45_Gazette_2023-12-25_MHA.pdf'
+    READ_THIS_PAGE: 'BNS_2023_Act45_Gazette_2023-12-25_MHA.pdf, printed page unknown (PDF page index 80), s.309'
+    verified_by: 'model-draft (unverified)'
+    extractor_output_do_not_rely_on: SAME_SECTION_TEXT_AS_FIRST_LIMB_ABOVE
+
+  # ── BNS_2023-318 · Cheating · 3 limb(s) · DEFINITION/PUNISHMENT SPLIT
+  - offence_id: 'BNS_2023-318#L1'
+    priority: true
+    label: 'Cheating'
+    regime: BNS_2023
+    section: '318'
+    variant: 'L1'   # REVIEWER: rename to the limb as printed
+    counterpart_id: 'IPC_1860-420'
+    maximum: null            # REVIEWER: set from the PAGE
+    min_term_months: null    # REVIEWER: only if the limb prescribes one
+    compoundable: null       # not this pass (D-036 vi)
+    status: DRAFT
+    definition_punishment_split: true
+    state_amendment_present: false
+    source: 'BNS_2023_Act45_Gazette_2023-12-25_MHA.pdf'
+    READ_THIS_PAGE: 'BNS_2023_Act45_Gazette_2023-12-25_MHA.pdf, printed p. 86 (PDF page index 85), s.318'
+    verified_by: 'model-draft (unverified)'
+    extractor_output_do_not_rely_on: '318.(1) Whoever, by deceiving any person, fraudulently or dishonestly induces the person so deceived to deliver any property to any person, or to consent that any person shall retain any property, or intentionally induces the person so deceived to do or omit to do anything which he would not do or omit if he were not so deceived, and which act or omission causes or is likely to cause damage or harm to that person in body, mind, reputation or property, is said to cheat. Explanation.—A dishonest concealment of facts is a deception within the meaning of this section. Illustrations. (a) A, by falsely pretending to be in the Civil Service, intentionally deceives Z, and thus dishonestly induces Z to let him have on credit goods for which he does not mean to pay. A cheats. (b) A, by putting a counterfeit mark on an article, intentionally deceives Z into a belief that this article was made by a certain celebrated manufacturer, and thus dishonestly induces Z to buy and pay for the article. A cheats. (c) A, by exhibiting to Z a false sample of an article intentionally deceives Z into believing that the article corresponds with the sample, and thereby dishonestly induces Z to buy and pay for the article. A cheats. (d) A, by tendering in payment for an article a bill on a house with which A keeps no money, and by which A expects that the bill will be dishonoured, intentionally deceives Z, and thereby dishonestly induces Z to deliver the article, intending not to pay for it. A cheats. (e) A, by pledging as diamonds articles which he knows are not diamonds, intentionally deceives Z, and thereby dishonestly induces Z to lend money. A cheats. (f) A intentionally deceives Z into a belief that A means to repay any money that Z may lend to him and thereby dishonestly induces Z to lend him money, A not intending to repay it. A cheats. (g) A intentionally deceives Z into a belief that A means to deliver to Z a certain quantity of indigo plant which he does not intend to deliver, and thereby dishonestly induces Z to advance money upon the faith of such delivery. A cheats; but if A, at the time of obtaining the money, intends to deliver the indigo plant, and afterwards breaks his contract and does not deliver it, he does not cheat, but is liable only to a civil action for breach of contract. (h) A intentionally deceives Z into a belief that A has performed A ’s part of a contract made with Z, which he has not performed, and thereby dishonestly induces Z to pay money. A cheats. Cheating. 86 THE GAZETTE OF INDIA EXTRAORDINARY [Part II—_____________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________ (i) A sells and conveys an estate to B. A, knowing that in consequence of such sale he has no right to the property, sells or mortgages the same to Z, without disclosing the fact of the previous sale and conveyance to B, and receives the purchase or mortgage money from Z. A cheats. (2) Whoever cheats shall be punished with imprisonment of either description for a term which may extend to three years, or with fine, or with both. (3) Whoever cheats with the knowledge that he is likely thereby to cause wrongful loss to a person whose interest in the transaction to which the cheating relates, he was bound, either by law, or by a legal contract, to protect, shall be punished with imprisonment of either description for a term which may extend to five years, or with fine, or with both. (4) Whoever cheats and thereby dishonestly induces the person deceived to deliver any property to any person, or to make, alter or destroy the whole or any part of a valuable security, or anything which is signed or sealed, and which is capable of being converted into a valuable security, shall be punished with imprisonment of either description for a term which may extend to seven years, and shall also be liable to fine.'
+
+  - offence_id: 'BNS_2023-318#L2'
+    priority: true
+    label: 'Cheating'
+    regime: BNS_2023
+    section: '318'
+    variant: 'L2'   # REVIEWER: rename to the limb as printed
+    counterpart_id: 'IPC_1860-420'
+    maximum: null            # REVIEWER: set from the PAGE
+    min_term_months: null    # REVIEWER: only if the limb prescribes one
+    compoundable: null       # not this pass (D-036 vi)
+    status: DRAFT
+    definition_punishment_split: true
+    state_amendment_present: false
+    source: 'BNS_2023_Act45_Gazette_2023-12-25_MHA.pdf'
+    READ_THIS_PAGE: 'BNS_2023_Act45_Gazette_2023-12-25_MHA.pdf, printed p. 86 (PDF page index 85), s.318'
+    verified_by: 'model-draft (unverified)'
+    extractor_output_do_not_rely_on: SAME_SECTION_TEXT_AS_FIRST_LIMB_ABOVE
+
+  - offence_id: 'BNS_2023-318#L3'
+    priority: true
+    label: 'Cheating'
+    regime: BNS_2023
+    section: '318'
+    variant: 'L3'   # REVIEWER: rename to the limb as printed
+    counterpart_id: 'IPC_1860-420'
+    maximum: null            # REVIEWER: set from the PAGE
+    min_term_months: null    # REVIEWER: only if the limb prescribes one
+    compoundable: null       # not this pass (D-036 vi)
+    status: DRAFT
+    definition_punishment_split: true
+    state_amendment_present: false
+    source: 'BNS_2023_Act45_Gazette_2023-12-25_MHA.pdf'
+    READ_THIS_PAGE: 'BNS_2023_Act45_Gazette_2023-12-25_MHA.pdf, printed p. 86 (PDF page index 85), s.318'
+    verified_by: 'model-draft (unverified)'
+    extractor_output_do_not_rely_on: SAME_SECTION_TEXT_AS_FIRST_LIMB_ABOVE
+
+  # ── BNS_2023-351 · Criminal intimidation · 3 limb(s) · DEFINITION/PUNISHMENT SPLIT
+  - offence_id: 'BNS_2023-351#L1'
+    priority: true
+    label: 'Criminal intimidation'
+    regime: BNS_2023
+    section: '351'
+    variant: 'L1'   # REVIEWER: rename to the limb as printed
+    counterpart_id: 'IPC_1860-506'
+    maximum: null            # REVIEWER: set from the PAGE
+    min_term_months: null    # REVIEWER: only if the limb prescribes one
+    compoundable: null       # not this pass (D-036 vi)
+    status: DRAFT
+    definition_punishment_split: true
+    state_amendment_present: false
+    source: 'BNS_2023_Act45_Gazette_2023-12-25_MHA.pdf'
+    READ_THIS_PAGE: 'BNS_2023_Act45_Gazette_2023-12-25_MHA.pdf, printed page unknown (PDF page index 96), s.351'
+    verified_by: 'model-draft (unverified)'
+    extractor_output_do_not_rely_on: '351.(1) Whoever threatens another by any means, with any injury to his person, reputation or property, or to the person or reputation of any one in whom that person is interested, with intent to cause alarm to that person, or to cause that person to do any act which he is not legally bound to do, or to omit to do any act which that person is legally entitled to do, as the means of avoiding the execution of such threat, commits criminal intimidation. Tampering with property mark with intent to cause injury. Counterfeiting a property mark. Making or possession of any instrument for counterfeiting a property mark. Selling goods marked with a counterfeit property mark. Making a false mark upon any receptacle containing goods. Criminal intimidation. Sec. 1] THE GAZETTE OF INDIA EXTRAORDINARY 97_____________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________ Explanation.—A threat to injure the reputation of any deceased person in whom the person threatened is interested, is within this section. Illustration. A, for the purpose of inducing B to resist from prosecuting a civil suit, threatens to burn B’s house. A is guilty of criminal intimidation. (2) Whoever commits the offence of criminal intimidation shall be punished with imprisonment of either description for a term which may extend to two years, or with fine, or with both. (3) Whoever commits the offence of criminal intimidation by threatening to cause death or grievous hurt, or to cause the destruction of any property by fire, or to cause an offence punishable with death or imprisonment for life, or with imprisonment for a term which may extend to seven years, or to impute unchastity to a woman, shall be punished with imprisonment of either description for a term which may extend to seven years, or with fine, or with both. (4) Whoever commits the offence of criminal intimidation by an anonymous communication, or having taken precaution to conceal the name or abode of the person from whom the threat comes, shall be punished with imprisonment of either description for a term which may extend to two years, in addition to the punishment provided for the offence under sub-section (1).'
+
+  - offence_id: 'BNS_2023-351#L2'
+    priority: true
+    label: 'Criminal intimidation'
+    regime: BNS_2023
+    section: '351'
+    variant: 'L2'   # REVIEWER: rename to the limb as printed
+    counterpart_id: 'IPC_1860-506'
+    maximum: null            # REVIEWER: set from the PAGE
+    min_term_months: null    # REVIEWER: only if the limb prescribes one
+    compoundable: null       # not this pass (D-036 vi)
+    status: DRAFT
+    definition_punishment_split: true
+    state_amendment_present: false
+    source: 'BNS_2023_Act45_Gazette_2023-12-25_MHA.pdf'
+    READ_THIS_PAGE: 'BNS_2023_Act45_Gazette_2023-12-25_MHA.pdf, printed page unknown (PDF page index 96), s.351'
+    verified_by: 'model-draft (unverified)'
+    extractor_output_do_not_rely_on: SAME_SECTION_TEXT_AS_FIRST_LIMB_ABOVE
+
+  - offence_id: 'BNS_2023-351#L3'
+    priority: true
+    label: 'Criminal intimidation'
+    regime: BNS_2023
+    section: '351'
+    variant: 'L3'   # REVIEWER: rename to the limb as printed
+    counterpart_id: 'IPC_1860-506'
+    maximum: null            # REVIEWER: set from the PAGE
+    min_term_months: null    # REVIEWER: only if the limb prescribes one
+    compoundable: null       # not this pass (D-036 vi)
+    status: DRAFT
+    definition_punishment_split: true
+    state_amendment_present: false
+    source: 'BNS_2023_Act45_Gazette_2023-12-25_MHA.pdf'
+    READ_THIS_PAGE: 'BNS_2023_Act45_Gazette_2023-12-25_MHA.pdf, printed page unknown (PDF page index 96), s.351'
+    verified_by: 'model-draft (unverified)'
+    extractor_output_do_not_rely_on: SAME_SECTION_TEXT_AS_FIRST_LIMB_ABOVE
+
+  # ── IPC_1860-506 · Criminal intimidation · 3 limb(s)
+  - offence_id: 'IPC_1860-506#L1'
+    priority: true
+    label: 'Criminal intimidation'
+    regime: IPC_1860
+    section: '506'
+    variant: 'L1'   # REVIEWER: rename to the limb as printed
+    counterpart_id: 'BNS_2023-351'
+    maximum: null            # REVIEWER: set from the PAGE
+    min_term_months: null    # REVIEWER: only if the limb prescribes one
+    compoundable: null       # not this pass (D-036 vi)
+    status: DRAFT
+    definition_punishment_split: false
+    state_amendment_present: false
+    source: 'IPC_1860_Act45_IndiaCode_repealed_file.pdf'
+    READ_THIS_PAGE: 'IPC_1860_Act45_IndiaCode_repealed_file.pdf, printed p. 118 (PDF page index 117), s.506'
+    verified_by: 'model-draft (unverified)'
+    extractor_output_do_not_rely_on: '506. Punishment for criminal intimidation .—Whoever commits the offence of criminal intimidation shall be punished with imprisonment of either description for a ter m which may extend to two years, or with fine, or with both; If threat be to cause death or grievous hurt, etc .—and if the threat be to cause death or grievous hurt, or to cause the destruction of any property by fire, or to cause an offence puni shable with death or 1[imprisonment for life], or with imprisonment for a term which may extend to seven years, or to impute unchastity to a woman, shall be punished with imprisonment of either description for a term which may extend to seven years, or with fine, or with both.'
+
+  - offence_id: 'IPC_1860-506#L2'
+    priority: true
+    label: 'Criminal intimidation'
+    regime: IPC_1860
+    section: '506'
+    variant: 'L2'   # REVIEWER: rename to the limb as printed
+    counterpart_id: 'BNS_2023-351'
+    maximum: null            # REVIEWER: set from the PAGE
+    min_term_months: null    # REVIEWER: only if the limb prescribes one
+    compoundable: null       # not this pass (D-036 vi)
+    status: DRAFT
+    definition_punishment_split: false
+    state_amendment_present: false
+    source: 'IPC_1860_Act45_IndiaCode_repealed_file.pdf'
+    READ_THIS_PAGE: 'IPC_1860_Act45_IndiaCode_repealed_file.pdf, printed p. 118 (PDF page index 117), s.506'
+    verified_by: 'model-draft (unverified)'
+    extractor_output_do_not_rely_on: SAME_SECTION_TEXT_AS_FIRST_LIMB_ABOVE
+
+  - offence_id: 'IPC_1860-506#L3'
+    priority: true
+    label: 'Criminal intimidation'
+    regime: IPC_1860
+    section: '506'
+    variant: 'L3'   # REVIEWER: rename to the limb as printed
+    counterpart_id: 'BNS_2023-351'
+    maximum: null            # REVIEWER: set from the PAGE
+    min_term_months: null    # REVIEWER: only if the limb prescribes one
+    compoundable: null       # not this pass (D-036 vi)
+    status: DRAFT
+    definition_punishment_split: false
+    state_amendment_present: false
+    source: 'IPC_1860_Act45_IndiaCode_repealed_file.pdf'
+    READ_THIS_PAGE: 'IPC_1860_Act45_IndiaCode_repealed_file.pdf, printed p. 118 (PDF page index 117), s.506'
+    verified_by: 'model-draft (unverified)'
+    extractor_output_do_not_rely_on: SAME_SECTION_TEXT_AS_FIRST_LIMB_ABOVE
+
+  # ── BNS_2023-303 · Theft · 3 limb(s) · DEFINITION/PUNISHMENT SPLIT
+  - offence_id: 'BNS_2023-303#L1'
+    priority: true
+    label: 'Theft'
+    regime: BNS_2023
+    section: '303'
+    variant: 'L1'   # REVIEWER: rename to the limb as printed
+    counterpart_id: 'IPC_1860-379'
+    maximum: null            # REVIEWER: set from the PAGE
+    min_term_months: null    # REVIEWER: only if the limb prescribes one
+    compoundable: null       # not this pass (D-036 vi)
+    status: DRAFT
+    definition_punishment_split: true
+    state_amendment_present: false
+    source: 'BNS_2023_Act45_Gazette_2023-12-25_MHA.pdf'
+    READ_THIS_PAGE: 'BNS_2023_Act45_Gazette_2023-12-25_MHA.pdf, printed p. 78 (PDF page index 77), s.303'
+    verified_by: 'model-draft (unverified)'
+    extractor_output_do_not_rely_on: '303.(1) Whoever, intending to take dishonestly any movable property out of the possession of any person without that person’s consent, moves that property in order to such taking, is said to commit theft. Explanation 1.—A thing so long as it is attached to the earth, not being movable property, is not the subject of theft; but it becomes capable of being the subject of theft as soon as it is severed from the earth. Explanation2.—A moving effected by the same act which affects the severance may be a theft. Explanation 3.—A person is said to cause a thing to move by removing an obstacle which prevented it from moving or by separating it from any other thing, as well as by actually moving it. Explanation4.—A person, who by any means causes an animal to move, is said to move that animal, and to move everything which, in consequence of the motion so caused, is moved by that animal. Explanation5.—The consent mentioned in this section may be express or implied, and may be given either by the person in possession, or by any person having for that purpose authority either express or implied. Illustrations. (a) A cuts down a tree on Z’s ground, with the intention of dishonestly taking the tree out of Z’s possession without Z’s consent. Here, as soon as A has severed the tree in order to such taking, he has committed theft. (b) A puts a bait for dogs in his pocket, and thus induces Z’s dog to follow it. Here, if A ’s intention be dishonestly to take the dog out of Z’s possession without Z’s consent. A has committed theft as soon as Z’s dog has begun to follow A. (c) A meets a bullock carrying a box of treasure. He drives the bullock in a certain direction, in order that he may dishonestly take the treasure. As soon as the bullock begins to move, A has committed theft of the treasure. (d) A being Z’s servant, and entrusted by Z with the care of Z’s plate, dishonestly runs away with the plate, without Z’s consent. A has committed theft. (e) Z, going on a journey, entrusts his plate to A, the keeper of a warehouse, till Z shall return. A carries the plate to a goldsmith and sells it. Here the plate was not in Z’s possession. It could not therefore be taken out of Z’s possession, and A has not committed theft, though he may have committed criminal breach of trust. Trespassing on burial places, etc. Uttering words, etc., with deliberate intent to wound religious feelings of any person. Theft. 78 THE GAZETTE OF INDIA EXTRAORDINARY [Part II—_____________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________ (f) A finds a ring belonging to Z on a table in the house which Z occupies. Here the ring is in Z’s possession, and if A dishonestly removes it, A commits theft. (g) A finds a ring lying on the highroad, not in the possession of any person. A, by taking it, commits no theft, though he may commit criminal misappropriation of property. (h) A sees a ring belonging to Z lying on a table in Z’s house. Not venturing to misappropriate the ring immediately for fear of search and detection, A hides the ring in a place where it is highly improbable that it will ever be found by Z, with the intention of taking the ring from the hiding place and selling it when the loss is forgotten. Here A, at the time of first moving the ring, commits theft. (i) A delivers his watch to Z, a jeweler, to be regulated. Z carries it to his shop. A, not owing to the jeweler any debt for which the jeweler might lawfully detain the watch as a security, enters the shop openly, takes his watch by force out of Z’s hand, and carries it away. Here A, though he may have committed criminal trespass and assault, has not committed theft, in as much as what he did was not done dishonestly. (j) If A owes money to Z for repairing the watch, and if Z retains the watch lawfully as a security for the debt, and A takes the watch out of Z’s possession, with the intention of depriving Z of the property as a security for his debt, he commits theft, in as much as he takes it dishonestly. (k) Again, if A, having pawned his watch to Z, takes it out of Z’s possession without Z’s consent, not having paid what he borrowed on the watch, he commits theft, though the watch is his own property in as much as he takes it dishonestly. (l) A takes an article belonging to Z out of Z’s possession without Z’s consent, with the intention of keeping it until he obtains money from Z as a reward for its restoration. Here A takes dishonestly; A has therefore committed theft. (m) A, being on friendly terms with Z, goes into Z’s library in Z’s absence, and takes away a book without Z’s express consent for the purpose merely of reading it, and with the intention of returning it. Here, it is probable that A may have conceived that he had Z’s implied consent to use Z’s book. If this was A ’s impression, A has not committed theft. (n) A asks charity from Z’s wife. She gives A money, food and clothes, which A knows to belong to Z her husband. Here it is probable that A may conceive that Z’s wife is authorised to give away alms. If this was A ’s impression, A has not committed theft. (o) A is the paramour of Z’s wife. She gives a valuable property, which A knows to belong to her husband Z, and to be such property as she has no authority from Z to give. If A takes the property dishonestly, he commits theft. (p) A, in good faith, believing property belonging to Z to be A ’s own property, takes that property out of Z’s possession. Here, as A does not take dishonestly, he does not commit theft. (2) Whoever commits theft shall be punished with imprisonment of either description for a term which may extend to three years, or with fine, or with both and in case of second or subsequent conviction of any person under this section, he shall be punished with rigorous imprisonment for a term which shall not be less than one year but which may extend to five years and with fine: Provided that in cases of theft where the value of the stolen property is less than five thousand rupees, and a person is convicted for the first time, shall upon return of the value of property or restoration of the stolen property, shall be punished with community service.'
+
+  - offence_id: 'BNS_2023-303#L2'
+    priority: true
+    label: 'Theft'
+    regime: BNS_2023
+    section: '303'
+    variant: 'L2'   # REVIEWER: rename to the limb as printed
+    counterpart_id: 'IPC_1860-379'
+    maximum: null            # REVIEWER: set from the PAGE
+    min_term_months: null    # REVIEWER: only if the limb prescribes one
+    compoundable: null       # not this pass (D-036 vi)
+    status: DRAFT
+    definition_punishment_split: true
+    state_amendment_present: false
+    source: 'BNS_2023_Act45_Gazette_2023-12-25_MHA.pdf'
+    READ_THIS_PAGE: 'BNS_2023_Act45_Gazette_2023-12-25_MHA.pdf, printed p. 78 (PDF page index 77), s.303'
+    verified_by: 'model-draft (unverified)'
+    extractor_output_do_not_rely_on: SAME_SECTION_TEXT_AS_FIRST_LIMB_ABOVE
+
+  - offence_id: 'BNS_2023-303#L3'
+    priority: true
+    label: 'Theft'
+    regime: BNS_2023
+    section: '303'
+    variant: 'L3'   # REVIEWER: rename to the limb as printed
+    counterpart_id: 'IPC_1860-379'
+    maximum: null            # REVIEWER: set from the PAGE
+    min_term_months: null    # REVIEWER: only if the limb prescribes one
+    compoundable: null       # not this pass (D-036 vi)
+    status: DRAFT
+    definition_punishment_split: true
+    state_amendment_present: false
+    source: 'BNS_2023_Act45_Gazette_2023-12-25_MHA.pdf'
+    READ_THIS_PAGE: 'BNS_2023_Act45_Gazette_2023-12-25_MHA.pdf, printed p. 78 (PDF page index 77), s.303'
+    verified_by: 'model-draft (unverified)'
+    extractor_output_do_not_rely_on: SAME_SECTION_TEXT_AS_FIRST_LIMB_ABOVE
+
+  # ── IPC_1860-302 · Murder · 1 limb(s)
+  - offence_id: 'IPC_1860-302'
+    priority: true
+    label: 'Murder'
+    regime: IPC_1860
+    section: '302'
+    variant: None
+    counterpart_id: 'BNS_2023-103'
+    maximum: null            # REVIEWER: set from the PAGE
+    min_term_months: null    # REVIEWER: only if the limb prescribes one
+    compoundable: null       # not this pass (D-036 vi)
+    status: DRAFT
+    definition_punishment_split: false
+    state_amendment_present: false
+    source: 'IPC_1860_Act45_IndiaCode_repealed_file.pdf'
+    READ_THIS_PAGE: 'IPC_1860_Act45_IndiaCode_repealed_file.pdf, printed p. 74 (PDF page index 73), s.302'
+    verified_by: 'model-draft (unverified)'
+    extractor_output_do_not_rely_on: '302. Punishment for murder .—Whoever commits murder shall be punished with death, or 1[imprisonment for life], and shall also be liable to fine.'
+
+  # ── BNS_2023-115 · Voluntarily causing hurt · 1 limb(s) · DEFINITION/PUNISHMENT SPLIT
+  - offence_id: 'BNS_2023-115'
+    priority: true
+    label: 'Voluntarily causing hurt'
+    regime: BNS_2023
+    section: '115'
+    variant: None
+    counterpart_id: 'IPC_1860-323'
+    maximum: null            # REVIEWER: set from the PAGE
+    min_term_months: null    # REVIEWER: only if the limb prescribes one
+    compoundable: null       # not this pass (D-036 vi)
+    status: DRAFT
+    definition_punishment_split: true
+    state_amendment_present: false
+    source: 'BNS_2023_Act45_Gazette_2023-12-25_MHA.pdf'
+    READ_THIS_PAGE: 'BNS_2023_Act45_Gazette_2023-12-25_MHA.pdf, printed p. 38 (PDF page index 37), s.115'
+    verified_by: 'model-draft (unverified)'
+    extractor_output_do_not_rely_on: '115.(1) Whoever does any act with the intention of thereby causing hurt to any person, or with the knowledge that he is likely thereby to cause hurt to any person, and does thereby cause hurt to any person, is said “voluntarily to cause hurt”. (2) Whoever, except in the case provided for by sub-section (1) of section 122 voluntarily causes hurt, shall be punished with imprisonment of either description for a term which may extend to one year, or with fine which may extend to ten thousand rupees, or with both.'
+
+  # ── BNS_2023-126 · Wrongful restraint · 1 limb(s) · DEFINITION/PUNISHMENT SPLIT
+  - offence_id: 'BNS_2023-126'
+    priority: true
+    label: 'Wrongful restraint'
+    regime: BNS_2023
+    section: '126'
+    variant: None
+    counterpart_id: 'IPC_1860-341'
+    maximum: null            # REVIEWER: set from the PAGE
+    min_term_months: null    # REVIEWER: only if the limb prescribes one
+    compoundable: null       # not this pass (D-036 vi)
+    status: DRAFT
+    definition_punishment_split: true
+    state_amendment_present: false
+    source: 'BNS_2023_Act45_Gazette_2023-12-25_MHA.pdf'
+    READ_THIS_PAGE: 'BNS_2023_Act45_Gazette_2023-12-25_MHA.pdf, printed page unknown (PDF page index 40), s.126'
+    verified_by: 'model-draft (unverified)'
+    extractor_output_do_not_rely_on: '126.(1) Whoever voluntarily obstructs any person so as to prevent that person from proceeding in any direction in which that person has a right to proceed, is said wrongfully to restrain that person. Exception.—The obstruction of a private way over land or water which a person in good faith believes himself to have a lawful right to obstruct, is not an offence within the meaning of this section. Illustration. A obstructs a path along which Z has a right to pass, A not believing in good faith that he has a right to stop the path. Z is thereby prevented from passing. A wrongfully restrains Z. (2) Whoever wrongfully restrains any person shall be punished with simple imprisonment for a term which may extend to one month, or with fine which may extend to five thousand rupees, or with both.'
+
+  # ── IPC_1860-323 · Voluntarily causing hurt · 1 limb(s)
+  - offence_id: 'IPC_1860-323'
+    priority: true
+    label: 'Voluntarily causing hurt'
+    regime: IPC_1860
+    section: '323'
+    variant: None
+    counterpart_id: 'BNS_2023-115'
+    maximum: null            # REVIEWER: set from the PAGE
+    min_term_months: null    # REVIEWER: only if the limb prescribes one
+    compoundable: null       # not this pass (D-036 vi)
+    status: DRAFT
+    definition_punishment_split: false
+    state_amendment_present: false
+    source: 'IPC_1860_Act45_IndiaCode_repealed_file.pdf'
+    READ_THIS_PAGE: 'IPC_1860_Act45_IndiaCode_repealed_file.pdf, printed p. 78 (PDF page index 77), s.323'
+    verified_by: 'model-draft (unverified)'
+    extractor_output_do_not_rely_on: '323. Punishment for voluntarily causing hurt .—Whoever, except in the case provided for by section 334, voluntarily causes hurt, shall be punished with imprisonment of either descript ion for a term which may extend to one year, or with fine which may extend to one thousand rupees, or with both.'
+
+  # ── IPC_1860-341 · Wrongful restraint · 1 limb(s)
+  - offence_id: 'IPC_1860-341'
+    priority: true
+    label: 'Wrongful restraint'
+    regime: IPC_1860
+    section: '341'
+    variant: None
+    counterpart_id: 'BNS_2023-126'
+    maximum: null            # REVIEWER: set from the PAGE
+    min_term_months: null    # REVIEWER: only if the limb prescribes one
+    compoundable: null       # not this pass (D-036 vi)
+    status: DRAFT
+    definition_punishment_split: false
+    state_amendment_present: false
+    source: 'IPC_1860_Act45_IndiaCode_repealed_file.pdf'
+    READ_THIS_PAGE: 'IPC_1860_Act45_IndiaCode_repealed_file.pdf, printed p. 81 (PDF page index 80), s.341'
+    verified_by: 'model-draft (unverified)'
+    extractor_output_do_not_rely_on: '341. Punishment for wrongful restraint .—Whoever wrongfully restrains any person shall be punished with simple imprisonment for a term which may extend to one month, or w ith fine which may extend to five hundred rupees, or with both.'
+
+  # ── IPC_1860-392 · Robbery · 1 limb(s)
+  - offence_id: 'IPC_1860-392'
+    priority: true
+    label: 'Robbery'
+    regime: IPC_1860
+    section: '392'
+    variant: None
+    counterpart_id: 'BNS_2023-309'
+    maximum: null            # REVIEWER: set from the PAGE
+    min_term_months: null    # REVIEWER: only if the limb prescribes one
+    compoundable: null       # not this pass (D-036 vi)
+    status: DRAFT
+    definition_punishment_split: false
+    state_amendment_present: false
+    source: 'IPC_1860_Act45_IndiaCode_repealed_file.pdf'
+    READ_THIS_PAGE: 'IPC_1860_Act45_IndiaCode_repealed_file.pdf, printed p. 98 (PDF page index 97), s.392'
+    verified_by: 'model-draft (unverified)'
+    extractor_output_do_not_rely_on: '392. Punishment for robbery .—Whoever commits robbery shall be punished with rigorous imprisonment for a term which may extend to ten years, and shall also be liable to fine; and, if the robbery be committed on the highway between sunset and sunrise, the imprisonment may be extended to four teen years.'
+
+  # ── IPC_1860-420 · Cheating · 1 limb(s)
+  - offence_id: 'IPC_1860-420'
+    priority: true
+    label: 'Cheating'
+    regime: IPC_1860
+    section: '420'
+    variant: None
+    counterpart_id: 'BNS_2023-318'
+    maximum: null            # REVIEWER: set from the PAGE
+    min_term_months: null    # REVIEWER: only if the limb prescribes one
+    compoundable: null       # not this pass (D-036 vi)
+    status: DRAFT
+    definition_punishment_split: false
+    state_amendment_present: false
+    source: 'IPC_1860_Act45_IndiaCode_repealed_file.pdf'
+    READ_THIS_PAGE: 'IPC_1860_Act45_IndiaCode_repealed_file.pdf, printed p. 103 (PDF page index 102), s.420'
+    verified_by: 'model-draft (unverified)'
+    extractor_output_do_not_rely_on: '420. Cheating and dishonestly inducing delivery of property .—Whoever cheats and thereby dishonestly induces the person deceived to deliver any property to any person, or to make, alter or destroy the whole or any part of a valuable security, or anything which is signed or sea led, and which is capable of being converted into a valuable security, shall be punished with imprisonment of either description for a term which may extend to seven years, and shall also be liable to fine. Of fraudulent feeds and dispositions of property'
+
+  # ── IPC_1860-426 · Mischief · 1 limb(s)
+  - offence_id: 'IPC_1860-426'
+    priority: true
+    label: 'Mischief'
+    regime: IPC_1860
+    section: '426'
+    variant: None
+    counterpart_id: 'BNS_2023-324'
+    maximum: null            # REVIEWER: set from the PAGE
+    min_term_months: null    # REVIEWER: only if the limb prescribes one
+    compoundable: null       # not this pass (D-036 vi)
+    status: DRAFT
+    definition_punishment_split: false
+    state_amendment_present: false
+    source: 'IPC_1860_Act45_IndiaCode_repealed_file.pdf'
+    READ_THIS_PAGE: 'IPC_1860_Act45_IndiaCode_repealed_file.pdf, printed p. 104 (PDF page index 103), s.426'
+    verified_by: 'model-draft (unverified)'
+    extractor_output_do_not_rely_on: '426. Punishment for mischief.—Whoever commits mischief shall be punished with imprisonment of either description for a term which may extend to three months, or with fine, or with both.'
+
+  # ── IPC_1860-406 · Criminal breach of trust · 1 limb(s)
+  - offence_id: 'IPC_1860-406'
+    priority: true
+    label: 'Criminal breach of trust'
+    regime: IPC_1860
+    section: '406'
+    variant: None
+    counterpart_id: 'BNS_2023-316'
+    maximum: null            # REVIEWER: set from the PAGE
+    min_term_months: null    # REVIEWER: only if the limb prescribes one
+    compoundable: null       # not this pass (D-036 vi)
+    status: DRAFT
+    definition_punishment_split: false
+    state_amendment_present: false
+    source: 'IPC_1860_Act45_IndiaCode_repealed_file.pdf'
+    READ_THIS_PAGE: 'IPC_1860_Act45_IndiaCode_repealed_file.pdf, printed p. 101 (PDF page index 100), s.406'
+    verified_by: 'model-draft (unverified)'
+    extractor_output_do_not_rely_on: '406. Punishment for criminal breach of trust.—Whoever commits criminal breach of trust shall be punished with imprisonment of either description for a term which may extend to three years, or with fine, or with both.'
+
+  # ── IPC_1860-448 · House-trespass · 1 limb(s)
+  - offence_id: 'IPC_1860-448'
+    priority: true
+    label: 'House-trespass'
+    regime: IPC_1860
+    section: '448'
+    variant: None
+    counterpart_id: 'BNS_2023-331'
+    maximum: null            # REVIEWER: set from the PAGE
+    min_term_months: null    # REVIEWER: only if the limb prescribes one
+    compoundable: null       # not this pass (D-036 vi)
+    status: DRAFT
+    definition_punishment_split: false
+    state_amendment_present: false
+    source: 'IPC_1860_Act45_IndiaCode_repealed_file.pdf'
+    READ_THIS_PAGE: 'IPC_1860_Act45_IndiaCode_repealed_file.pdf, printed p. 107 (PDF page index 106), s.448'
+    verified_by: 'model-draft (unverified)'
+    extractor_output_do_not_rely_on: '448. Punishment for house-trespass .—Whoever commits house-trespass shall be punished with imprisonment of either description for a term which may extend to one year, or with fine which may extend to one thousand rupees, or with both.'
+
+  # ── NDPS_1985-21 · Contravention in relation to manufactured drugs and preparations · 3 limb(s)
+  - offence_id: 'NDPS_1985-21#small_quantity'
+    priority: false
+    label: 'Contravention in relation to manufactured drugs and preparations'
+    regime: NDPS_1985
+    section: '21'
+    variant: 'small_quantity'   # REVIEWER: rename to the limb as printed
+    counterpart_id: None
+    maximum: null            # REVIEWER: set from the PAGE
+    min_term_months: null    # REVIEWER: only if the limb prescribes one
+    compoundable: null       # not this pass (D-036 vi)
+    status: DRAFT
+    definition_punishment_split: false
+    state_amendment_present: false
+    source: 'NDPS_1985_Act61_IndiaCode_asOn_2022-01-03.pdf'
+    READ_THIS_PAGE: 'NDPS_1985_Act61_IndiaCode_asOn_2022-01-03.pdf, printed p. 17 (PDF page index 16), s.21'
+    verified_by: 'model-draft (unverified)'
+    extractor_output_do_not_rely_on: '3[21. Punishment for contravention in relation to manu factured drugs and preparations .— Whoever, in contravention of any provision of this Act or any rule or order made or condition of licence granted thereunder, manufactures, possesses, sells, purchases, transports, imports inter -State, exports inter-State or uses any manufactured drug or any preparation containing any manufactured drug shall be punishable,— (a) where the contravention involves small quantity, with rigorous imprisonment for a term which may extend to 4[one year], or with fine which may extend to ten thousand rupees, or with both; (b) where the contravention involves quantity, lesser than commercial quantity but greater than small quantity, with rigorous imprisonment for a term which may extend to t en years, and with fine which may extend to one lakh rupees; (c) where the contravention involves commercial quantity, with rigorous imprisonment for a term which shall not be less tha n ten years but which may extend to twenty years , and shall also be liable to fine which shall not be less than one lakh rupees but which may extend to two lakh rupees: Provided that the court may, for reasons to be recorded in the judgment, impose a fine exceeding two lakh rupees.'
+
+  - offence_id: 'NDPS_1985-21#lesser_than_commercial'
+    priority: false
+    label: 'Contravention in relation to manufactured drugs and preparations'
+    regime: NDPS_1985
+    section: '21'
+    variant: 'lesser_than_commercial'   # REVIEWER: rename to the limb as printed
+    counterpart_id: None
+    maximum: null            # REVIEWER: set from the PAGE
+    min_term_months: null    # REVIEWER: only if the limb prescribes one
+    compoundable: null       # not this pass (D-036 vi)
+    status: DRAFT
+    definition_punishment_split: false
+    state_amendment_present: false
+    source: 'NDPS_1985_Act61_IndiaCode_asOn_2022-01-03.pdf'
+    READ_THIS_PAGE: 'NDPS_1985_Act61_IndiaCode_asOn_2022-01-03.pdf, printed p. 17 (PDF page index 16), s.21'
+    verified_by: 'model-draft (unverified)'
+    extractor_output_do_not_rely_on: SAME_SECTION_TEXT_AS_FIRST_LIMB_ABOVE
+
+  - offence_id: 'NDPS_1985-21#commercial_quantity'
+    priority: false
+    label: 'Contravention in relation to manufactured drugs and preparations'
+    regime: NDPS_1985
+    section: '21'
+    variant: 'commercial_quantity'   # REVIEWER: rename to the limb as printed
+    counterpart_id: None
+    maximum: null            # REVIEWER: set from the PAGE
+    min_term_months: null    # REVIEWER: only if the limb prescribes one
+    compoundable: null       # not this pass (D-036 vi)
+    status: DRAFT
+    definition_punishment_split: false
+    state_amendment_present: false
+    source: 'NDPS_1985_Act61_IndiaCode_asOn_2022-01-03.pdf'
+    READ_THIS_PAGE: 'NDPS_1985_Act61_IndiaCode_asOn_2022-01-03.pdf, printed p. 17 (PDF page index 16), s.21'
+    verified_by: 'model-draft (unverified)'
+    extractor_output_do_not_rely_on: SAME_SECTION_TEXT_AS_FIRST_LIMB_ABOVE
+
+  # ── NDPS_1985-22 · Contravention in relation to psychotropic substances · 3 limb(s)
+  - offence_id: 'NDPS_1985-22#small_quantity'
+    priority: false
+    label: 'Contravention in relation to psychotropic substances'
+    regime: NDPS_1985
+    section: '22'
+    variant: 'small_quantity'   # REVIEWER: rename to the limb as printed
+    counterpart_id: None
+    maximum: null            # REVIEWER: set from the PAGE
+    min_term_months: null    # REVIEWER: only if the limb prescribes one
+    compoundable: null       # not this pass (D-036 vi)
+    status: DRAFT
+    definition_punishment_split: false
+    state_amendment_present: false
+    source: 'NDPS_1985_Act61_IndiaCode_asOn_2022-01-03.pdf'
+    READ_THIS_PAGE: 'NDPS_1985_Act61_IndiaCode_asOn_2022-01-03.pdf, printed p. 17 (PDF page index 16), s.22'
+    verified_by: 'model-draft (unverified)'
+    extractor_output_do_not_rely_on: '22. Punishment for contravention in relation to psychotropic substan ces.—Whoever, in contravention of any provision of this Act or any rule or order made or condition of licence granted thereunder, manufactures, possesses, sells, purchases, transports, import s inter-State, exports inter -State or uses any psychotropic substance shall be punishable,— (a) where the contravention involves small quantity, with rigorous imprisonment for a term which may extend to 5[one year], or with fine which may extend to ten thousand rupees, or with both; (b) where the contravention involves quantity lesser than commercial quantity but greater than small quantity, with rigorous imprisonment for a term which may extend to ten years , and with fine which may extend to one lakh rupees; 1. Subs. by Act 9 of 2001, s. 7, for sub-clauses (i) and (ii) (w.e.f. 2-10-2001). 2. Subs. by Act 16 of 2014, s. 9, for “six months” (w.e.f. 1-5-2014). 3. Subs. by Act 9 of 2001, s. 8, for sections 21 to 23 (w.e.f. 2-10-2001). 4. Subs. by Act 16 of 2014, s. 10, for “six months” (w.e.f. 1-5-2014). 5. Subs. by s. 11, ibid., for “six months” (w.e.f. 1-5-2014). (c) where the contravention involves commercial quantity, with rigorous imprisonment for a term which shall not be less than ten years but which may extend to twenty years , and shall also be liable to fine which shall not be less than one lakh rupees but which may extend to two lakh rupees: Provided that the court may, for reasons to be recorded in the judgment, impose a fine exceeding two lakh rupees.'
+
+  - offence_id: 'NDPS_1985-22#lesser_than_commercial'
+    priority: false
+    label: 'Contravention in relation to psychotropic substances'
+    regime: NDPS_1985
+    section: '22'
+    variant: 'lesser_than_commercial'   # REVIEWER: rename to the limb as printed
+    counterpart_id: None
+    maximum: null            # REVIEWER: set from the PAGE
+    min_term_months: null    # REVIEWER: only if the limb prescribes one
+    compoundable: null       # not this pass (D-036 vi)
+    status: DRAFT
+    definition_punishment_split: false
+    state_amendment_present: false
+    source: 'NDPS_1985_Act61_IndiaCode_asOn_2022-01-03.pdf'
+    READ_THIS_PAGE: 'NDPS_1985_Act61_IndiaCode_asOn_2022-01-03.pdf, printed p. 17 (PDF page index 16), s.22'
+    verified_by: 'model-draft (unverified)'
+    extractor_output_do_not_rely_on: SAME_SECTION_TEXT_AS_FIRST_LIMB_ABOVE
+
+  - offence_id: 'NDPS_1985-22#commercial_quantity'
+    priority: false
+    label: 'Contravention in relation to psychotropic substances'
+    regime: NDPS_1985
+    section: '22'
+    variant: 'commercial_quantity'   # REVIEWER: rename to the limb as printed
+    counterpart_id: None
+    maximum: null            # REVIEWER: set from the PAGE
+    min_term_months: null    # REVIEWER: only if the limb prescribes one
+    compoundable: null       # not this pass (D-036 vi)
+    status: DRAFT
+    definition_punishment_split: false
+    state_amendment_present: false
+    source: 'NDPS_1985_Act61_IndiaCode_asOn_2022-01-03.pdf'
+    READ_THIS_PAGE: 'NDPS_1985_Act61_IndiaCode_asOn_2022-01-03.pdf, printed p. 17 (PDF page index 16), s.22'
+    verified_by: 'model-draft (unverified)'
+    extractor_output_do_not_rely_on: SAME_SECTION_TEXT_AS_FIRST_LIMB_ABOVE
+
+  # ═══════════ PART 3 — REMAINING (27 rows) ═══════════
+  # ── BNS_2023-317 · Dishonestly receiving stolen property · 4 limb(s) · DEFINITION/PUNISHMENT SPLIT
+  - offence_id: 'BNS_2023-317#L1'
+    priority: false
+    label: 'Dishonestly receiving stolen property'
+    regime: BNS_2023
+    section: '317'
+    variant: 'L1'   # REVIEWER: rename to the limb as printed
+    counterpart_id: 'IPC_1860-411'
+    maximum: null            # REVIEWER: set from the PAGE
+    min_term_months: null    # REVIEWER: only if the limb prescribes one
+    compoundable: null       # not this pass (D-036 vi)
+    status: DRAFT
+    definition_punishment_split: true
+    state_amendment_present: false
+    source: 'BNS_2023_Act45_Gazette_2023-12-25_MHA.pdf'
+    READ_THIS_PAGE: 'BNS_2023_Act45_Gazette_2023-12-25_MHA.pdf, printed page unknown (PDF page index 84), s.317'
+    verified_by: 'model-draft (unverified)'
+    extractor_output_do_not_rely_on: '317. (1) Property, the possession whereof has been transferred by theft or extortion or robbery or cheating, and property which has been criminally misappropriated or in respect of which criminal breach of trust has been committed, is designated as stolen property, whether the transfer has been made, or the misappropriation or breach of trust has been committed, within or without India, but, if such property subsequently comes into the possession of a person legally entitled to the possession thereof, it then ceases to be stolen property. (2) Whoever dishonestly receives or retains any stolen property, knowing or having reason to believe the same to be stolen property, shall be punished with imprisonment of either description for a term which may extend to three years, or with fine, or with both. (3) Whoever dishonestly receives or retains any stolen property, the possession whereof he knows or has reason to believe to have been transferred by the commission of Stolen property. Sec. 1] THE GAZETTE OF INDIA EXTRAORDINARY 85_____________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________ dacoity, or dishonestly receives from a person, whom he knows or has reason to believe to belong or to have belonged to a gang of dacoits, property which he knows or has reason to believe to have been stolen, shall be punished with imprisonment for life, or with rigorous imprisonment for a term which may extend to ten years, and shall also be liable to fine. (4) Whoever habitually receives or deals in property which he knows or has reason to believe to be stolen property , shall be punished with imprisonment for life, or with imprisonment of either description for a term which may extend to ten years, and shall also be liable to fine. (5) Whoever voluntarily assists in concealing or disposing of or making away with property which he knows or has reason to believe to be stolen property, shall be punished with imprisonment of either description for a term which may extend to three years, or with fine, or with both. Of cheating'
+
+  - offence_id: 'BNS_2023-317#L2'
+    priority: false
+    label: 'Dishonestly receiving stolen property'
+    regime: BNS_2023
+    section: '317'
+    variant: 'L2'   # REVIEWER: rename to the limb as printed
+    counterpart_id: 'IPC_1860-411'
+    maximum: null            # REVIEWER: set from the PAGE
+    min_term_months: null    # REVIEWER: only if the limb prescribes one
+    compoundable: null       # not this pass (D-036 vi)
+    status: DRAFT
+    definition_punishment_split: true
+    state_amendment_present: false
+    source: 'BNS_2023_Act45_Gazette_2023-12-25_MHA.pdf'
+    READ_THIS_PAGE: 'BNS_2023_Act45_Gazette_2023-12-25_MHA.pdf, printed page unknown (PDF page index 84), s.317'
+    verified_by: 'model-draft (unverified)'
+    extractor_output_do_not_rely_on: SAME_SECTION_TEXT_AS_FIRST_LIMB_ABOVE
+
+  - offence_id: 'BNS_2023-317#L3'
+    priority: false
+    label: 'Dishonestly receiving stolen property'
+    regime: BNS_2023
+    section: '317'
+    variant: 'L3'   # REVIEWER: rename to the limb as printed
+    counterpart_id: 'IPC_1860-411'
+    maximum: null            # REVIEWER: set from the PAGE
+    min_term_months: null    # REVIEWER: only if the limb prescribes one
+    compoundable: null       # not this pass (D-036 vi)
+    status: DRAFT
+    definition_punishment_split: true
+    state_amendment_present: false
+    source: 'BNS_2023_Act45_Gazette_2023-12-25_MHA.pdf'
+    READ_THIS_PAGE: 'BNS_2023_Act45_Gazette_2023-12-25_MHA.pdf, printed page unknown (PDF page index 84), s.317'
+    verified_by: 'model-draft (unverified)'
+    extractor_output_do_not_rely_on: SAME_SECTION_TEXT_AS_FIRST_LIMB_ABOVE
+
+  - offence_id: 'BNS_2023-317#L4'
+    priority: false
+    label: 'Dishonestly receiving stolen property'
+    regime: BNS_2023
+    section: '317'
+    variant: 'L4'   # REVIEWER: rename to the limb as printed
+    counterpart_id: 'IPC_1860-411'
+    maximum: null            # REVIEWER: set from the PAGE
+    min_term_months: null    # REVIEWER: only if the limb prescribes one
+    compoundable: null       # not this pass (D-036 vi)
+    status: DRAFT
+    definition_punishment_split: true
+    state_amendment_present: false
+    source: 'BNS_2023_Act45_Gazette_2023-12-25_MHA.pdf'
+    READ_THIS_PAGE: 'BNS_2023_Act45_Gazette_2023-12-25_MHA.pdf, printed page unknown (PDF page index 84), s.317'
+    verified_by: 'model-draft (unverified)'
+    extractor_output_do_not_rely_on: SAME_SECTION_TEXT_AS_FIRST_LIMB_ABOVE
+
+  # ── BNS_2023-109 · Attempt to murder · 3 limb(s)
+  - offence_id: 'BNS_2023-109#L1'
+    priority: false
+    label: 'Attempt to murder'
+    regime: BNS_2023
+    section: '109'
+    variant: 'L1'   # REVIEWER: rename to the limb as printed
+    counterpart_id: 'IPC_1860-307'
+    maximum: null            # REVIEWER: set from the PAGE
+    min_term_months: null    # REVIEWER: only if the limb prescribes one
+    compoundable: null       # not this pass (D-036 vi)
+    status: DRAFT
+    definition_punishment_split: false
+    state_amendment_present: false
+    source: 'BNS_2023_Act45_Gazette_2023-12-25_MHA.pdf'
+    READ_THIS_PAGE: 'BNS_2023_Act45_Gazette_2023-12-25_MHA.pdf, printed p. 34 (PDF page index 33), s.109'
+    verified_by: 'model-draft (unverified)'
+    extractor_output_do_not_rely_on: '109.(1) Whoever does any act with such intention or knowledge, and under such circumstances that, if he by that act caused death, he would be guilty of murder, shall be punished with imprisonment of either description for a term which may extend to ten years, and shall also be liable to fine; and if hurt is caused to any person by such act, the offender shall be liable either to imprisonment for life, or to such punishment as is hereinbefore mentioned. Culpable homicide by causing death of person other than person whose death was intended. Punishment for murder. Punishment for murder by life-convict. Punishment for culpable homicide not amounting to murder. Causing death by negligence. Abetment of suicide of child or person of unsound mind. Abetment of suicide. Attempt to murder. 30 of 2019. 34 THE GAZETTE OF INDIA EXTRAORDINARY [Part II—_____________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________ (2) When any person offending under sub-section (1) is under sentence of imprisonment for life, he may, if hurt is caused, be punished with death or with imprisonment for life, which shall mean the remainder of that person’s natural life. Illustrations. (a) A shoots at Z with intention to kill him, under such circumstances that, if death ensued, A would be guilty of murder. A is liable to punishment under this section. (b) A, with the intention of causing the death of a child of tender years, exposes it in a desert place. A has committed the offence defined by this section, though the death of the child does not ensue. (c) A, intending to murder Z, buys a gun and loads it. A has not yet committed the offence. A fires the gun at Z. He has committed the offence defined in this section, and, if by such firing he wounds Z, he is liable to the punishment provided by the latter part of sub-section (1). (d) A, intending to murder Z by poison, purchases poison and mixes the same with food which remains in A ’s keeping; A has not yet committed the offence defined in this section. A places the food on Z’s table or delivers it to Z’s servants to place it on Z’s table. A has committed the offence defined in this section.'
+
+  - offence_id: 'BNS_2023-109#L2'
+    priority: false
+    label: 'Attempt to murder'
+    regime: BNS_2023
+    section: '109'
+    variant: 'L2'   # REVIEWER: rename to the limb as printed
+    counterpart_id: 'IPC_1860-307'
+    maximum: null            # REVIEWER: set from the PAGE
+    min_term_months: null    # REVIEWER: only if the limb prescribes one
+    compoundable: null       # not this pass (D-036 vi)
+    status: DRAFT
+    definition_punishment_split: false
+    state_amendment_present: false
+    source: 'BNS_2023_Act45_Gazette_2023-12-25_MHA.pdf'
+    READ_THIS_PAGE: 'BNS_2023_Act45_Gazette_2023-12-25_MHA.pdf, printed p. 34 (PDF page index 33), s.109'
+    verified_by: 'model-draft (unverified)'
+    extractor_output_do_not_rely_on: SAME_SECTION_TEXT_AS_FIRST_LIMB_ABOVE
+
+  - offence_id: 'BNS_2023-109#L3'
+    priority: false
+    label: 'Attempt to murder'
+    regime: BNS_2023
+    section: '109'
+    variant: 'L3'   # REVIEWER: rename to the limb as printed
+    counterpart_id: 'IPC_1860-307'
+    maximum: null            # REVIEWER: set from the PAGE
+    min_term_months: null    # REVIEWER: only if the limb prescribes one
+    compoundable: null       # not this pass (D-036 vi)
+    status: DRAFT
+    definition_punishment_split: false
+    state_amendment_present: false
+    source: 'BNS_2023_Act45_Gazette_2023-12-25_MHA.pdf'
+    READ_THIS_PAGE: 'BNS_2023_Act45_Gazette_2023-12-25_MHA.pdf, printed p. 34 (PDF page index 33), s.109'
+    verified_by: 'model-draft (unverified)'
+    extractor_output_do_not_rely_on: SAME_SECTION_TEXT_AS_FIRST_LIMB_ABOVE
+
+  # ── BNS_2023-117 · Voluntarily causing grievous hurt · 3 limb(s) · DEFINITION/PUNISHMENT SPLIT
+  - offence_id: 'BNS_2023-117#L1'
+    priority: false
+    label: 'Voluntarily causing grievous hurt'
+    regime: BNS_2023
+    section: '117'
+    variant: 'L1'   # REVIEWER: rename to the limb as printed
+    counterpart_id: 'IPC_1860-325'
+    maximum: null            # REVIEWER: set from the PAGE
+    min_term_months: null    # REVIEWER: only if the limb prescribes one
+    compoundable: null       # not this pass (D-036 vi)
+    status: DRAFT
+    definition_punishment_split: true
+    state_amendment_present: false
+    source: 'BNS_2023_Act45_Gazette_2023-12-25_MHA.pdf'
+    READ_THIS_PAGE: 'BNS_2023_Act45_Gazette_2023-12-25_MHA.pdf, printed p. 38 (PDF page index 37), s.117'
+    verified_by: 'model-draft (unverified)'
+    extractor_output_do_not_rely_on: '117.(1) Whoever voluntarily causes hurt, if the hurt which he intends to cause or knows himself to be likely to cause is grievous hurt, and if the hurt which he causes is grievous hurt, is said “voluntarily to cause grievous hurt”. Hurt. Voluntarily causing hurt. Grievous hurt. V oluntarily causing grievous hurt. 37 of 1967. 38 THE GAZETTE OF INDIA EXTRAORDINARY [Part II—_____________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________ Explanation.—A person is not said voluntarily to cause grievous hurt except when he both causes grievous hurt and intends or knows himself to be likely to cause grievous hurt. But he is said voluntarily to cause grievous hurt, if intending or knowing himself to be likely to cause grievous hurt of one kind, he actually causes grievous hurt of another kind. Illustration. A, intending of knowing himself to be likely permanently to disfigure Z’s face, gives Z a blow which does not permanently disfigure Z’s face, but which causes Z to suffer severe bodily pain for the space of fifteen days. A has voluntarily caused grievous hurt. (2) Whoever, except in the case provided for by sub-section (2) of section 122, voluntarily causes grievous hurt, shall be punished with imprisonment of either description for a term which may extend to seven years, and shall also be liable to fine. (3) Whoever commits an offence under sub-section (1) and in the course of such commission causes any hurt to a person which causes that person to be in permanent disability or in persistent vegetative state, shall be punished with rigorous imprisonment for a term which shall not be less than ten years but which may extend to imprisonment for life, which shall mean imprisonment for the remainder of that person’s natural life. (4) When a group of five or more persons acting in concert, causes grievous hurt to a person on the ground of his race, caste or community, sex, place of birth, language, personal belief or any other similar ground, each member of such group shall be guilty of the offence of causing grievous hurt, and shall be punished with imprisonment of either description for a term which may extend to seven years, and shall also be liable to fine.'
+
+  - offence_id: 'BNS_2023-117#L2'
+    priority: false
+    label: 'Voluntarily causing grievous hurt'
+    regime: BNS_2023
+    section: '117'
+    variant: 'L2'   # REVIEWER: rename to the limb as printed
+    counterpart_id: 'IPC_1860-325'
+    maximum: null            # REVIEWER: set from the PAGE
+    min_term_months: null    # REVIEWER: only if the limb prescribes one
+    compoundable: null       # not this pass (D-036 vi)
+    status: DRAFT
+    definition_punishment_split: true
+    state_amendment_present: false
+    source: 'BNS_2023_Act45_Gazette_2023-12-25_MHA.pdf'
+    READ_THIS_PAGE: 'BNS_2023_Act45_Gazette_2023-12-25_MHA.pdf, printed p. 38 (PDF page index 37), s.117'
+    verified_by: 'model-draft (unverified)'
+    extractor_output_do_not_rely_on: SAME_SECTION_TEXT_AS_FIRST_LIMB_ABOVE
+
+  - offence_id: 'BNS_2023-117#L3'
+    priority: false
+    label: 'Voluntarily causing grievous hurt'
+    regime: BNS_2023
+    section: '117'
+    variant: 'L3'   # REVIEWER: rename to the limb as printed
+    counterpart_id: 'IPC_1860-325'
+    maximum: null            # REVIEWER: set from the PAGE
+    min_term_months: null    # REVIEWER: only if the limb prescribes one
+    compoundable: null       # not this pass (D-036 vi)
+    status: DRAFT
+    definition_punishment_split: true
+    state_amendment_present: false
+    source: 'BNS_2023_Act45_Gazette_2023-12-25_MHA.pdf'
+    READ_THIS_PAGE: 'BNS_2023_Act45_Gazette_2023-12-25_MHA.pdf, printed p. 38 (PDF page index 37), s.117'
+    verified_by: 'model-draft (unverified)'
+    extractor_output_do_not_rely_on: SAME_SECTION_TEXT_AS_FIRST_LIMB_ABOVE
+
+  # ── BNS_2023-105 · Culpable homicide not amounting to murder · 2 limb(s)
+  - offence_id: 'BNS_2023-105#L1'
+    priority: false
+    label: 'Culpable homicide not amounting to murder'
+    regime: BNS_2023
+    section: '105'
+    variant: 'L1'   # REVIEWER: rename to the limb as printed
+    counterpart_id: 'IPC_1860-304'
+    maximum: null            # REVIEWER: set from the PAGE
+    min_term_months: null    # REVIEWER: only if the limb prescribes one
+    compoundable: null       # not this pass (D-036 vi)
+    status: DRAFT
+    definition_punishment_split: false
+    state_amendment_present: false
+    source: 'BNS_2023_Act45_Gazette_2023-12-25_MHA.pdf'
+    READ_THIS_PAGE: 'BNS_2023_Act45_Gazette_2023-12-25_MHA.pdf, printed p. 34 (PDF page index 33), s.105'
+    verified_by: 'model-draft (unverified)'
+    extractor_output_do_not_rely_on: '105. Whoever commits culpable homicide not amounting to murder, shall be punished with imprisonment for life, or imprisonment of either description for a term which shall not be less than five years but which may extend to ten years, and shall also be liable to fine, if the act by which the death is caused is done with the intention of causing death, or of causing such bodily injury as is likely to cause death; or with imprisonment of either description for a term which may extend to ten years and with fine, if the act is done with the knowledge that it is likely to cause death, but without any intention to cause death, or to cause such bodily injury as is likely to cause death.'
+
+  - offence_id: 'BNS_2023-105#L2'
+    priority: false
+    label: 'Culpable homicide not amounting to murder'
+    regime: BNS_2023
+    section: '105'
+    variant: 'L2'   # REVIEWER: rename to the limb as printed
+    counterpart_id: 'IPC_1860-304'
+    maximum: null            # REVIEWER: set from the PAGE
+    min_term_months: null    # REVIEWER: only if the limb prescribes one
+    compoundable: null       # not this pass (D-036 vi)
+    status: DRAFT
+    definition_punishment_split: false
+    state_amendment_present: false
+    source: 'BNS_2023_Act45_Gazette_2023-12-25_MHA.pdf'
+    READ_THIS_PAGE: 'BNS_2023_Act45_Gazette_2023-12-25_MHA.pdf, printed p. 34 (PDF page index 33), s.105'
+    verified_by: 'model-draft (unverified)'
+    extractor_output_do_not_rely_on: SAME_SECTION_TEXT_AS_FIRST_LIMB_ABOVE
+
+  # ── IPC_1860-304 · Culpable homicide not amounting to murder · 2 limb(s)
+  - offence_id: 'IPC_1860-304#L1'
+    priority: false
+    label: 'Culpable homicide not amounting to murder'
+    regime: IPC_1860
+    section: '304'
+    variant: 'L1'   # REVIEWER: rename to the limb as printed
+    counterpart_id: 'BNS_2023-105'
+    maximum: null            # REVIEWER: set from the PAGE
+    min_term_months: null    # REVIEWER: only if the limb prescribes one
+    compoundable: null       # not this pass (D-036 vi)
+    status: DRAFT
+    definition_punishment_split: false
+    state_amendment_present: false
+    source: 'IPC_1860_Act45_IndiaCode_repealed_file.pdf'
+    READ_THIS_PAGE: 'IPC_1860_Act45_IndiaCode_repealed_file.pdf, printed p. 74 (PDF page index 73), s.304'
+    verified_by: 'model-draft (unverified)'
+    extractor_output_do_not_rely_on: '304. Punishment for culpable homicide not amounting to murder .—Whoever commits culpable homicide not amounting to murder shall be punished with 1[imprisonment for life], or imprisonment of either description for a term which may extend to ten years, and shall also be liabl e to fine, if the act by which the death is caused is done with the intention of causing death, or of causing such bodily inju ry as is likely to cause death; 1. Subs. by Act 26 of 1955, s. 117 and the Sch., for “transportation for life” (w.e.f. 1-1-1956). or with imprisonment of either description for a term which may extend to ten y ears, or with fine, or with both, if the act is done with the knowledge that it is likely to cause death, but without any intention to cause death, or to cause such bodily injury as is likely to cause death.'
+
+  - offence_id: 'IPC_1860-304#L2'
+    priority: false
+    label: 'Culpable homicide not amounting to murder'
+    regime: IPC_1860
+    section: '304'
+    variant: 'L2'   # REVIEWER: rename to the limb as printed
+    counterpart_id: 'BNS_2023-105'
+    maximum: null            # REVIEWER: set from the PAGE
+    min_term_months: null    # REVIEWER: only if the limb prescribes one
+    compoundable: null       # not this pass (D-036 vi)
+    status: DRAFT
+    definition_punishment_split: false
+    state_amendment_present: false
+    source: 'IPC_1860_Act45_IndiaCode_repealed_file.pdf'
+    READ_THIS_PAGE: 'IPC_1860_Act45_IndiaCode_repealed_file.pdf, printed p. 74 (PDF page index 73), s.304'
+    verified_by: 'model-draft (unverified)'
+    extractor_output_do_not_rely_on: SAME_SECTION_TEXT_AS_FIRST_LIMB_ABOVE
+
+  # ── BNS_2023-191 · Rioting · 2 limb(s) · DEFINITION/PUNISHMENT SPLIT
+  - offence_id: 'BNS_2023-191#L1'
+    priority: false
+    label: 'Rioting'
+    regime: BNS_2023
+    section: '191'
+    variant: 'L1'   # REVIEWER: rename to the limb as printed
+    counterpart_id: 'IPC_1860-147'
+    maximum: null            # REVIEWER: set from the PAGE
+    min_term_months: null    # REVIEWER: only if the limb prescribes one
+    compoundable: null       # not this pass (D-036 vi)
+    status: DRAFT
+    definition_punishment_split: true
+    state_amendment_present: false
+    source: 'BNS_2023_Act45_Gazette_2023-12-25_MHA.pdf'
+    READ_THIS_PAGE: 'BNS_2023_Act45_Gazette_2023-12-25_MHA.pdf, printed page unknown (PDF page index 54), s.191'
+    verified_by: 'model-draft (unverified)'
+    extractor_output_do_not_rely_on: '191.(1) Whenever force or violence is used by an unlawful assembly, or by any member thereof, in prosecution of the common object of such assembly, every member of such assembly is guilty of the offence of rioting. (2) Whoever is guilty of rioting, shall be punished with imprisonment of either description for a term which may extend to two years, or with fine, or with both. (3) Whoever is guilty of rioting, being armed with a deadly weapon or with anything which, used as a weapon of offence, is likely to cause death, shall be punished with imprisonment of either description for a term which may extend to five years, or with fine, or with both.'
+
+  - offence_id: 'BNS_2023-191#L2'
+    priority: false
+    label: 'Rioting'
+    regime: BNS_2023
+    section: '191'
+    variant: 'L2'   # REVIEWER: rename to the limb as printed
+    counterpart_id: 'IPC_1860-147'
+    maximum: null            # REVIEWER: set from the PAGE
+    min_term_months: null    # REVIEWER: only if the limb prescribes one
+    compoundable: null       # not this pass (D-036 vi)
+    status: DRAFT
+    definition_punishment_split: true
+    state_amendment_present: false
+    source: 'BNS_2023_Act45_Gazette_2023-12-25_MHA.pdf'
+    READ_THIS_PAGE: 'BNS_2023_Act45_Gazette_2023-12-25_MHA.pdf, printed page unknown (PDF page index 54), s.191'
+    verified_by: 'model-draft (unverified)'
+    extractor_output_do_not_rely_on: SAME_SECTION_TEXT_AS_FIRST_LIMB_ABOVE
+
+  # ── IPC_1860-307 · Attempt to murder · 2 limb(s)
+  - offence_id: 'IPC_1860-307#L1'
+    priority: false
+    label: 'Attempt to murder'
+    regime: IPC_1860
+    section: '307'
+    variant: 'L1'   # REVIEWER: rename to the limb as printed
+    counterpart_id: 'BNS_2023-109'
+    maximum: null            # REVIEWER: set from the PAGE
+    min_term_months: null    # REVIEWER: only if the limb prescribes one
+    compoundable: null       # not this pass (D-036 vi)
+    status: DRAFT
+    definition_punishment_split: false
+    state_amendment_present: false
+    source: 'IPC_1860_Act45_IndiaCode_repealed_file.pdf'
+    READ_THIS_PAGE: 'IPC_1860_Act45_IndiaCode_repealed_file.pdf, printed p. 76 (PDF page index 75), s.307'
+    verified_by: 'model-draft (unverified)'
+    extractor_output_do_not_rely_on: "307. Attempt to murder.—Whoever does any act with such intention or knowledge, and under such circumstances that, if he by that act caused death, he would be guilty of murder, shal l be punished with imprisonment of either description for a term which may extend to ten years, and sha ll also be liable to fine; and if hurt is caused to any person by such act, the offender shall be liab le either to 1[imprisonment for life], or to such punishment as is hereinbefore mentioned. Attempts by life-convicts .—2[When any person offending under this section is under sentence of 1[imprisonment for life], he may, if hurt is caused, be punished with death.] Illustrations (a) A shoots at Z with intention to kill him, under such circumstances that, if death ensued, A would be guilty of murder. A is liable to punishment under this section. (b) A, with the intention of causing the death of a child of tend er years, exposes it in a desert place. A has committed the offence defined by this section, though the death of the child does not ensue. (c) A, intending to murder Z, buys a gun and loads it. A has not yet c ommitted the offence. A fires the gun at Z. He has committed the offence defined in this section, and, if by such firi ng he wounds Z, he is liable to the punishment provided by the latter part of 3[the first paragraph of] this section. (d) A, intending to murder Z by poison, purchases poison and mixes the same with food which remains in A's keeping; A has not yet committed the offence defined in this section. A places the food on Z's table or delivers it to Z's servants to place it on Z's table. A has committed the offence defined in this section."
+
+  - offence_id: 'IPC_1860-307#L2'
+    priority: false
+    label: 'Attempt to murder'
+    regime: IPC_1860
+    section: '307'
+    variant: 'L2'   # REVIEWER: rename to the limb as printed
+    counterpart_id: 'BNS_2023-109'
+    maximum: null            # REVIEWER: set from the PAGE
+    min_term_months: null    # REVIEWER: only if the limb prescribes one
+    compoundable: null       # not this pass (D-036 vi)
+    status: DRAFT
+    definition_punishment_split: false
+    state_amendment_present: false
+    source: 'IPC_1860_Act45_IndiaCode_repealed_file.pdf'
+    READ_THIS_PAGE: 'IPC_1860_Act45_IndiaCode_repealed_file.pdf, printed p. 76 (PDF page index 75), s.307'
+    verified_by: 'model-draft (unverified)'
+    extractor_output_do_not_rely_on: SAME_SECTION_TEXT_AS_FIRST_LIMB_ABOVE
+
+  # ── BNS_2023-137 · Kidnapping · 1 limb(s) · DEFINITION/PUNISHMENT SPLIT
+  - offence_id: 'BNS_2023-137'
+    priority: false
+    label: 'Kidnapping'
+    regime: BNS_2023
+    section: '137'
+    variant: None
+    counterpart_id: 'IPC_1860-363'
+    maximum: null            # REVIEWER: set from the PAGE
+    min_term_months: null    # REVIEWER: only if the limb prescribes one
+    compoundable: null       # not this pass (D-036 vi)
+    status: DRAFT
+    definition_punishment_split: true
+    state_amendment_present: false
+    source: 'BNS_2023_Act45_Gazette_2023-12-25_MHA.pdf'
+    READ_THIS_PAGE: 'BNS_2023_Act45_Gazette_2023-12-25_MHA.pdf, printed page unknown (PDF page index 44), s.137'
+    verified_by: 'model-draft (unverified)'
+    extractor_output_do_not_rely_on: '137.(1) Kidnapping is of two kinds: kidnapping from India, and kidnapping from lawful guardianship–– (a) whoever conveys any person beyond the limits of India without the consent of that person, or of some person legally authorised to consent on behalf of that person, is said to kidnap that person from India; (b) whoever takes or entices any child or any person of unsound mind, out of the keeping of the lawful guardian of such child or person of unsound mind, without the consent of such guardian, is said to kidnap such child or person from lawful guardianship. Explanation.––The words “lawful guardian” in this clause include any person lawfully entrusted with the care or custody of such child or other person. Exception.—This clause does not extend to the act of any person who in good faith believes himself to be the father of an illegitimate child, or who in good faith believes himself to be entitled to the lawful custody of such child, unless such act is committed for an immoral or unlawful purpose. (2) Whoever kidnaps any person from India or from lawful guardianship shall be punished with imprisonment of either description for a term which may extend to seven years, and shall also be liable to fine.'
+
+  # ── BNS_2023-340 · Using as genuine a forged document · 1 limb(s) · DEFINITION/PUNISHMENT SPLIT
+  - offence_id: 'BNS_2023-340'
+    priority: false
+    label: 'Using as genuine a forged document'
+    regime: BNS_2023
+    section: '340'
+    variant: None
+    counterpart_id: 'IPC_1860-471'
+    maximum: null            # REVIEWER: set from the PAGE
+    min_term_months: null    # REVIEWER: only if the limb prescribes one
+    compoundable: null       # not this pass (D-036 vi)
+    status: DRAFT
+    definition_punishment_split: true
+    state_amendment_present: false
+    source: 'BNS_2023_Act45_Gazette_2023-12-25_MHA.pdf'
+    READ_THIS_PAGE: 'BNS_2023_Act45_Gazette_2023-12-25_MHA.pdf, printed page unknown (PDF page index 94), s.340'
+    verified_by: 'model-draft (unverified)'
+    extractor_output_do_not_rely_on: '340.(1) A false document or electronic record made wholly or in part by forgery is designated a forged document or electronic record. (2) Whoever fraudulently or dishonestly uses as genuine any document or electronic record which he knows or has reason to believe to be a forged document or electronic record, shall be punished in the same manner as if he had forged such document or electronic record.'
+
+  # ── BNS_2023-85 · Cruelty by husband or relative of husband · 1 limb(s)
+  - offence_id: 'BNS_2023-85'
+    priority: false
+    label: 'Cruelty by husband or relative of husband'
+    regime: BNS_2023
+    section: '85'
+    variant: None
+    counterpart_id: 'IPC_1860-498A'
+    maximum: null            # REVIEWER: set from the PAGE
+    min_term_months: null    # REVIEWER: only if the limb prescribes one
+    compoundable: null       # not this pass (D-036 vi)
+    status: DRAFT
+    definition_punishment_split: false
+    state_amendment_present: false
+    source: 'BNS_2023_Act45_Gazette_2023-12-25_MHA.pdf'
+    READ_THIS_PAGE: 'BNS_2023_Act45_Gazette_2023-12-25_MHA.pdf, printed page unknown (PDF page index 28), s.85'
+    verified_by: 'model-draft (unverified)'
+    extractor_output_do_not_rely_on: '85.Whoever, being the husband or the relative of the husband of a woman, subjects such woman to cruelty shall be punished with imprisonment for a term which may extend to three years and shall also be liable to fine.'
+
+  # ── IPC_1860-147 · Rioting · 1 limb(s)
+  - offence_id: 'IPC_1860-147'
+    priority: false
+    label: 'Rioting'
+    regime: IPC_1860
+    section: '147'
+    variant: None
+    counterpart_id: 'BNS_2023-191'
+    maximum: null            # REVIEWER: set from the PAGE
+    min_term_months: null    # REVIEWER: only if the limb prescribes one
+    compoundable: null       # not this pass (D-036 vi)
+    status: DRAFT
+    definition_punishment_split: false
+    state_amendment_present: false
+    source: 'IPC_1860_Act45_IndiaCode_repealed_file.pdf'
+    READ_THIS_PAGE: 'IPC_1860_Act45_IndiaCode_repealed_file.pdf, printed p. 40 (PDF page index 39), s.147'
+    verified_by: 'model-draft (unverified)'
+    extractor_output_do_not_rely_on: '147. Punishment for rioting.—Whoever is guilty of rioting, shall be punished with imprisonment of either description for a term which may extend to two years, or with fine, or with both.'
+
+  # ── IPC_1860-325 · Voluntarily causing grievous hurt · 1 limb(s)
+  - offence_id: 'IPC_1860-325'
+    priority: false
+    label: 'Voluntarily causing grievous hurt'
+    regime: IPC_1860
+    section: '325'
+    variant: None
+    counterpart_id: 'BNS_2023-117'
+    maximum: null            # REVIEWER: set from the PAGE
+    min_term_months: null    # REVIEWER: only if the limb prescribes one
+    compoundable: null       # not this pass (D-036 vi)
+    status: DRAFT
+    definition_punishment_split: false
+    state_amendment_present: false
+    source: 'IPC_1860_Act45_IndiaCode_repealed_file.pdf'
+    READ_THIS_PAGE: 'IPC_1860_Act45_IndiaCode_repealed_file.pdf, printed p. 78 (PDF page index 77), s.325'
+    verified_by: 'model-draft (unverified)'
+    extractor_output_do_not_rely_on: '325. Punishment for voluntarily causing grievous hurt.—Whoever, except in the case provided for by section 335, voluntarily causes grievous hurt, shall be punished with imprisonment of either description for a term which may extend to seven years, and shall also be liable to fine.'
+
+  # ── IPC_1860-363 · Kidnapping · 1 limb(s)
+  - offence_id: 'IPC_1860-363'
+    priority: false
+    label: 'Kidnapping'
+    regime: IPC_1860
+    section: '363'
+    variant: None
+    counterpart_id: 'BNS_2023-137'
+    maximum: null            # REVIEWER: set from the PAGE
+    min_term_months: null    # REVIEWER: only if the limb prescribes one
+    compoundable: null       # not this pass (D-036 vi)
+    status: DRAFT
+    definition_punishment_split: false
+    state_amendment_present: false
+    source: 'IPC_1860_Act45_IndiaCode_repealed_file.pdf'
+    READ_THIS_PAGE: 'IPC_1860_Act45_IndiaCode_repealed_file.pdf, printed p. 86 (PDF page index 85), s.363'
+    verified_by: 'model-draft (unverified)'
+    extractor_output_do_not_rely_on: '363. Punishment for kidnapping .—Whoever kidnaps any person from 1[India] or from lawful guardianship, shall be punished with imprisonment of either description for a term w hich may extend to seven years, and shall also be liable to fine.'
+
+  # ── IPC_1860-411 · Dishonestly receiving stolen property · 1 limb(s)
+  - offence_id: 'IPC_1860-411'
+    priority: false
+    label: 'Dishonestly receiving stolen property'
+    regime: IPC_1860
+    section: '411'
+    variant: None
+    counterpart_id: 'BNS_2023-317'
+    maximum: null            # REVIEWER: set from the PAGE
+    min_term_months: null    # REVIEWER: only if the limb prescribes one
+    compoundable: null       # not this pass (D-036 vi)
+    status: DRAFT
+    definition_punishment_split: false
+    state_amendment_present: false
+    source: 'IPC_1860_Act45_IndiaCode_repealed_file.pdf'
+    READ_THIS_PAGE: 'IPC_1860_Act45_IndiaCode_repealed_file.pdf, printed p. 101 (PDF page index 100), s.411'
+    verified_by: 'model-draft (unverified)'
+    extractor_output_do_not_rely_on: '411. Dishonestly receiving stolen property .—Whoever dishonestly receives or retains any stolen property, knowing or having reason to believe the same to be stolen property, shall be pun ished with imprisonment of either description for a term which may extend to three years, or with fine, or with both.'
+
+  # ── IPC_1860-471 · Using as genuine a forged document · 1 limb(s)
+  - offence_id: 'IPC_1860-471'
+    priority: false
+    label: 'Using as genuine a forged document'
+    regime: IPC_1860
+    section: '471'
+    variant: None
+    counterpart_id: 'BNS_2023-340'
+    maximum: null            # REVIEWER: set from the PAGE
+    min_term_months: null    # REVIEWER: only if the limb prescribes one
+    compoundable: null       # not this pass (D-036 vi)
+    status: DRAFT
+    definition_punishment_split: false
+    state_amendment_present: false
+    source: 'IPC_1860_Act45_IndiaCode_repealed_file.pdf'
+    READ_THIS_PAGE: 'IPC_1860_Act45_IndiaCode_repealed_file.pdf, printed p. 110 (PDF page index 109), s.471'
+    verified_by: 'model-draft (unverified)'
+    extractor_output_do_not_rely_on: '471. Using as genuine a forged document or electronic record .—Whoever fraudulently or dishonestly uses as genuine any 3[document or electronic record] which he knows or has reason to believe to be a forged 3[document or electronic record], shall be punished in the same manner as if he had f orged such 3[document or electronic record].'
+
+  # ── IPC_1860-498A · Cruelty by husband or relative of husband · 1 limb(s)
+  - offence_id: 'IPC_1860-498A'
+    priority: false
+    label: 'Cruelty by husband or relative of husband'
+    regime: IPC_1860
+    section: '498A'
+    variant: None
+    counterpart_id: 'BNS_2023-85'
+    maximum: null            # REVIEWER: set from the PAGE
+    min_term_months: null    # REVIEWER: only if the limb prescribes one
+    compoundable: null       # not this pass (D-036 vi)
+    status: DRAFT
+    definition_punishment_split: false
+    state_amendment_present: false
+    source: 'IPC_1860_Act45_IndiaCode_repealed_file.pdf'
+    READ_THIS_PAGE: 'IPC_1860_Act45_IndiaCode_repealed_file.pdf, printed p. 114 (PDF page index 113), s.498A'
+    verified_by: 'model-draft (unverified)'
+    extractor_output_do_not_rely_on: '498A. Husband or relative of husband of a woman subjecting her to cruelty .—Whoever, being the husband or the relative of the husband of a woman, subjects such woman to cruelty shall be punished with imprisonment for a term which may extend to three years and shall also be liable to fine. Explanation.—For the purposes of this section, “cruelty” means— (a) any wilful conduct which is of such a nature as is likely to drive the woman to commit suicide or to cause grave injury or danger to life, limb or health (whether mental or physi cal) of the woman; or (b) harassment of the woman where such harassment is with a view to coercing her or any person related to her to meet any unlawful demand for any property or valuable security or is on account of failure by her or any person related to her to meet such demand.] CHAPTER XXI OF DEFAMATION'

@@ -1,0 +1,83 @@
+==============================================================================
+ SECTION 479 BNSS 2023 — ENTITLEMENT COMPUTATION REPORT
+==============================================================================
+This document computes a statutory entitlement under Section 479 of the
+Bharatiya Nagarik Suraksha Sanhita, 2023. It does not decide bail and does not
+predict outcomes. Every figure in it is for a human to verify and act on.
+
++----------------------------------------------------------------------------+
+| MOST URGENT — READ FIRST                                                   |
+|                                                                            |
+| On the inputs provided, the custody undergone has reached the maximum      |
+| period of imprisonment prescribed for the offence. Section 479(1)'s third  |
+| proviso does not permit detention during investigation, inquiry or trial   |
+| beyond that maximum. This condition is surfaced above everything else in   |
+| this report and is not affected by any other finding below.                |
++----------------------------------------------------------------------------+
+
+STATUS
+  Statutory entitlement to release under Section 479(1), BNSS 2023 is
+  established on the inputs provided.
+
+CUSTODY
+  Date of arrest:       1 April 2024
+  Computed as on:       1 August 2026
+  Custody undergone:    853 days
+  Effective custody:    853 days
+
+CASE FIR 7/2024, PS Gamma  (pending)
+  Offence: Synthetic offence D
+    Section:            s.904 (synthetic)
+    Maximum sentence:   2 years
+    Fraction applied:   one-half
+    Threshold:          12 months
+    Status: threshold reached on 1 April 2025
+
+CASES CONSIDERED
+  The Section 479(2) multiple-case assessment was computed over the following
+  cases, as supplied with the inputs:
+    - FIR 7/2024, PS Gamma
+  An undisclosed pending case would change this result.
+
+FOR HUMAN ATTENTION
+  * Custody has reached the maximum period of imprisonment prescribed for the
+    offence (Section 479(1), third proviso). This is the most urgent condition
+    this document can report; see the notice at the top of this report.
+  * The list of pending cases considered was supplied with the inputs and has
+    not been verified against court records. Section 479(2) turns on every
+    pending case; an undisclosed pending case would change this result.
+  * This computation assumes no period of detention is excluded under the
+    Explanation to Section 479(1) (delay in proceedings caused by the
+    accused). If a court has determined such a period, the qualifying date
+    moves later by that period.
+  * Whether this is a first conviction could not be verified, so the one-half
+    threshold was applied. If first-time status is established, the one-third
+    threshold under the first proviso to Section 479(1) may apply instead,
+    which would advance the qualifying date.
+
+  Maximum sentences in this report are taken from the central enactments and
+  assume national uniformity. A State amendment altering a maximum that is
+  absent from the stored consolidation cannot be detected by this system;
+  where one is printed in the stored text it is flagged, but silence does not
+  establish that none exists.
+
+  The special statutes checked for stringent bail tests are those recorded in
+  this system: the NDPS Act, the PMLA, the UAPA, the Companies Act and POCSO.
+  The Supreme Court's Category C list in Satender Kumar Antil is itself
+  non-exhaustive ("... etc."), so a special statute with a stringent bail bar
+  outside the recorded set cannot be detected by this system, and silence
+  about one does not establish that none applies.
+
+------------------------------------------------------------------------------
+Legally reviewed by: ______________________    Date: ____________
+
+This report was generated from the inputs recorded above and can be re-derived
+against the statute version stamped below.
+  Statute version:      BNSS 2023@2025-10-06+dt-0.2.0+20976f7d
+  Language version:     0.1.0 (7327dc09f645)
+  Law in force on:      2026-08-01
+  Inputs hash:          0e23f113704d2102182c82349e38c67a5cf780c1471cab275f32c7225435104b
+  Computed on:          2026-08-01
+  Statutory sources on record: 13 accepted documents in 01_law/ (SOURCES.md;
+  SHA-256 recorded at acquisition and re-verified by test)
+==============================================================================
