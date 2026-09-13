@@ -60,7 +60,7 @@ be resolved, the engine returns `OFFENCE_NOT_IN_DATABASE` and never guesses.
   Estimated row count **~81** on the current 20-offence seed set.
 
 **Who can settle it.** A practising advocate or law-faculty reviewer. **Not this project, and not
-the team** — RULES.md §7 is explicit that an agent labelling and then being
+me** — RULES.md §7 is explicit that an agent labelling and then being
 scored against those labels measures agreement with the labeller, not legal correctness.
 
 **Status:** OPEN. Conservative default coded: one row per section, highest maximum governs,
