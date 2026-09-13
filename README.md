@@ -50,7 +50,7 @@ results, and dense embeddings scored 0.000 on citation-style queries.
 
 ```
 cd 06_src
-py -3.12 -m venv .venv && .venv\Scripts\pip install -r requirements.lock
+python -m venv .venv && .venv\Scripts\pip install -r requirements.lock
 .venv\Scripts\python -m pytest -q          # full suite, ~10 minutes
 .venv\Scripts\uvicorn --factory bail_reckoner.api.app:create_app
 ```
