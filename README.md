@@ -16,7 +16,7 @@ application the jail Superintendent is legally required to make.
 
 ## The honest status, first
 
-The engine is proved correct by 442 passing tests against synthetic fixtures. The
+The engine is proved correct by 436 automated tests against synthetic fixtures. The
 database of real offence punishments contains zero verified rows, because a verified
 row requires a human to read the actual page of the actual statute and sign their
 name. A machine drafted the 86 rows in the review queue; the same machine signing them
