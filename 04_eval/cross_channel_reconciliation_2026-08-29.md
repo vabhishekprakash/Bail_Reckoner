@@ -25,6 +25,9 @@ cannot both be right — read those pages first. Agreement rows still get read;
 agreement only means the page-reading is unlikely to be fighting an extraction
 artefact.
 
+The folder `cross_channel_crops_2026-08-29/` holds one PNG for each disagreement below,
+named by act, section and the 0-based PDF page index of the page where the section starts.
+
 ## Disagreements (read these pages first)
 
 ### IPC_1860 s.304A — facets: minima

@@ -10,7 +10,7 @@ Justice posed it as a problem worth solving.
 
 This system does the arithmetic. It walks six statutory gates in a fixed order, shows
 every step, and cites the exact provision behind each one. It does not predict what a
-court will do, it scores no one, and it decides nothing. The output is a working a
+court will do, it scores no one, and it decides nothing. The output is a working report a
 legal-aid worker or jail officer can check line by line, plus a draft of the
 application the jail Superintendent is legally required to make.
 
