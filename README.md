@@ -52,10 +52,13 @@ results, and dense embeddings scored 0.000 on citation-style queries.
 
 ## Running it
 
+On Windows, run `python` instead of `python3`, and use `.venv\Scripts\` wherever the block
+says `.venv/bin/`.
+
 ```bash
 cd 06_src
 python3 -m venv .venv
-.venv/bin/pip install -r requirements.lock    # Windows: .venv\Scripts\pip
+.venv/bin/pip install -r requirements.lock
 .venv/bin/python -c "from bail_reckoner.retrieval.corpus import build_corpus; build_corpus()"
 .venv/bin/python -m pytest -q                 # 435 pass, 1 skips by design, about 8 minutes
 .venv/bin/uvicorn --factory bail_reckoner.api.app:create_app

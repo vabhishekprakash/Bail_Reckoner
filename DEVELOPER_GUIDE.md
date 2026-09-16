@@ -137,11 +137,13 @@ create.
 
 **Step 2. Make a Python environment.** Open a terminal in the `06_src` folder and run:
 
+```bash
+python3 -m venv .venv
+.venv/bin/pip install -r requirements.lock
 ```
-python -m venv .venv
-.venv\Scripts\pip install -r requirements.lock        (Windows)
-.venv/bin/pip install -r requirements.lock            (Linux/Mac)
-```
+
+On Windows, run `python` instead of `python3`, and use `.venv\Scripts\` wherever these
+steps say `.venv/bin/`.
 
 The lock file pins every package to an exact version. Installation takes a few
 minutes because the search components pull in PyTorch.
@@ -149,26 +151,26 @@ minutes because the search components pull in PyTorch.
 **Step 3. Build the search index.** One derived file is not stored in git and has to
 be built once from the law texts that are:
 
-```
-.venv\Scripts\python -c "from bail_reckoner.retrieval.corpus import build_corpus; build_corpus()"
+```bash
+.venv/bin/python -c "from bail_reckoner.retrieval.corpus import build_corpus; print(len(build_corpus()[0]))"
 ```
 
-You should see it report 2,245 sections. If it reports anything else, stop and check
-that the PDFs in `01_law` are intact; the test suite verifies their hashes.
+It prints 2245. If it prints anything else, stop and check that the PDFs in `01_law`
+are intact; the test suite verifies their hashes.
 
 **Step 4. Run the tests.** This is the fastest way to know your setup is healthy:
 
-```
-.venv\Scripts\python -m pytest -q
+```bash
+.venv/bin/python -m pytest -q
 ```
 
 Expect every test green, with exactly one skip that announces itself and explains why. The
-run takes about ten minutes; most of that is one test that reads a large PDF.
+run takes about 8 minutes; most of that is one test that reads a large PDF.
 
 **Step 5. Start the server and open the page.**
 
-```
-.venv\Scripts\uvicorn --factory bail_reckoner.api.app:create_app
+```bash
+.venv/bin/uvicorn --factory bail_reckoner.api.app:create_app
 ```
 
 Then open `http://127.0.0.1:8000` in a browser. Fill in an arrest date, a section
