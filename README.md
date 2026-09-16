@@ -1,3 +1,5 @@
+[![CI](https://github.com/vabhishekprakash/Bail_Reckoner/actions/workflows/ci.yml/badge.svg)](https://github.com/vabhishekprakash/Bail_Reckoner/actions/workflows/ci.yml)
+
 # Bail Reckoner
 
 ![A terminal walk through the six gates of Section 479, ending on the project's governing fact: zero verified rows](05_docs/assets/hook.gif)
