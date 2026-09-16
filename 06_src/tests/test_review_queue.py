@@ -21,8 +21,6 @@ from bail_reckoner.statutes.curation import (
     IPC_FILE,
     NDPS_FILE,
     DraftResult,
-    draft_ndps_rows,
-    draft_rows,
     export_drafts,
 )
 from bail_reckoner.statutes.models import OffenceRow, PunishmentKind, Regime, RowStatus
@@ -283,21 +281,22 @@ _ROUND_TRIP_FIELDS = (
 
 @needs_law_pdfs
 class TestRoundTrip:
-    def test_draft_export_sign_load_is_lossless(self, tmp_path: Path) -> None:
+    def test_draft_export_sign_load_is_lossless(
+        self, tmp_path: Path, drafted: DraftResult, ndps: DraftResult
+    ) -> None:
         """draft_rows -> export_drafts -> (sign every row) -> load_verified_rows.
 
         Every field the reviewer does not touch must arrive unchanged. This is the test that
         catches a key silently dropped by the export: `special_statute` went missing that
-        way and would have silenced gate 3 for every NDPS row.
+        way and would have silenced gate 3 for every NDPS row. `drafted` and `ndps` are the
+        session fixtures from conftest.py.
         """
-        ipc_bns = draft_rows()
-        ndps = draft_ndps_rows()
-        drafted = DraftResult(
-            rows=ipc_bns.rows + ndps.rows, unresolved=ipc_bns.unresolved + ndps.unresolved
+        combined = DraftResult(
+            rows=drafted.rows + ndps.rows, unresolved=drafted.unresolved + ndps.unresolved
         )
-        assert drafted.rows, "nothing drafted; the PDFs are present so this is a regression"
+        assert combined.rows, "nothing drafted; the PDFs are present so this is a regression"
 
-        exported = export_drafts(drafted, tmp_path / "q.yaml")
+        exported = export_drafts(combined, tmp_path / "q.yaml")
         data = yaml.safe_load(exported.read_text(encoding="utf-8"))
         for entry in data["rows"]:
             entry["status"] = "VERIFIED"
@@ -313,8 +312,8 @@ class TestRoundTrip:
         loaded, skipped = load_verified_rows(signed_path)
         assert skipped == 0
         by_id: dict[str, OffenceRow] = {row.offence_id: row for row in loaded}
-        assert set(by_id) == {row.offence_id for row in drafted.rows}
-        for original in drafted.rows:
+        assert set(by_id) == {row.offence_id for row in combined.rows}
+        for original in combined.rows:
             reloaded = by_id[original.offence_id]
             for name in _ROUND_TRIP_FIELDS:
                 assert getattr(reloaded, name) == getattr(original, name), (

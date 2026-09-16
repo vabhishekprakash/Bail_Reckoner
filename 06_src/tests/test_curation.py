@@ -38,15 +38,8 @@ needs_law_pdfs = pytest.mark.skipif(
 
 pytestmark = needs_law_pdfs
 
-
-@pytest.fixture(scope="module")
-def drafted() -> DraftResult:
-    """Drafted once for the whole module.
-
-    Each `draft_rows()` call scans both acts for 40 sections. Recomputing it per test turned this
-    file into minutes of work for no extra coverage.
-    """
-    return draft_rows()
+# `drafted` and `ndps` come from tests/conftest.py, computed once per session: each draft call
+# scans the stored acts and costs minutes, and the review-queue round trip needs the same rows.
 
 
 class TestDraftingRefusesToGuess:
@@ -206,11 +199,6 @@ class TestExport:
 
 class TestNdpsDrafting:
     """D-067: quantity-band rows from the stored NDPS Act, keyword-guarded."""
-
-    @pytest.fixture(scope="class")
-    @staticmethod
-    def ndps() -> DraftResult:
-        return draft_ndps_rows()
 
     def test_every_seed_section_drafts_all_three_bands(self, ndps: DraftResult) -> None:
         assert ndps.unresolved == ()
