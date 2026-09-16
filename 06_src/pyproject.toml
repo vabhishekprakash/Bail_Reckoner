@@ -2,7 +2,7 @@
 name = "bail-reckoner"
 version = "0.0.1"
 description = "AI-Powered Bail Reckoner — computes statutory entitlement to release under Section 479 BNSS 2023, shows the arithmetic, cites the provision behind every step. Decision-support aid; never an autonomous decision-maker."
-requires-python = ">=3.12"
+requires-python = ">=3.12,<3.13"
 # Runtime dependencies are intentionally empty. Per D-050 the engine (Layer C) is stdlib-only:
 # frozen dataclasses, enum, datetime, fractions. Every future dependency is a C4 decision —
 # proposed in DECISIONS.md with options and trade-offs, pinned on approval.
@@ -82,8 +82,9 @@ select = ["E", "F", "I", "B", "UP", "ANN"]
 [tool.mypy]
 # Analysis target 3.12: numpy's stubs (pulled in by sentence-transformers' typed tree) use
 # 3.12-only `type` statements and mypy parses installed stubs regardless of follow_imports.
-# The pinned interpreter is CPython 3.12.13, and requires-python sets the package floor at
-# 3.12, so the floor and the analysis target agree.
+# The pinned interpreter is CPython 3.12.13, and requires-python holds the package at 3.12
+# (rapidocr-onnxruntime 1.4.4 does not install on 3.13), so the floor and the analysis
+# target agree.
 python_version = "3.12"
 strict = true
 

@@ -75,8 +75,8 @@ class DenseIndex:
         from sentence_transformers import SentenceTransformer
 
         self._model = SentenceTransformer(_EMBED_MODEL)
-        # Untyped third-party return (an ndarray); the numpy stubs need a 3.12 parse our
-        # 3.11 floor forbids, so no annotation here — the boundary type is Retriever.
+        # Third-party return (an ndarray) left unannotated: numpy's typed tree is skipped by
+        # the mypy overrides in pyproject.toml, and the boundary type is Retriever.
         self._embeddings = self._model.encode(
             [c.text[:2000] for c in self.chunks],
             normalize_embeddings=True,

@@ -23,13 +23,16 @@ from bail_reckoner.statutes.curation import (
     NDPS_SEED_LIST,
     SEED_LIST,
     DraftResult,
+    ExportRefusedError,
     NdpsSeedEntry,
     SeedEntry,
     draft_ndps_rows,
     draft_rows,
     export_drafts,
+    is_review_queue,
 )
 from bail_reckoner.statutes.models import PunishmentKind, Regime, RowStatus
+from bail_reckoner.statutes.review_queue import DEFAULT_QUEUE_PATH
 
 needs_law_pdfs = pytest.mark.skipif(
     not (LAW_DIR / BNS_FILE).exists() or not (LAW_DIR / IPC_FILE).exists(),
@@ -38,15 +41,8 @@ needs_law_pdfs = pytest.mark.skipif(
 
 pytestmark = needs_law_pdfs
 
-
-@pytest.fixture(scope="module")
-def drafted() -> DraftResult:
-    """Drafted once for the whole module.
-
-    Each `draft_rows()` call scans both acts for 40 sections. Recomputing it per test turned this
-    file into minutes of work for no extra coverage.
-    """
-    return draft_rows()
+# `drafted` and `ndps` come from tests/conftest.py, computed once per session: each draft call
+# scans the stored acts and costs minutes, and the review-queue round trip needs the same rows.
 
 
 class TestDraftingRefusesToGuess:
@@ -203,14 +199,37 @@ class TestExport:
         assert "REVIEWER ACTION" in content
         assert content.count("offence_id:") == len(result.rows)
 
+    def test_export_refuses_to_overwrite_a_review_queue(
+        self, tmp_path: Path, drafted: DraftResult
+    ) -> None:
+        """A hand-maintained queue (rows, no generated_on) must never be written over."""
+        target = tmp_path / "REVIEW_QUEUE.yaml"
+        target.write_text(
+            "consolidated_on: 2026-08-26\nrows:\n  - offence_id: 'IPC_1860-379'\n"
+            "    status: VERIFIED\n",
+            encoding="utf-8",
+        )
+        before = target.read_text(encoding="utf-8")
+        with pytest.raises(ExportRefusedError, match="REVIEW_QUEUE.yaml"):
+            export_drafts(drafted, target)
+        assert target.read_text(encoding="utf-8") == before
+
+    def test_export_overwrites_its_own_previous_draft(
+        self, tmp_path: Path, drafted: DraftResult
+    ) -> None:
+        """The default path is always safe: a generated draft carries generated_on."""
+        target = tmp_path / "draft_export.yaml"
+        export_drafts(drafted, target)
+        assert not is_review_queue(target)
+        export_drafts(drafted, target)
+        assert target.read_text(encoding="utf-8").count("offence_id:") == len(drafted.rows)
+
+    def test_the_committed_queue_is_recognised_as_hand_maintained(self) -> None:
+        assert is_review_queue(DEFAULT_QUEUE_PATH)
+
 
 class TestNdpsDrafting:
     """D-067: quantity-band rows from the stored NDPS Act, keyword-guarded."""
-
-    @pytest.fixture(scope="class")
-    @staticmethod
-    def ndps() -> DraftResult:
-        return draft_ndps_rows()
 
     def test_every_seed_section_drafts_all_three_bands(self, ndps: DraftResult) -> None:
         assert ndps.unresolved == ()

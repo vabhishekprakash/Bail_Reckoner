@@ -37,6 +37,8 @@ __all__ = [
     "count_punishment_limbs",
     "draft_rows",
     "export_drafts",
+    "is_review_queue",
+    "ExportRefusedError",
     "BNS_FILE",
     "IPC_FILE",
     "DRAFT_EXPORT_PATH",
@@ -394,13 +396,39 @@ def _is_priority(row: OffenceRow) -> bool:
     return bool(match and match.group(1) in _PRIORITY_KEYS)
 
 
-# NOTE (2026-08-26): the reviewable copy of these rows now lives in the consolidated
-# REVIEW_QUEUE_2026-08-26.yaml (one file, both batches, sanity-pass order — Abhishek's
-# direction). This export path is the GENERATOR's target only; re-running the export
-# does not update the consolidated queue, which must be re-merged deliberately.
+# REVIEW_QUEUE_2026-08-26.yaml is no longer a generated artefact. It merges two batch files
+# verbatim, carries a hand-written header and three hand-added fields (`quoted_clause`,
+# `verified_on`, `special_statute` with its provision), and it accumulates signatures. A
+# regeneration therefore produces a FRESH DRAFT that a human merges into the queue; it is
+# never written over the live queue. This path is always safe to overwrite, and
+# `export_drafts` refuses any target that is a review queue (see `is_review_queue`).
 DRAFT_EXPORT_PATH = (
-    Path(__file__).resolve().parents[3] / "02_data" / "penalty_rows" / "draft_seed_batch1.yaml"
+    Path(__file__).resolve().parents[3] / "02_data" / "penalty_rows" / "draft_export.yaml"
 )
+
+
+class ExportRefusedError(RuntimeError):
+    """`export_drafts` would have written over a hand-maintained review queue."""
+
+
+def is_review_queue(path: Path) -> bool:
+    """True if `path` holds a review queue rather than a generated draft.
+
+    A generated draft carries a top-level `generated_on` key, written by `export_drafts` and
+    by nothing else. Any other YAML mapping with a `rows` list is hand-maintained: the
+    consolidated queue has a hand-written header, hand-added fields and, in time, signatures,
+    none of which a regeneration can reproduce. A file that is not YAML, or not a mapping with
+    rows, is not a queue.
+    """
+    import yaml
+
+    try:
+        data = yaml.safe_load(path.read_text(encoding="utf-8"))
+    except (OSError, yaml.YAMLError):
+        return False
+    return (
+        isinstance(data, dict) and isinstance(data.get("rows"), list) and "generated_on" not in data
+    )
 
 
 def export_drafts(result: DraftResult, path: Path | None = None) -> Path:
@@ -415,6 +443,12 @@ def export_drafts(result: DraftResult, path: Path | None = None) -> Path:
     fills in a maximum -- reading a punishment clause is a legal judgement (D-046).
     """
     target = path or DRAFT_EXPORT_PATH
+    if target.exists() and is_review_queue(target):
+        raise ExportRefusedError(
+            f"{target} is a review queue, not a generated draft: it is hand-maintained and "
+            f"accumulates signatures, so a new draft must be merged into it deliberately. "
+            f"Write the export elsewhere (the default is {DRAFT_EXPORT_PATH.name})."
+        )
     target.parent.mkdir(parents=True, exist_ok=True)
 
     groups = _group_and_sort(result.rows)
@@ -438,8 +472,9 @@ def export_drafts(result: DraftResult, path: Path | None = None) -> Path:
         "#                           term_months where a definite term is prescribed, fine_also",
         "#        min_term_months  — ONLY where the limb prescribes a mandatory minimum;",
         "#                           otherwise leave null. Feeds no gate; shown for honesty.",
-        "#   Then put your name in `verified_by`, today's date in `verified_on`,",
-        "#   and set `status: VERIFIED`.",
+        "#   Then TYPE the punishment clause into `quoted_clause`, verbatim from the page (never",
+        "#   from `extractor_output_do_not_rely_on`), put your name in `verified_by`, today's",
+        "#   date in `verified_on`, and set `status: VERIFIED`.",
         "#",
         "# WHY THE PAGE AND NOT THE EXTRACTOR OUTPUT — this is the point of the whole review:",
         "# the extractor output is the machine's belief. You are the independent channel. Its",
@@ -486,11 +521,21 @@ def export_drafts(result: DraftResult, path: Path | None = None) -> Path:
                     f"    label: {row.label!r}",
                     f"    regime: {row.regime.value}",
                     f"    section: {row.section!r}",
-                    f"    variant: {row.variant!r}"
+                    f"    variant: {_yaml_scalar(row.variant)}"
                     + ("   # REVIEWER: rename to the limb as printed" if row.variant else ""),
-                    f"    counterpart_id: {row.counterpart_id!r}",
-                    "    maximum: null            # REVIEWER: set from the PAGE",
+                    f"    counterpart_id: {_yaml_scalar(row.counterpart_id)}",
+                    *_special_statute_lines(row),
+                    "    maximum: null            # REVIEWER: set from the PAGE; replace null "
+                    "with:",
+                    "    #   kinds: [...]         # one or more of DEATH, LIFE, TERM, FINE_ONLY, "
+                    "BY_REFERENCE",
+                    "    #   term_months: N       # months, not years; only when TERM is in kinds",
+                    "    #   fine_also: ...       # true or false, as the page reads",
+                    "    #   reference_note: ...  # the provision's own words; only when "
+                    "BY_REFERENCE is in kinds",
                     "    min_term_months: null    # REVIEWER: only if the limb prescribes one",
+                    "    quoted_clause: null",
+                    "    verified_on: null",
                     "    compoundable: null       # not this pass (D-036 vi)",
                     "    status: DRAFT",
                     f"    definition_punishment_split: {str(group.split_tell).lower()}",
@@ -498,6 +543,7 @@ def export_drafts(result: DraftResult, path: Path | None = None) -> Path:
                     f"    source: {row.provenance.source!r}",
                     f"    READ_THIS_PAGE: {row.provenance.verified_against!r}",
                     f"    verified_by: {row.provenance.verified_by!r}",
+                    f"    notes: {row.notes!r}",
                     (
                         f"    extractor_output_do_not_rely_on: {quoted!r}"
                         if index == 0
@@ -511,6 +557,34 @@ def export_drafts(result: DraftResult, path: Path | None = None) -> Path:
             )
     target.write_text("\n".join(lines), encoding="utf-8")
     return target
+
+
+def _yaml_scalar(value: str | None) -> str:
+    """YAML `null` for None. `repr(None)` is the text `None`, which YAML reads as a string.
+
+    The consolidated queue carried `variant: None` and `counterpart_id: None` on 30 rows for
+    that reason; the loader refuses the literal, so the export must not write it.
+    """
+    return "null" if value is None else repr(value)
+
+
+def _special_statute_lines(row: OffenceRow) -> list[str]:
+    """Gate-3 membership, written so a regenerated file matches the hand-edited queue.
+
+    The seed knows the statute (draft_ndps_rows sets NDPS / s.37); the loader reads it and
+    never infers it from the regime, so dropping these keys here would silence gate 3 for
+    every NDPS row (D-054, D-064).
+    """
+    if row.special_statute is None:
+        return [
+            "    special_statute: null            # gate-3 special statute, from the drafting seed",
+            "    special_statute_provision: null  # the barring provision, e.g. 's.37'",
+        ]
+    return [
+        f"    special_statute: {row.special_statute!r}          "
+        f"# gate-3 special statute, from the drafting seed",
+        f"    special_statute_provision: {_yaml_scalar(row.special_statute_provision)}",
+    ]
 
 
 @dataclass(frozen=True, slots=True)
@@ -703,12 +777,6 @@ NDPS_SEED_LIST: tuple[NdpsSeedEntry, ...] = (
         "psychotropic substance",
     ),
 )
-
-# Same note as DRAFT_EXPORT_PATH: the reviewable copy is the consolidated queue.
-NDPS_DRAFT_EXPORT_PATH = (
-    Path(__file__).resolve().parents[3] / "02_data" / "penalty_rows" / "draft_ndps_batch1.yaml"
-)
-
 
 def draft_ndps_rows(
     seed: tuple[NdpsSeedEntry, ...] = NDPS_SEED_LIST, drafted_on: date | None = None
