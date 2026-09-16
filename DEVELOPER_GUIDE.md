@@ -165,7 +165,7 @@ are intact; the test suite verifies their hashes.
 ```
 
 Expect every test green, with exactly one skip that announces itself and explains why. The
-run takes about 8 minutes; most of that is one test that reads a large PDF.
+run takes about 10 minutes; most of that is one test that reads a large PDF.
 
 **Step 5. Start the server and open the page.**
 
