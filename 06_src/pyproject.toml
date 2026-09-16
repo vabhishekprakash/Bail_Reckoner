@@ -2,7 +2,7 @@
 name = "bail-reckoner"
 version = "0.0.1"
 description = "AI-Powered Bail Reckoner — computes statutory entitlement to release under Section 479 BNSS 2023, shows the arithmetic, cites the provision behind every step. Decision-support aid; never an autonomous decision-maker."
-requires-python = ">=3.11"
+requires-python = ">=3.12"
 # Runtime dependencies are intentionally empty. Per D-050 the engine (Layer C) is stdlib-only:
 # frozen dataclasses, enum, datetime, fractions. Every future dependency is a C4 decision —
 # proposed in DECISIONS.md with options and trade-offs, pinned on approval.
@@ -73,7 +73,7 @@ bail_reckoner = ["statutes/*.sql", "api/static/*.html"]
 
 [tool.ruff]
 line-length = 100
-target-version = "py311"
+target-version = "py312"
 
 [tool.ruff.lint]
 # E,F pyflakes/pycodestyle; I import order; B bugbear; UP pyupgrade; ANN annotations.
@@ -82,15 +82,15 @@ select = ["E", "F", "I", "B", "UP", "ANN"]
 [tool.mypy]
 # Analysis target 3.12: numpy's stubs (pulled in by sentence-transformers' typed tree) use
 # 3.12-only `type` statements and mypy parses installed stubs regardless of follow_imports.
-# The pinned interpreter is CPython 3.12.13; the package floor in requires-python stays
-# 3.11. Risk accepted: mypy would tolerate 3.12-only syntax we do not write.
+# The pinned interpreter is CPython 3.12.13, and requires-python sets the package floor at
+# 3.12, so the floor and the analysis target agree.
 python_version = "3.12"
 strict = true
 
-# Layer A's third-party tree is not analysed: sentence-transformers ships types that pull
-# numpy's stubs, which need a 3.12-only parse our 3.11 floor forbids, and rank_bm25 ships
-# none at all. The boundary stays typed on our side (the Retriever protocol); these
-# overrides never touch first-party code.
+# Third-party trees not analysed: rank_bm25, pypdfium2 and rapidocr_onnxruntime ship no
+# stubs at all, and the typed trees behind sentence-transformers (numpy, torch,
+# transformers) are skipped to keep mypy fast. The boundary stays typed on our side (the
+# Retriever protocol); these overrides never touch first-party code.
 [[tool.mypy.overrides]]
 module = [
     "rank_bm25", "rank_bm25.*",
