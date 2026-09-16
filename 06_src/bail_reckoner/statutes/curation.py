@@ -438,8 +438,9 @@ def export_drafts(result: DraftResult, path: Path | None = None) -> Path:
         "#                           term_months where a definite term is prescribed, fine_also",
         "#        min_term_months  — ONLY where the limb prescribes a mandatory minimum;",
         "#                           otherwise leave null. Feeds no gate; shown for honesty.",
-        "#   Then put your name in `verified_by`, today's date in `verified_on`,",
-        "#   and set `status: VERIFIED`.",
+        "#   Then TYPE the punishment clause into `quoted_clause`, verbatim from the page (never",
+        "#   from `extractor_output_do_not_rely_on`), put your name in `verified_by`, today's",
+        "#   date in `verified_on`, and set `status: VERIFIED`.",
         "#",
         "# WHY THE PAGE AND NOT THE EXTRACTOR OUTPUT — this is the point of the whole review:",
         "# the extractor output is the machine's belief. You are the independent channel. Its",
@@ -486,11 +487,21 @@ def export_drafts(result: DraftResult, path: Path | None = None) -> Path:
                     f"    label: {row.label!r}",
                     f"    regime: {row.regime.value}",
                     f"    section: {row.section!r}",
-                    f"    variant: {row.variant!r}"
+                    f"    variant: {_yaml_scalar(row.variant)}"
                     + ("   # REVIEWER: rename to the limb as printed" if row.variant else ""),
-                    f"    counterpart_id: {row.counterpart_id!r}",
-                    "    maximum: null            # REVIEWER: set from the PAGE",
+                    f"    counterpart_id: {_yaml_scalar(row.counterpart_id)}",
+                    *_special_statute_lines(row),
+                    "    maximum: null            # REVIEWER: set from the PAGE; replace null "
+                    "with:",
+                    "    #   kinds: [...]         # one or more of DEATH, LIFE, TERM, FINE_ONLY, "
+                    "BY_REFERENCE",
+                    "    #   term_months: N       # months, not years; only when TERM is in kinds",
+                    "    #   fine_also: ...       # true or false, as the page reads",
+                    "    #   reference_note: ...  # the provision's own words; only when "
+                    "BY_REFERENCE is in kinds",
                     "    min_term_months: null    # REVIEWER: only if the limb prescribes one",
+                    "    quoted_clause: null",
+                    "    verified_on: null",
                     "    compoundable: null       # not this pass (D-036 vi)",
                     "    status: DRAFT",
                     f"    definition_punishment_split: {str(group.split_tell).lower()}",
@@ -498,6 +509,7 @@ def export_drafts(result: DraftResult, path: Path | None = None) -> Path:
                     f"    source: {row.provenance.source!r}",
                     f"    READ_THIS_PAGE: {row.provenance.verified_against!r}",
                     f"    verified_by: {row.provenance.verified_by!r}",
+                    f"    notes: {row.notes!r}",
                     (
                         f"    extractor_output_do_not_rely_on: {quoted!r}"
                         if index == 0
@@ -511,6 +523,34 @@ def export_drafts(result: DraftResult, path: Path | None = None) -> Path:
             )
     target.write_text("\n".join(lines), encoding="utf-8")
     return target
+
+
+def _yaml_scalar(value: str | None) -> str:
+    """YAML `null` for None. `repr(None)` is the text `None`, which YAML reads as a string.
+
+    The consolidated queue carried `variant: None` and `counterpart_id: None` on 30 rows for
+    that reason; the loader refuses the literal, so the export must not write it.
+    """
+    return "null" if value is None else repr(value)
+
+
+def _special_statute_lines(row: OffenceRow) -> list[str]:
+    """Gate-3 membership, written so a regenerated file matches the hand-edited queue.
+
+    The seed knows the statute (draft_ndps_rows sets NDPS / s.37); the loader reads it and
+    never infers it from the regime, so dropping these keys here would silence gate 3 for
+    every NDPS row (D-054, D-064).
+    """
+    if row.special_statute is None:
+        return [
+            "    special_statute: null            # gate-3 special statute, from the drafting seed",
+            "    special_statute_provision: null  # the barring provision, e.g. 's.37'",
+        ]
+    return [
+        f"    special_statute: {row.special_statute!r}          "
+        f"# gate-3 special statute, from the drafting seed",
+        f"    special_statute_provision: {_yaml_scalar(row.special_statute_provision)}",
+    ]
 
 
 @dataclass(frozen=True, slots=True)
