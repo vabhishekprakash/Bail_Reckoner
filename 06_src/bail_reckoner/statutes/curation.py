@@ -778,12 +778,6 @@ NDPS_SEED_LIST: tuple[NdpsSeedEntry, ...] = (
     ),
 )
 
-# Same note as DRAFT_EXPORT_PATH: the reviewable copy is the consolidated queue.
-NDPS_DRAFT_EXPORT_PATH = (
-    Path(__file__).resolve().parents[3] / "02_data" / "penalty_rows" / "draft_ndps_batch1.yaml"
-)
-
-
 def draft_ndps_rows(
     seed: tuple[NdpsSeedEntry, ...] = NDPS_SEED_LIST, drafted_on: date | None = None
 ) -> DraftResult:
