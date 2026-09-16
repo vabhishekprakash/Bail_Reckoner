@@ -23,13 +23,16 @@ from bail_reckoner.statutes.curation import (
     NDPS_SEED_LIST,
     SEED_LIST,
     DraftResult,
+    ExportRefusedError,
     NdpsSeedEntry,
     SeedEntry,
     draft_ndps_rows,
     draft_rows,
     export_drafts,
+    is_review_queue,
 )
 from bail_reckoner.statutes.models import PunishmentKind, Regime, RowStatus
+from bail_reckoner.statutes.review_queue import DEFAULT_QUEUE_PATH
 
 needs_law_pdfs = pytest.mark.skipif(
     not (LAW_DIR / BNS_FILE).exists() or not (LAW_DIR / IPC_FILE).exists(),
@@ -195,6 +198,34 @@ class TestExport:
         assert "maximum: null" in content
         assert "REVIEWER ACTION" in content
         assert content.count("offence_id:") == len(result.rows)
+
+    def test_export_refuses_to_overwrite_a_review_queue(
+        self, tmp_path: Path, drafted: DraftResult
+    ) -> None:
+        """A hand-maintained queue (rows, no generated_on) must never be written over."""
+        target = tmp_path / "REVIEW_QUEUE.yaml"
+        target.write_text(
+            "consolidated_on: 2026-08-26\nrows:\n  - offence_id: 'IPC_1860-379'\n"
+            "    status: VERIFIED\n",
+            encoding="utf-8",
+        )
+        before = target.read_text(encoding="utf-8")
+        with pytest.raises(ExportRefusedError, match="REVIEW_QUEUE.yaml"):
+            export_drafts(drafted, target)
+        assert target.read_text(encoding="utf-8") == before
+
+    def test_export_overwrites_its_own_previous_draft(
+        self, tmp_path: Path, drafted: DraftResult
+    ) -> None:
+        """The default path is always safe: a generated draft carries generated_on."""
+        target = tmp_path / "draft_export.yaml"
+        export_drafts(drafted, target)
+        assert not is_review_queue(target)
+        export_drafts(drafted, target)
+        assert target.read_text(encoding="utf-8").count("offence_id:") == len(drafted.rows)
+
+    def test_the_committed_queue_is_recognised_as_hand_maintained(self) -> None:
+        assert is_review_queue(DEFAULT_QUEUE_PATH)
 
 
 class TestNdpsDrafting:

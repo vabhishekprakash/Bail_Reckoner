@@ -37,6 +37,8 @@ __all__ = [
     "count_punishment_limbs",
     "draft_rows",
     "export_drafts",
+    "is_review_queue",
+    "ExportRefusedError",
     "BNS_FILE",
     "IPC_FILE",
     "DRAFT_EXPORT_PATH",
@@ -394,13 +396,39 @@ def _is_priority(row: OffenceRow) -> bool:
     return bool(match and match.group(1) in _PRIORITY_KEYS)
 
 
-# NOTE (2026-08-26): the reviewable copy of these rows now lives in the consolidated
-# REVIEW_QUEUE_2026-08-26.yaml (one file, both batches, sanity-pass order — Abhishek's
-# direction). This export path is the GENERATOR's target only; re-running the export
-# does not update the consolidated queue, which must be re-merged deliberately.
+# REVIEW_QUEUE_2026-08-26.yaml is no longer a generated artefact. It merges two batch files
+# verbatim, carries a hand-written header and three hand-added fields (`quoted_clause`,
+# `verified_on`, `special_statute` with its provision), and it accumulates signatures. A
+# regeneration therefore produces a FRESH DRAFT that a human merges into the queue; it is
+# never written over the live queue. This path is always safe to overwrite, and
+# `export_drafts` refuses any target that is a review queue (see `is_review_queue`).
 DRAFT_EXPORT_PATH = (
-    Path(__file__).resolve().parents[3] / "02_data" / "penalty_rows" / "draft_seed_batch1.yaml"
+    Path(__file__).resolve().parents[3] / "02_data" / "penalty_rows" / "draft_export.yaml"
 )
+
+
+class ExportRefusedError(RuntimeError):
+    """`export_drafts` would have written over a hand-maintained review queue."""
+
+
+def is_review_queue(path: Path) -> bool:
+    """True if `path` holds a review queue rather than a generated draft.
+
+    A generated draft carries a top-level `generated_on` key, written by `export_drafts` and
+    by nothing else. Any other YAML mapping with a `rows` list is hand-maintained: the
+    consolidated queue has a hand-written header, hand-added fields and, in time, signatures,
+    none of which a regeneration can reproduce. A file that is not YAML, or not a mapping with
+    rows, is not a queue.
+    """
+    import yaml
+
+    try:
+        data = yaml.safe_load(path.read_text(encoding="utf-8"))
+    except (OSError, yaml.YAMLError):
+        return False
+    return (
+        isinstance(data, dict) and isinstance(data.get("rows"), list) and "generated_on" not in data
+    )
 
 
 def export_drafts(result: DraftResult, path: Path | None = None) -> Path:
@@ -415,6 +443,12 @@ def export_drafts(result: DraftResult, path: Path | None = None) -> Path:
     fills in a maximum -- reading a punishment clause is a legal judgement (D-046).
     """
     target = path or DRAFT_EXPORT_PATH
+    if target.exists() and is_review_queue(target):
+        raise ExportRefusedError(
+            f"{target} is a review queue, not a generated draft: it is hand-maintained and "
+            f"accumulates signatures, so a new draft must be merged into it deliberately. "
+            f"Write the export elsewhere (the default is {DRAFT_EXPORT_PATH.name})."
+        )
     target.parent.mkdir(parents=True, exist_ok=True)
 
     groups = _group_and_sort(result.rows)
