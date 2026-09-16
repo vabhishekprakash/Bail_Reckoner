@@ -18,7 +18,7 @@ application the jail Superintendent is legally required to make.
 
 ## The honest status, first
 
-The engine is proved correct by 459 automated tests against synthetic fixtures. The
+The engine is proved correct by 462 automated tests against synthetic fixtures. The
 database of real offence punishments contains zero verified rows, because a verified
 row requires a human to read the actual page of the actual statute and sign their
 name. A machine drafted the 86 rows in the review queue; the same machine signing them
@@ -62,7 +62,7 @@ cd 06_src
 python3 -m venv .venv
 .venv/bin/pip install -r requirements.lock
 .venv/bin/python -c "from bail_reckoner.retrieval.corpus import build_corpus; build_corpus()"
-.venv/bin/python -m pytest -q                 # 458 pass, 1 skips by design, about 10 minutes
+.venv/bin/python -m pytest -q                 # 461 pass, 1 skips by design, about 10 minutes
 .venv/bin/uvicorn --factory bail_reckoner.api.app:create_app
 ```
 
@@ -71,7 +71,7 @@ rapidocr-onnxruntime 1.4.4, which does not install on 3.13.
 
 The corpus build takes about 30 seconds, and you run it once per clone. Without the
 corpus, the 18 retrieval tests (Layer A) skip rather than fail, and a fresh clone reports
-440 passed and 19 skipped. Start with [DEVELOPER_GUIDE.md](DEVELOPER_GUIDE.md).
+443 passed and 19 skipped. Start with [DEVELOPER_GUIDE.md](DEVELOPER_GUIDE.md).
 
 ## How AI was used
 
