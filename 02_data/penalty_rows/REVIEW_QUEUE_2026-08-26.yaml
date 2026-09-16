@@ -52,7 +52,9 @@
 #      match (it must end '#<variant>').
 #   5. If the page shows more limbs than rows, add rows; fewer, delete rows. The limb
 #      count is a DETECTOR ESTIMATE; the page governs.
-#   6. Put your name in `verified_by`, the date in `verified_on`, set `status: VERIFIED`.
+#   6. TYPE this row's punishment clause into `quoted_clause`, verbatim from the page.
+#      Never paste it from `extractor_output_do_not_rely_on`; this field is the audit record.
+#   7. Put your name in `verified_by`, the date in `verified_on`, set `status: VERIFIED`.
 #
 # WHY THE PAGE AND NOT THE EXTRACTOR OUTPUT — the point of the whole review: the
 # extractor output is the machine's belief and you are the independent channel. Its
@@ -84,8 +86,13 @@ rows:
     section: '304A'
     variant: None
     counterpart_id: 'BNS_2023-106'
-    maximum: null            # REVIEWER: set from the PAGE
+    maximum: null            # REVIEWER: set from the PAGE; replace null with:
+    #   kinds: [...]         # one or more of DEATH, LIFE, TERM, FINE_ONLY, BY_REFERENCE
+    #   term_months: N       # months, not years; only when TERM is in kinds
+    #   fine_also: ...       # true or false, as the page reads
+    #   reference_note: ...  # the provision's own words; only when BY_REFERENCE is in kinds
     min_term_months: null    # REVIEWER: only if the limb prescribes one
+    quoted_clause: null
     compoundable: null       # not this pass (D-036 vi)
     status: DRAFT
     definition_punishment_split: false
@@ -103,8 +110,13 @@ rows:
     section: '379'
     variant: None
     counterpart_id: 'BNS_2023-303'
-    maximum: null            # REVIEWER: set from the PAGE
+    maximum: null            # REVIEWER: set from the PAGE; replace null with:
+    #   kinds: [...]         # one or more of DEATH, LIFE, TERM, FINE_ONLY, BY_REFERENCE
+    #   term_months: N       # months, not years; only when TERM is in kinds
+    #   fine_also: ...       # true or false, as the page reads
+    #   reference_note: ...  # the provision's own words; only when BY_REFERENCE is in kinds
     min_term_months: null    # REVIEWER: only if the limb prescribes one
+    quoted_clause: null
     compoundable: null       # not this pass (D-036 vi)
     status: DRAFT
     definition_punishment_split: false
@@ -122,8 +134,13 @@ rows:
     section: '20'
     variant: 'small_quantity'   # REVIEWER: rename to the limb as printed
     counterpart_id: None
-    maximum: null            # REVIEWER: set from the PAGE
+    maximum: null            # REVIEWER: set from the PAGE; replace null with:
+    #   kinds: [...]         # one or more of DEATH, LIFE, TERM, FINE_ONLY, BY_REFERENCE
+    #   term_months: N       # months, not years; only when TERM is in kinds
+    #   fine_also: ...       # true or false, as the page reads
+    #   reference_note: ...  # the provision's own words; only when BY_REFERENCE is in kinds
     min_term_months: null    # REVIEWER: only if the limb prescribes one
+    quoted_clause: null
     compoundable: null       # not this pass (D-036 vi)
     status: DRAFT
     definition_punishment_split: false
@@ -140,8 +157,13 @@ rows:
     section: '20'
     variant: 'lesser_than_commercial'   # REVIEWER: rename to the limb as printed
     counterpart_id: None
-    maximum: null            # REVIEWER: set from the PAGE
+    maximum: null            # REVIEWER: set from the PAGE; replace null with:
+    #   kinds: [...]         # one or more of DEATH, LIFE, TERM, FINE_ONLY, BY_REFERENCE
+    #   term_months: N       # months, not years; only when TERM is in kinds
+    #   fine_also: ...       # true or false, as the page reads
+    #   reference_note: ...  # the provision's own words; only when BY_REFERENCE is in kinds
     min_term_months: null    # REVIEWER: only if the limb prescribes one
+    quoted_clause: null
     compoundable: null       # not this pass (D-036 vi)
     status: DRAFT
     definition_punishment_split: false
@@ -158,8 +180,13 @@ rows:
     section: '20'
     variant: 'commercial_quantity'   # REVIEWER: rename to the limb as printed
     counterpart_id: None
-    maximum: null            # REVIEWER: set from the PAGE
+    maximum: null            # REVIEWER: set from the PAGE; replace null with:
+    #   kinds: [...]         # one or more of DEATH, LIFE, TERM, FINE_ONLY, BY_REFERENCE
+    #   term_months: N       # months, not years; only when TERM is in kinds
+    #   fine_also: ...       # true or false, as the page reads
+    #   reference_note: ...  # the provision's own words; only when BY_REFERENCE is in kinds
     min_term_months: null    # REVIEWER: only if the limb prescribes one
+    quoted_clause: null
     compoundable: null       # not this pass (D-036 vi)
     status: DRAFT
     definition_punishment_split: false
@@ -178,8 +205,13 @@ rows:
     section: '331'
     variant: 'L1'   # REVIEWER: rename to the limb as printed
     counterpart_id: 'IPC_1860-448'
-    maximum: null            # REVIEWER: set from the PAGE
+    maximum: null            # REVIEWER: set from the PAGE; replace null with:
+    #   kinds: [...]         # one or more of DEATH, LIFE, TERM, FINE_ONLY, BY_REFERENCE
+    #   term_months: N       # months, not years; only when TERM is in kinds
+    #   fine_also: ...       # true or false, as the page reads
+    #   reference_note: ...  # the provision's own words; only when BY_REFERENCE is in kinds
     min_term_months: null    # REVIEWER: only if the limb prescribes one
+    quoted_clause: null
     compoundable: null       # not this pass (D-036 vi)
     status: DRAFT
     definition_punishment_split: false
@@ -196,8 +228,13 @@ rows:
     section: '331'
     variant: 'L2'   # REVIEWER: rename to the limb as printed
     counterpart_id: 'IPC_1860-448'
-    maximum: null            # REVIEWER: set from the PAGE
+    maximum: null            # REVIEWER: set from the PAGE; replace null with:
+    #   kinds: [...]         # one or more of DEATH, LIFE, TERM, FINE_ONLY, BY_REFERENCE
+    #   term_months: N       # months, not years; only when TERM is in kinds
+    #   fine_also: ...       # true or false, as the page reads
+    #   reference_note: ...  # the provision's own words; only when BY_REFERENCE is in kinds
     min_term_months: null    # REVIEWER: only if the limb prescribes one
+    quoted_clause: null
     compoundable: null       # not this pass (D-036 vi)
     status: DRAFT
     definition_punishment_split: false
@@ -214,8 +251,13 @@ rows:
     section: '331'
     variant: 'L3'   # REVIEWER: rename to the limb as printed
     counterpart_id: 'IPC_1860-448'
-    maximum: null            # REVIEWER: set from the PAGE
+    maximum: null            # REVIEWER: set from the PAGE; replace null with:
+    #   kinds: [...]         # one or more of DEATH, LIFE, TERM, FINE_ONLY, BY_REFERENCE
+    #   term_months: N       # months, not years; only when TERM is in kinds
+    #   fine_also: ...       # true or false, as the page reads
+    #   reference_note: ...  # the provision's own words; only when BY_REFERENCE is in kinds
     min_term_months: null    # REVIEWER: only if the limb prescribes one
+    quoted_clause: null
     compoundable: null       # not this pass (D-036 vi)
     status: DRAFT
     definition_punishment_split: false
@@ -232,8 +274,13 @@ rows:
     section: '331'
     variant: 'L4'   # REVIEWER: rename to the limb as printed
     counterpart_id: 'IPC_1860-448'
-    maximum: null            # REVIEWER: set from the PAGE
+    maximum: null            # REVIEWER: set from the PAGE; replace null with:
+    #   kinds: [...]         # one or more of DEATH, LIFE, TERM, FINE_ONLY, BY_REFERENCE
+    #   term_months: N       # months, not years; only when TERM is in kinds
+    #   fine_also: ...       # true or false, as the page reads
+    #   reference_note: ...  # the provision's own words; only when BY_REFERENCE is in kinds
     min_term_months: null    # REVIEWER: only if the limb prescribes one
+    quoted_clause: null
     compoundable: null       # not this pass (D-036 vi)
     status: DRAFT
     definition_punishment_split: false
@@ -250,8 +297,13 @@ rows:
     section: '331'
     variant: 'L5'   # REVIEWER: rename to the limb as printed
     counterpart_id: 'IPC_1860-448'
-    maximum: null            # REVIEWER: set from the PAGE
+    maximum: null            # REVIEWER: set from the PAGE; replace null with:
+    #   kinds: [...]         # one or more of DEATH, LIFE, TERM, FINE_ONLY, BY_REFERENCE
+    #   term_months: N       # months, not years; only when TERM is in kinds
+    #   fine_also: ...       # true or false, as the page reads
+    #   reference_note: ...  # the provision's own words; only when BY_REFERENCE is in kinds
     min_term_months: null    # REVIEWER: only if the limb prescribes one
+    quoted_clause: null
     compoundable: null       # not this pass (D-036 vi)
     status: DRAFT
     definition_punishment_split: false
@@ -268,8 +320,13 @@ rows:
     section: '331'
     variant: 'L6'   # REVIEWER: rename to the limb as printed
     counterpart_id: 'IPC_1860-448'
-    maximum: null            # REVIEWER: set from the PAGE
+    maximum: null            # REVIEWER: set from the PAGE; replace null with:
+    #   kinds: [...]         # one or more of DEATH, LIFE, TERM, FINE_ONLY, BY_REFERENCE
+    #   term_months: N       # months, not years; only when TERM is in kinds
+    #   fine_also: ...       # true or false, as the page reads
+    #   reference_note: ...  # the provision's own words; only when BY_REFERENCE is in kinds
     min_term_months: null    # REVIEWER: only if the limb prescribes one
+    quoted_clause: null
     compoundable: null       # not this pass (D-036 vi)
     status: DRAFT
     definition_punishment_split: false
@@ -286,8 +343,13 @@ rows:
     section: '331'
     variant: 'L7'   # REVIEWER: rename to the limb as printed
     counterpart_id: 'IPC_1860-448'
-    maximum: null            # REVIEWER: set from the PAGE
+    maximum: null            # REVIEWER: set from the PAGE; replace null with:
+    #   kinds: [...]         # one or more of DEATH, LIFE, TERM, FINE_ONLY, BY_REFERENCE
+    #   term_months: N       # months, not years; only when TERM is in kinds
+    #   fine_also: ...       # true or false, as the page reads
+    #   reference_note: ...  # the provision's own words; only when BY_REFERENCE is in kinds
     min_term_months: null    # REVIEWER: only if the limb prescribes one
+    quoted_clause: null
     compoundable: null       # not this pass (D-036 vi)
     status: DRAFT
     definition_punishment_split: false
@@ -304,8 +366,13 @@ rows:
     section: '331'
     variant: 'L8'   # REVIEWER: rename to the limb as printed
     counterpart_id: 'IPC_1860-448'
-    maximum: null            # REVIEWER: set from the PAGE
+    maximum: null            # REVIEWER: set from the PAGE; replace null with:
+    #   kinds: [...]         # one or more of DEATH, LIFE, TERM, FINE_ONLY, BY_REFERENCE
+    #   term_months: N       # months, not years; only when TERM is in kinds
+    #   fine_also: ...       # true or false, as the page reads
+    #   reference_note: ...  # the provision's own words; only when BY_REFERENCE is in kinds
     min_term_months: null    # REVIEWER: only if the limb prescribes one
+    quoted_clause: null
     compoundable: null       # not this pass (D-036 vi)
     status: DRAFT
     definition_punishment_split: false
@@ -323,8 +390,13 @@ rows:
     section: '324'
     variant: 'L1'   # REVIEWER: rename to the limb as printed
     counterpart_id: 'IPC_1860-426'
-    maximum: null            # REVIEWER: set from the PAGE
+    maximum: null            # REVIEWER: set from the PAGE; replace null with:
+    #   kinds: [...]         # one or more of DEATH, LIFE, TERM, FINE_ONLY, BY_REFERENCE
+    #   term_months: N       # months, not years; only when TERM is in kinds
+    #   fine_also: ...       # true or false, as the page reads
+    #   reference_note: ...  # the provision's own words; only when BY_REFERENCE is in kinds
     min_term_months: null    # REVIEWER: only if the limb prescribes one
+    quoted_clause: null
     compoundable: null       # not this pass (D-036 vi)
     status: DRAFT
     definition_punishment_split: true
@@ -341,8 +413,13 @@ rows:
     section: '324'
     variant: 'L2'   # REVIEWER: rename to the limb as printed
     counterpart_id: 'IPC_1860-426'
-    maximum: null            # REVIEWER: set from the PAGE
+    maximum: null            # REVIEWER: set from the PAGE; replace null with:
+    #   kinds: [...]         # one or more of DEATH, LIFE, TERM, FINE_ONLY, BY_REFERENCE
+    #   term_months: N       # months, not years; only when TERM is in kinds
+    #   fine_also: ...       # true or false, as the page reads
+    #   reference_note: ...  # the provision's own words; only when BY_REFERENCE is in kinds
     min_term_months: null    # REVIEWER: only if the limb prescribes one
+    quoted_clause: null
     compoundable: null       # not this pass (D-036 vi)
     status: DRAFT
     definition_punishment_split: true
@@ -359,8 +436,13 @@ rows:
     section: '324'
     variant: 'L3'   # REVIEWER: rename to the limb as printed
     counterpart_id: 'IPC_1860-426'
-    maximum: null            # REVIEWER: set from the PAGE
+    maximum: null            # REVIEWER: set from the PAGE; replace null with:
+    #   kinds: [...]         # one or more of DEATH, LIFE, TERM, FINE_ONLY, BY_REFERENCE
+    #   term_months: N       # months, not years; only when TERM is in kinds
+    #   fine_also: ...       # true or false, as the page reads
+    #   reference_note: ...  # the provision's own words; only when BY_REFERENCE is in kinds
     min_term_months: null    # REVIEWER: only if the limb prescribes one
+    quoted_clause: null
     compoundable: null       # not this pass (D-036 vi)
     status: DRAFT
     definition_punishment_split: true
@@ -377,8 +459,13 @@ rows:
     section: '324'
     variant: 'L4'   # REVIEWER: rename to the limb as printed
     counterpart_id: 'IPC_1860-426'
-    maximum: null            # REVIEWER: set from the PAGE
+    maximum: null            # REVIEWER: set from the PAGE; replace null with:
+    #   kinds: [...]         # one or more of DEATH, LIFE, TERM, FINE_ONLY, BY_REFERENCE
+    #   term_months: N       # months, not years; only when TERM is in kinds
+    #   fine_also: ...       # true or false, as the page reads
+    #   reference_note: ...  # the provision's own words; only when BY_REFERENCE is in kinds
     min_term_months: null    # REVIEWER: only if the limb prescribes one
+    quoted_clause: null
     compoundable: null       # not this pass (D-036 vi)
     status: DRAFT
     definition_punishment_split: true
@@ -395,8 +482,13 @@ rows:
     section: '324'
     variant: 'L5'   # REVIEWER: rename to the limb as printed
     counterpart_id: 'IPC_1860-426'
-    maximum: null            # REVIEWER: set from the PAGE
+    maximum: null            # REVIEWER: set from the PAGE; replace null with:
+    #   kinds: [...]         # one or more of DEATH, LIFE, TERM, FINE_ONLY, BY_REFERENCE
+    #   term_months: N       # months, not years; only when TERM is in kinds
+    #   fine_also: ...       # true or false, as the page reads
+    #   reference_note: ...  # the provision's own words; only when BY_REFERENCE is in kinds
     min_term_months: null    # REVIEWER: only if the limb prescribes one
+    quoted_clause: null
     compoundable: null       # not this pass (D-036 vi)
     status: DRAFT
     definition_punishment_split: true
@@ -414,8 +506,13 @@ rows:
     section: '316'
     variant: 'L1'   # REVIEWER: rename to the limb as printed
     counterpart_id: 'IPC_1860-406'
-    maximum: null            # REVIEWER: set from the PAGE
+    maximum: null            # REVIEWER: set from the PAGE; replace null with:
+    #   kinds: [...]         # one or more of DEATH, LIFE, TERM, FINE_ONLY, BY_REFERENCE
+    #   term_months: N       # months, not years; only when TERM is in kinds
+    #   fine_also: ...       # true or false, as the page reads
+    #   reference_note: ...  # the provision's own words; only when BY_REFERENCE is in kinds
     min_term_months: null    # REVIEWER: only if the limb prescribes one
+    quoted_clause: null
     compoundable: null       # not this pass (D-036 vi)
     status: DRAFT
     definition_punishment_split: true
@@ -432,8 +529,13 @@ rows:
     section: '316'
     variant: 'L2'   # REVIEWER: rename to the limb as printed
     counterpart_id: 'IPC_1860-406'
-    maximum: null            # REVIEWER: set from the PAGE
+    maximum: null            # REVIEWER: set from the PAGE; replace null with:
+    #   kinds: [...]         # one or more of DEATH, LIFE, TERM, FINE_ONLY, BY_REFERENCE
+    #   term_months: N       # months, not years; only when TERM is in kinds
+    #   fine_also: ...       # true or false, as the page reads
+    #   reference_note: ...  # the provision's own words; only when BY_REFERENCE is in kinds
     min_term_months: null    # REVIEWER: only if the limb prescribes one
+    quoted_clause: null
     compoundable: null       # not this pass (D-036 vi)
     status: DRAFT
     definition_punishment_split: true
@@ -450,8 +552,13 @@ rows:
     section: '316'
     variant: 'L3'   # REVIEWER: rename to the limb as printed
     counterpart_id: 'IPC_1860-406'
-    maximum: null            # REVIEWER: set from the PAGE
+    maximum: null            # REVIEWER: set from the PAGE; replace null with:
+    #   kinds: [...]         # one or more of DEATH, LIFE, TERM, FINE_ONLY, BY_REFERENCE
+    #   term_months: N       # months, not years; only when TERM is in kinds
+    #   fine_also: ...       # true or false, as the page reads
+    #   reference_note: ...  # the provision's own words; only when BY_REFERENCE is in kinds
     min_term_months: null    # REVIEWER: only if the limb prescribes one
+    quoted_clause: null
     compoundable: null       # not this pass (D-036 vi)
     status: DRAFT
     definition_punishment_split: true
@@ -468,8 +575,13 @@ rows:
     section: '316'
     variant: 'L4'   # REVIEWER: rename to the limb as printed
     counterpart_id: 'IPC_1860-406'
-    maximum: null            # REVIEWER: set from the PAGE
+    maximum: null            # REVIEWER: set from the PAGE; replace null with:
+    #   kinds: [...]         # one or more of DEATH, LIFE, TERM, FINE_ONLY, BY_REFERENCE
+    #   term_months: N       # months, not years; only when TERM is in kinds
+    #   fine_also: ...       # true or false, as the page reads
+    #   reference_note: ...  # the provision's own words; only when BY_REFERENCE is in kinds
     min_term_months: null    # REVIEWER: only if the limb prescribes one
+    quoted_clause: null
     compoundable: null       # not this pass (D-036 vi)
     status: DRAFT
     definition_punishment_split: true
@@ -487,8 +599,13 @@ rows:
     section: '103'
     variant: 'L1'   # REVIEWER: rename to the limb as printed
     counterpart_id: 'IPC_1860-302'
-    maximum: null            # REVIEWER: set from the PAGE
+    maximum: null            # REVIEWER: set from the PAGE; replace null with:
+    #   kinds: [...]         # one or more of DEATH, LIFE, TERM, FINE_ONLY, BY_REFERENCE
+    #   term_months: N       # months, not years; only when TERM is in kinds
+    #   fine_also: ...       # true or false, as the page reads
+    #   reference_note: ...  # the provision's own words; only when BY_REFERENCE is in kinds
     min_term_months: null    # REVIEWER: only if the limb prescribes one
+    quoted_clause: null
     compoundable: null       # not this pass (D-036 vi)
     status: DRAFT
     definition_punishment_split: false
@@ -505,8 +622,13 @@ rows:
     section: '103'
     variant: 'L2'   # REVIEWER: rename to the limb as printed
     counterpart_id: 'IPC_1860-302'
-    maximum: null            # REVIEWER: set from the PAGE
+    maximum: null            # REVIEWER: set from the PAGE; replace null with:
+    #   kinds: [...]         # one or more of DEATH, LIFE, TERM, FINE_ONLY, BY_REFERENCE
+    #   term_months: N       # months, not years; only when TERM is in kinds
+    #   fine_also: ...       # true or false, as the page reads
+    #   reference_note: ...  # the provision's own words; only when BY_REFERENCE is in kinds
     min_term_months: null    # REVIEWER: only if the limb prescribes one
+    quoted_clause: null
     compoundable: null       # not this pass (D-036 vi)
     status: DRAFT
     definition_punishment_split: false
@@ -523,8 +645,13 @@ rows:
     section: '103'
     variant: 'L3'   # REVIEWER: rename to the limb as printed
     counterpart_id: 'IPC_1860-302'
-    maximum: null            # REVIEWER: set from the PAGE
+    maximum: null            # REVIEWER: set from the PAGE; replace null with:
+    #   kinds: [...]         # one or more of DEATH, LIFE, TERM, FINE_ONLY, BY_REFERENCE
+    #   term_months: N       # months, not years; only when TERM is in kinds
+    #   fine_also: ...       # true or false, as the page reads
+    #   reference_note: ...  # the provision's own words; only when BY_REFERENCE is in kinds
     min_term_months: null    # REVIEWER: only if the limb prescribes one
+    quoted_clause: null
     compoundable: null       # not this pass (D-036 vi)
     status: DRAFT
     definition_punishment_split: false
@@ -542,8 +669,13 @@ rows:
     section: '106'
     variant: 'L1'   # REVIEWER: rename to the limb as printed
     counterpart_id: 'IPC_1860-304A'
-    maximum: null            # REVIEWER: set from the PAGE
+    maximum: null            # REVIEWER: set from the PAGE; replace null with:
+    #   kinds: [...]         # one or more of DEATH, LIFE, TERM, FINE_ONLY, BY_REFERENCE
+    #   term_months: N       # months, not years; only when TERM is in kinds
+    #   fine_also: ...       # true or false, as the page reads
+    #   reference_note: ...  # the provision's own words; only when BY_REFERENCE is in kinds
     min_term_months: null    # REVIEWER: only if the limb prescribes one
+    quoted_clause: null
     compoundable: null       # not this pass (D-036 vi)
     status: DRAFT
     definition_punishment_split: false
@@ -560,8 +692,13 @@ rows:
     section: '106'
     variant: 'L2'   # REVIEWER: rename to the limb as printed
     counterpart_id: 'IPC_1860-304A'
-    maximum: null            # REVIEWER: set from the PAGE
+    maximum: null            # REVIEWER: set from the PAGE; replace null with:
+    #   kinds: [...]         # one or more of DEATH, LIFE, TERM, FINE_ONLY, BY_REFERENCE
+    #   term_months: N       # months, not years; only when TERM is in kinds
+    #   fine_also: ...       # true or false, as the page reads
+    #   reference_note: ...  # the provision's own words; only when BY_REFERENCE is in kinds
     min_term_months: null    # REVIEWER: only if the limb prescribes one
+    quoted_clause: null
     compoundable: null       # not this pass (D-036 vi)
     status: DRAFT
     definition_punishment_split: false
@@ -578,8 +715,13 @@ rows:
     section: '106'
     variant: 'L3'   # REVIEWER: rename to the limb as printed
     counterpart_id: 'IPC_1860-304A'
-    maximum: null            # REVIEWER: set from the PAGE
+    maximum: null            # REVIEWER: set from the PAGE; replace null with:
+    #   kinds: [...]         # one or more of DEATH, LIFE, TERM, FINE_ONLY, BY_REFERENCE
+    #   term_months: N       # months, not years; only when TERM is in kinds
+    #   fine_also: ...       # true or false, as the page reads
+    #   reference_note: ...  # the provision's own words; only when BY_REFERENCE is in kinds
     min_term_months: null    # REVIEWER: only if the limb prescribes one
+    quoted_clause: null
     compoundable: null       # not this pass (D-036 vi)
     status: DRAFT
     definition_punishment_split: false
@@ -597,8 +739,13 @@ rows:
     section: '309'
     variant: 'L1'   # REVIEWER: rename to the limb as printed
     counterpart_id: 'IPC_1860-392'
-    maximum: null            # REVIEWER: set from the PAGE
+    maximum: null            # REVIEWER: set from the PAGE; replace null with:
+    #   kinds: [...]         # one or more of DEATH, LIFE, TERM, FINE_ONLY, BY_REFERENCE
+    #   term_months: N       # months, not years; only when TERM is in kinds
+    #   fine_also: ...       # true or false, as the page reads
+    #   reference_note: ...  # the provision's own words; only when BY_REFERENCE is in kinds
     min_term_months: null    # REVIEWER: only if the limb prescribes one
+    quoted_clause: null
     compoundable: null       # not this pass (D-036 vi)
     status: DRAFT
     definition_punishment_split: true
@@ -615,8 +762,13 @@ rows:
     section: '309'
     variant: 'L2'   # REVIEWER: rename to the limb as printed
     counterpart_id: 'IPC_1860-392'
-    maximum: null            # REVIEWER: set from the PAGE
+    maximum: null            # REVIEWER: set from the PAGE; replace null with:
+    #   kinds: [...]         # one or more of DEATH, LIFE, TERM, FINE_ONLY, BY_REFERENCE
+    #   term_months: N       # months, not years; only when TERM is in kinds
+    #   fine_also: ...       # true or false, as the page reads
+    #   reference_note: ...  # the provision's own words; only when BY_REFERENCE is in kinds
     min_term_months: null    # REVIEWER: only if the limb prescribes one
+    quoted_clause: null
     compoundable: null       # not this pass (D-036 vi)
     status: DRAFT
     definition_punishment_split: true
@@ -633,8 +785,13 @@ rows:
     section: '309'
     variant: 'L3'   # REVIEWER: rename to the limb as printed
     counterpart_id: 'IPC_1860-392'
-    maximum: null            # REVIEWER: set from the PAGE
+    maximum: null            # REVIEWER: set from the PAGE; replace null with:
+    #   kinds: [...]         # one or more of DEATH, LIFE, TERM, FINE_ONLY, BY_REFERENCE
+    #   term_months: N       # months, not years; only when TERM is in kinds
+    #   fine_also: ...       # true or false, as the page reads
+    #   reference_note: ...  # the provision's own words; only when BY_REFERENCE is in kinds
     min_term_months: null    # REVIEWER: only if the limb prescribes one
+    quoted_clause: null
     compoundable: null       # not this pass (D-036 vi)
     status: DRAFT
     definition_punishment_split: true
@@ -652,8 +809,13 @@ rows:
     section: '318'
     variant: 'L1'   # REVIEWER: rename to the limb as printed
     counterpart_id: 'IPC_1860-420'
-    maximum: null            # REVIEWER: set from the PAGE
+    maximum: null            # REVIEWER: set from the PAGE; replace null with:
+    #   kinds: [...]         # one or more of DEATH, LIFE, TERM, FINE_ONLY, BY_REFERENCE
+    #   term_months: N       # months, not years; only when TERM is in kinds
+    #   fine_also: ...       # true or false, as the page reads
+    #   reference_note: ...  # the provision's own words; only when BY_REFERENCE is in kinds
     min_term_months: null    # REVIEWER: only if the limb prescribes one
+    quoted_clause: null
     compoundable: null       # not this pass (D-036 vi)
     status: DRAFT
     definition_punishment_split: true
@@ -670,8 +832,13 @@ rows:
     section: '318'
     variant: 'L2'   # REVIEWER: rename to the limb as printed
     counterpart_id: 'IPC_1860-420'
-    maximum: null            # REVIEWER: set from the PAGE
+    maximum: null            # REVIEWER: set from the PAGE; replace null with:
+    #   kinds: [...]         # one or more of DEATH, LIFE, TERM, FINE_ONLY, BY_REFERENCE
+    #   term_months: N       # months, not years; only when TERM is in kinds
+    #   fine_also: ...       # true or false, as the page reads
+    #   reference_note: ...  # the provision's own words; only when BY_REFERENCE is in kinds
     min_term_months: null    # REVIEWER: only if the limb prescribes one
+    quoted_clause: null
     compoundable: null       # not this pass (D-036 vi)
     status: DRAFT
     definition_punishment_split: true
@@ -688,8 +855,13 @@ rows:
     section: '318'
     variant: 'L3'   # REVIEWER: rename to the limb as printed
     counterpart_id: 'IPC_1860-420'
-    maximum: null            # REVIEWER: set from the PAGE
+    maximum: null            # REVIEWER: set from the PAGE; replace null with:
+    #   kinds: [...]         # one or more of DEATH, LIFE, TERM, FINE_ONLY, BY_REFERENCE
+    #   term_months: N       # months, not years; only when TERM is in kinds
+    #   fine_also: ...       # true or false, as the page reads
+    #   reference_note: ...  # the provision's own words; only when BY_REFERENCE is in kinds
     min_term_months: null    # REVIEWER: only if the limb prescribes one
+    quoted_clause: null
     compoundable: null       # not this pass (D-036 vi)
     status: DRAFT
     definition_punishment_split: true
@@ -707,8 +879,13 @@ rows:
     section: '351'
     variant: 'L1'   # REVIEWER: rename to the limb as printed
     counterpart_id: 'IPC_1860-506'
-    maximum: null            # REVIEWER: set from the PAGE
+    maximum: null            # REVIEWER: set from the PAGE; replace null with:
+    #   kinds: [...]         # one or more of DEATH, LIFE, TERM, FINE_ONLY, BY_REFERENCE
+    #   term_months: N       # months, not years; only when TERM is in kinds
+    #   fine_also: ...       # true or false, as the page reads
+    #   reference_note: ...  # the provision's own words; only when BY_REFERENCE is in kinds
     min_term_months: null    # REVIEWER: only if the limb prescribes one
+    quoted_clause: null
     compoundable: null       # not this pass (D-036 vi)
     status: DRAFT
     definition_punishment_split: true
@@ -725,8 +902,13 @@ rows:
     section: '351'
     variant: 'L2'   # REVIEWER: rename to the limb as printed
     counterpart_id: 'IPC_1860-506'
-    maximum: null            # REVIEWER: set from the PAGE
+    maximum: null            # REVIEWER: set from the PAGE; replace null with:
+    #   kinds: [...]         # one or more of DEATH, LIFE, TERM, FINE_ONLY, BY_REFERENCE
+    #   term_months: N       # months, not years; only when TERM is in kinds
+    #   fine_also: ...       # true or false, as the page reads
+    #   reference_note: ...  # the provision's own words; only when BY_REFERENCE is in kinds
     min_term_months: null    # REVIEWER: only if the limb prescribes one
+    quoted_clause: null
     compoundable: null       # not this pass (D-036 vi)
     status: DRAFT
     definition_punishment_split: true
@@ -743,8 +925,13 @@ rows:
     section: '351'
     variant: 'L3'   # REVIEWER: rename to the limb as printed
     counterpart_id: 'IPC_1860-506'
-    maximum: null            # REVIEWER: set from the PAGE
+    maximum: null            # REVIEWER: set from the PAGE; replace null with:
+    #   kinds: [...]         # one or more of DEATH, LIFE, TERM, FINE_ONLY, BY_REFERENCE
+    #   term_months: N       # months, not years; only when TERM is in kinds
+    #   fine_also: ...       # true or false, as the page reads
+    #   reference_note: ...  # the provision's own words; only when BY_REFERENCE is in kinds
     min_term_months: null    # REVIEWER: only if the limb prescribes one
+    quoted_clause: null
     compoundable: null       # not this pass (D-036 vi)
     status: DRAFT
     definition_punishment_split: true
@@ -762,8 +949,13 @@ rows:
     section: '506'
     variant: 'L1'   # REVIEWER: rename to the limb as printed
     counterpart_id: 'BNS_2023-351'
-    maximum: null            # REVIEWER: set from the PAGE
+    maximum: null            # REVIEWER: set from the PAGE; replace null with:
+    #   kinds: [...]         # one or more of DEATH, LIFE, TERM, FINE_ONLY, BY_REFERENCE
+    #   term_months: N       # months, not years; only when TERM is in kinds
+    #   fine_also: ...       # true or false, as the page reads
+    #   reference_note: ...  # the provision's own words; only when BY_REFERENCE is in kinds
     min_term_months: null    # REVIEWER: only if the limb prescribes one
+    quoted_clause: null
     compoundable: null       # not this pass (D-036 vi)
     status: DRAFT
     definition_punishment_split: false
@@ -780,8 +972,13 @@ rows:
     section: '506'
     variant: 'L2'   # REVIEWER: rename to the limb as printed
     counterpart_id: 'BNS_2023-351'
-    maximum: null            # REVIEWER: set from the PAGE
+    maximum: null            # REVIEWER: set from the PAGE; replace null with:
+    #   kinds: [...]         # one or more of DEATH, LIFE, TERM, FINE_ONLY, BY_REFERENCE
+    #   term_months: N       # months, not years; only when TERM is in kinds
+    #   fine_also: ...       # true or false, as the page reads
+    #   reference_note: ...  # the provision's own words; only when BY_REFERENCE is in kinds
     min_term_months: null    # REVIEWER: only if the limb prescribes one
+    quoted_clause: null
     compoundable: null       # not this pass (D-036 vi)
     status: DRAFT
     definition_punishment_split: false
@@ -798,8 +995,13 @@ rows:
     section: '506'
     variant: 'L3'   # REVIEWER: rename to the limb as printed
     counterpart_id: 'BNS_2023-351'
-    maximum: null            # REVIEWER: set from the PAGE
+    maximum: null            # REVIEWER: set from the PAGE; replace null with:
+    #   kinds: [...]         # one or more of DEATH, LIFE, TERM, FINE_ONLY, BY_REFERENCE
+    #   term_months: N       # months, not years; only when TERM is in kinds
+    #   fine_also: ...       # true or false, as the page reads
+    #   reference_note: ...  # the provision's own words; only when BY_REFERENCE is in kinds
     min_term_months: null    # REVIEWER: only if the limb prescribes one
+    quoted_clause: null
     compoundable: null       # not this pass (D-036 vi)
     status: DRAFT
     definition_punishment_split: false
@@ -817,8 +1019,13 @@ rows:
     section: '303'
     variant: 'L1'   # REVIEWER: rename to the limb as printed
     counterpart_id: 'IPC_1860-379'
-    maximum: null            # REVIEWER: set from the PAGE
+    maximum: null            # REVIEWER: set from the PAGE; replace null with:
+    #   kinds: [...]         # one or more of DEATH, LIFE, TERM, FINE_ONLY, BY_REFERENCE
+    #   term_months: N       # months, not years; only when TERM is in kinds
+    #   fine_also: ...       # true or false, as the page reads
+    #   reference_note: ...  # the provision's own words; only when BY_REFERENCE is in kinds
     min_term_months: null    # REVIEWER: only if the limb prescribes one
+    quoted_clause: null
     compoundable: null       # not this pass (D-036 vi)
     status: DRAFT
     definition_punishment_split: true
@@ -835,8 +1042,13 @@ rows:
     section: '303'
     variant: 'L2'   # REVIEWER: rename to the limb as printed
     counterpart_id: 'IPC_1860-379'
-    maximum: null            # REVIEWER: set from the PAGE
+    maximum: null            # REVIEWER: set from the PAGE; replace null with:
+    #   kinds: [...]         # one or more of DEATH, LIFE, TERM, FINE_ONLY, BY_REFERENCE
+    #   term_months: N       # months, not years; only when TERM is in kinds
+    #   fine_also: ...       # true or false, as the page reads
+    #   reference_note: ...  # the provision's own words; only when BY_REFERENCE is in kinds
     min_term_months: null    # REVIEWER: only if the limb prescribes one
+    quoted_clause: null
     compoundable: null       # not this pass (D-036 vi)
     status: DRAFT
     definition_punishment_split: true
@@ -853,8 +1065,13 @@ rows:
     section: '303'
     variant: 'L3'   # REVIEWER: rename to the limb as printed
     counterpart_id: 'IPC_1860-379'
-    maximum: null            # REVIEWER: set from the PAGE
+    maximum: null            # REVIEWER: set from the PAGE; replace null with:
+    #   kinds: [...]         # one or more of DEATH, LIFE, TERM, FINE_ONLY, BY_REFERENCE
+    #   term_months: N       # months, not years; only when TERM is in kinds
+    #   fine_also: ...       # true or false, as the page reads
+    #   reference_note: ...  # the provision's own words; only when BY_REFERENCE is in kinds
     min_term_months: null    # REVIEWER: only if the limb prescribes one
+    quoted_clause: null
     compoundable: null       # not this pass (D-036 vi)
     status: DRAFT
     definition_punishment_split: true
@@ -872,8 +1089,13 @@ rows:
     section: '302'
     variant: None
     counterpart_id: 'BNS_2023-103'
-    maximum: null            # REVIEWER: set from the PAGE
+    maximum: null            # REVIEWER: set from the PAGE; replace null with:
+    #   kinds: [...]         # one or more of DEATH, LIFE, TERM, FINE_ONLY, BY_REFERENCE
+    #   term_months: N       # months, not years; only when TERM is in kinds
+    #   fine_also: ...       # true or false, as the page reads
+    #   reference_note: ...  # the provision's own words; only when BY_REFERENCE is in kinds
     min_term_months: null    # REVIEWER: only if the limb prescribes one
+    quoted_clause: null
     compoundable: null       # not this pass (D-036 vi)
     status: DRAFT
     definition_punishment_split: false
@@ -891,8 +1113,13 @@ rows:
     section: '115'
     variant: None
     counterpart_id: 'IPC_1860-323'
-    maximum: null            # REVIEWER: set from the PAGE
+    maximum: null            # REVIEWER: set from the PAGE; replace null with:
+    #   kinds: [...]         # one or more of DEATH, LIFE, TERM, FINE_ONLY, BY_REFERENCE
+    #   term_months: N       # months, not years; only when TERM is in kinds
+    #   fine_also: ...       # true or false, as the page reads
+    #   reference_note: ...  # the provision's own words; only when BY_REFERENCE is in kinds
     min_term_months: null    # REVIEWER: only if the limb prescribes one
+    quoted_clause: null
     compoundable: null       # not this pass (D-036 vi)
     status: DRAFT
     definition_punishment_split: true
@@ -910,8 +1137,13 @@ rows:
     section: '126'
     variant: None
     counterpart_id: 'IPC_1860-341'
-    maximum: null            # REVIEWER: set from the PAGE
+    maximum: null            # REVIEWER: set from the PAGE; replace null with:
+    #   kinds: [...]         # one or more of DEATH, LIFE, TERM, FINE_ONLY, BY_REFERENCE
+    #   term_months: N       # months, not years; only when TERM is in kinds
+    #   fine_also: ...       # true or false, as the page reads
+    #   reference_note: ...  # the provision's own words; only when BY_REFERENCE is in kinds
     min_term_months: null    # REVIEWER: only if the limb prescribes one
+    quoted_clause: null
     compoundable: null       # not this pass (D-036 vi)
     status: DRAFT
     definition_punishment_split: true
@@ -929,8 +1161,13 @@ rows:
     section: '323'
     variant: None
     counterpart_id: 'BNS_2023-115'
-    maximum: null            # REVIEWER: set from the PAGE
+    maximum: null            # REVIEWER: set from the PAGE; replace null with:
+    #   kinds: [...]         # one or more of DEATH, LIFE, TERM, FINE_ONLY, BY_REFERENCE
+    #   term_months: N       # months, not years; only when TERM is in kinds
+    #   fine_also: ...       # true or false, as the page reads
+    #   reference_note: ...  # the provision's own words; only when BY_REFERENCE is in kinds
     min_term_months: null    # REVIEWER: only if the limb prescribes one
+    quoted_clause: null
     compoundable: null       # not this pass (D-036 vi)
     status: DRAFT
     definition_punishment_split: false
@@ -948,8 +1185,13 @@ rows:
     section: '341'
     variant: None
     counterpart_id: 'BNS_2023-126'
-    maximum: null            # REVIEWER: set from the PAGE
+    maximum: null            # REVIEWER: set from the PAGE; replace null with:
+    #   kinds: [...]         # one or more of DEATH, LIFE, TERM, FINE_ONLY, BY_REFERENCE
+    #   term_months: N       # months, not years; only when TERM is in kinds
+    #   fine_also: ...       # true or false, as the page reads
+    #   reference_note: ...  # the provision's own words; only when BY_REFERENCE is in kinds
     min_term_months: null    # REVIEWER: only if the limb prescribes one
+    quoted_clause: null
     compoundable: null       # not this pass (D-036 vi)
     status: DRAFT
     definition_punishment_split: false
@@ -967,8 +1209,13 @@ rows:
     section: '392'
     variant: None
     counterpart_id: 'BNS_2023-309'
-    maximum: null            # REVIEWER: set from the PAGE
+    maximum: null            # REVIEWER: set from the PAGE; replace null with:
+    #   kinds: [...]         # one or more of DEATH, LIFE, TERM, FINE_ONLY, BY_REFERENCE
+    #   term_months: N       # months, not years; only when TERM is in kinds
+    #   fine_also: ...       # true or false, as the page reads
+    #   reference_note: ...  # the provision's own words; only when BY_REFERENCE is in kinds
     min_term_months: null    # REVIEWER: only if the limb prescribes one
+    quoted_clause: null
     compoundable: null       # not this pass (D-036 vi)
     status: DRAFT
     definition_punishment_split: false
@@ -986,8 +1233,13 @@ rows:
     section: '420'
     variant: None
     counterpart_id: 'BNS_2023-318'
-    maximum: null            # REVIEWER: set from the PAGE
+    maximum: null            # REVIEWER: set from the PAGE; replace null with:
+    #   kinds: [...]         # one or more of DEATH, LIFE, TERM, FINE_ONLY, BY_REFERENCE
+    #   term_months: N       # months, not years; only when TERM is in kinds
+    #   fine_also: ...       # true or false, as the page reads
+    #   reference_note: ...  # the provision's own words; only when BY_REFERENCE is in kinds
     min_term_months: null    # REVIEWER: only if the limb prescribes one
+    quoted_clause: null
     compoundable: null       # not this pass (D-036 vi)
     status: DRAFT
     definition_punishment_split: false
@@ -1005,8 +1257,13 @@ rows:
     section: '426'
     variant: None
     counterpart_id: 'BNS_2023-324'
-    maximum: null            # REVIEWER: set from the PAGE
+    maximum: null            # REVIEWER: set from the PAGE; replace null with:
+    #   kinds: [...]         # one or more of DEATH, LIFE, TERM, FINE_ONLY, BY_REFERENCE
+    #   term_months: N       # months, not years; only when TERM is in kinds
+    #   fine_also: ...       # true or false, as the page reads
+    #   reference_note: ...  # the provision's own words; only when BY_REFERENCE is in kinds
     min_term_months: null    # REVIEWER: only if the limb prescribes one
+    quoted_clause: null
     compoundable: null       # not this pass (D-036 vi)
     status: DRAFT
     definition_punishment_split: false
@@ -1024,8 +1281,13 @@ rows:
     section: '406'
     variant: None
     counterpart_id: 'BNS_2023-316'
-    maximum: null            # REVIEWER: set from the PAGE
+    maximum: null            # REVIEWER: set from the PAGE; replace null with:
+    #   kinds: [...]         # one or more of DEATH, LIFE, TERM, FINE_ONLY, BY_REFERENCE
+    #   term_months: N       # months, not years; only when TERM is in kinds
+    #   fine_also: ...       # true or false, as the page reads
+    #   reference_note: ...  # the provision's own words; only when BY_REFERENCE is in kinds
     min_term_months: null    # REVIEWER: only if the limb prescribes one
+    quoted_clause: null
     compoundable: null       # not this pass (D-036 vi)
     status: DRAFT
     definition_punishment_split: false
@@ -1043,8 +1305,13 @@ rows:
     section: '448'
     variant: None
     counterpart_id: 'BNS_2023-331'
-    maximum: null            # REVIEWER: set from the PAGE
+    maximum: null            # REVIEWER: set from the PAGE; replace null with:
+    #   kinds: [...]         # one or more of DEATH, LIFE, TERM, FINE_ONLY, BY_REFERENCE
+    #   term_months: N       # months, not years; only when TERM is in kinds
+    #   fine_also: ...       # true or false, as the page reads
+    #   reference_note: ...  # the provision's own words; only when BY_REFERENCE is in kinds
     min_term_months: null    # REVIEWER: only if the limb prescribes one
+    quoted_clause: null
     compoundable: null       # not this pass (D-036 vi)
     status: DRAFT
     definition_punishment_split: false
@@ -1062,8 +1329,13 @@ rows:
     section: '21'
     variant: 'small_quantity'   # REVIEWER: rename to the limb as printed
     counterpart_id: None
-    maximum: null            # REVIEWER: set from the PAGE
+    maximum: null            # REVIEWER: set from the PAGE; replace null with:
+    #   kinds: [...]         # one or more of DEATH, LIFE, TERM, FINE_ONLY, BY_REFERENCE
+    #   term_months: N       # months, not years; only when TERM is in kinds
+    #   fine_also: ...       # true or false, as the page reads
+    #   reference_note: ...  # the provision's own words; only when BY_REFERENCE is in kinds
     min_term_months: null    # REVIEWER: only if the limb prescribes one
+    quoted_clause: null
     compoundable: null       # not this pass (D-036 vi)
     status: DRAFT
     definition_punishment_split: false
@@ -1080,8 +1352,13 @@ rows:
     section: '21'
     variant: 'lesser_than_commercial'   # REVIEWER: rename to the limb as printed
     counterpart_id: None
-    maximum: null            # REVIEWER: set from the PAGE
+    maximum: null            # REVIEWER: set from the PAGE; replace null with:
+    #   kinds: [...]         # one or more of DEATH, LIFE, TERM, FINE_ONLY, BY_REFERENCE
+    #   term_months: N       # months, not years; only when TERM is in kinds
+    #   fine_also: ...       # true or false, as the page reads
+    #   reference_note: ...  # the provision's own words; only when BY_REFERENCE is in kinds
     min_term_months: null    # REVIEWER: only if the limb prescribes one
+    quoted_clause: null
     compoundable: null       # not this pass (D-036 vi)
     status: DRAFT
     definition_punishment_split: false
@@ -1098,8 +1375,13 @@ rows:
     section: '21'
     variant: 'commercial_quantity'   # REVIEWER: rename to the limb as printed
     counterpart_id: None
-    maximum: null            # REVIEWER: set from the PAGE
+    maximum: null            # REVIEWER: set from the PAGE; replace null with:
+    #   kinds: [...]         # one or more of DEATH, LIFE, TERM, FINE_ONLY, BY_REFERENCE
+    #   term_months: N       # months, not years; only when TERM is in kinds
+    #   fine_also: ...       # true or false, as the page reads
+    #   reference_note: ...  # the provision's own words; only when BY_REFERENCE is in kinds
     min_term_months: null    # REVIEWER: only if the limb prescribes one
+    quoted_clause: null
     compoundable: null       # not this pass (D-036 vi)
     status: DRAFT
     definition_punishment_split: false
@@ -1117,8 +1399,13 @@ rows:
     section: '22'
     variant: 'small_quantity'   # REVIEWER: rename to the limb as printed
     counterpart_id: None
-    maximum: null            # REVIEWER: set from the PAGE
+    maximum: null            # REVIEWER: set from the PAGE; replace null with:
+    #   kinds: [...]         # one or more of DEATH, LIFE, TERM, FINE_ONLY, BY_REFERENCE
+    #   term_months: N       # months, not years; only when TERM is in kinds
+    #   fine_also: ...       # true or false, as the page reads
+    #   reference_note: ...  # the provision's own words; only when BY_REFERENCE is in kinds
     min_term_months: null    # REVIEWER: only if the limb prescribes one
+    quoted_clause: null
     compoundable: null       # not this pass (D-036 vi)
     status: DRAFT
     definition_punishment_split: false
@@ -1135,8 +1422,13 @@ rows:
     section: '22'
     variant: 'lesser_than_commercial'   # REVIEWER: rename to the limb as printed
     counterpart_id: None
-    maximum: null            # REVIEWER: set from the PAGE
+    maximum: null            # REVIEWER: set from the PAGE; replace null with:
+    #   kinds: [...]         # one or more of DEATH, LIFE, TERM, FINE_ONLY, BY_REFERENCE
+    #   term_months: N       # months, not years; only when TERM is in kinds
+    #   fine_also: ...       # true or false, as the page reads
+    #   reference_note: ...  # the provision's own words; only when BY_REFERENCE is in kinds
     min_term_months: null    # REVIEWER: only if the limb prescribes one
+    quoted_clause: null
     compoundable: null       # not this pass (D-036 vi)
     status: DRAFT
     definition_punishment_split: false
@@ -1153,8 +1445,13 @@ rows:
     section: '22'
     variant: 'commercial_quantity'   # REVIEWER: rename to the limb as printed
     counterpart_id: None
-    maximum: null            # REVIEWER: set from the PAGE
+    maximum: null            # REVIEWER: set from the PAGE; replace null with:
+    #   kinds: [...]         # one or more of DEATH, LIFE, TERM, FINE_ONLY, BY_REFERENCE
+    #   term_months: N       # months, not years; only when TERM is in kinds
+    #   fine_also: ...       # true or false, as the page reads
+    #   reference_note: ...  # the provision's own words; only when BY_REFERENCE is in kinds
     min_term_months: null    # REVIEWER: only if the limb prescribes one
+    quoted_clause: null
     compoundable: null       # not this pass (D-036 vi)
     status: DRAFT
     definition_punishment_split: false
@@ -1173,8 +1470,13 @@ rows:
     section: '317'
     variant: 'L1'   # REVIEWER: rename to the limb as printed
     counterpart_id: 'IPC_1860-411'
-    maximum: null            # REVIEWER: set from the PAGE
+    maximum: null            # REVIEWER: set from the PAGE; replace null with:
+    #   kinds: [...]         # one or more of DEATH, LIFE, TERM, FINE_ONLY, BY_REFERENCE
+    #   term_months: N       # months, not years; only when TERM is in kinds
+    #   fine_also: ...       # true or false, as the page reads
+    #   reference_note: ...  # the provision's own words; only when BY_REFERENCE is in kinds
     min_term_months: null    # REVIEWER: only if the limb prescribes one
+    quoted_clause: null
     compoundable: null       # not this pass (D-036 vi)
     status: DRAFT
     definition_punishment_split: true
@@ -1191,8 +1493,13 @@ rows:
     section: '317'
     variant: 'L2'   # REVIEWER: rename to the limb as printed
     counterpart_id: 'IPC_1860-411'
-    maximum: null            # REVIEWER: set from the PAGE
+    maximum: null            # REVIEWER: set from the PAGE; replace null with:
+    #   kinds: [...]         # one or more of DEATH, LIFE, TERM, FINE_ONLY, BY_REFERENCE
+    #   term_months: N       # months, not years; only when TERM is in kinds
+    #   fine_also: ...       # true or false, as the page reads
+    #   reference_note: ...  # the provision's own words; only when BY_REFERENCE is in kinds
     min_term_months: null    # REVIEWER: only if the limb prescribes one
+    quoted_clause: null
     compoundable: null       # not this pass (D-036 vi)
     status: DRAFT
     definition_punishment_split: true
@@ -1209,8 +1516,13 @@ rows:
     section: '317'
     variant: 'L3'   # REVIEWER: rename to the limb as printed
     counterpart_id: 'IPC_1860-411'
-    maximum: null            # REVIEWER: set from the PAGE
+    maximum: null            # REVIEWER: set from the PAGE; replace null with:
+    #   kinds: [...]         # one or more of DEATH, LIFE, TERM, FINE_ONLY, BY_REFERENCE
+    #   term_months: N       # months, not years; only when TERM is in kinds
+    #   fine_also: ...       # true or false, as the page reads
+    #   reference_note: ...  # the provision's own words; only when BY_REFERENCE is in kinds
     min_term_months: null    # REVIEWER: only if the limb prescribes one
+    quoted_clause: null
     compoundable: null       # not this pass (D-036 vi)
     status: DRAFT
     definition_punishment_split: true
@@ -1227,8 +1539,13 @@ rows:
     section: '317'
     variant: 'L4'   # REVIEWER: rename to the limb as printed
     counterpart_id: 'IPC_1860-411'
-    maximum: null            # REVIEWER: set from the PAGE
+    maximum: null            # REVIEWER: set from the PAGE; replace null with:
+    #   kinds: [...]         # one or more of DEATH, LIFE, TERM, FINE_ONLY, BY_REFERENCE
+    #   term_months: N       # months, not years; only when TERM is in kinds
+    #   fine_also: ...       # true or false, as the page reads
+    #   reference_note: ...  # the provision's own words; only when BY_REFERENCE is in kinds
     min_term_months: null    # REVIEWER: only if the limb prescribes one
+    quoted_clause: null
     compoundable: null       # not this pass (D-036 vi)
     status: DRAFT
     definition_punishment_split: true
@@ -1246,8 +1563,13 @@ rows:
     section: '109'
     variant: 'L1'   # REVIEWER: rename to the limb as printed
     counterpart_id: 'IPC_1860-307'
-    maximum: null            # REVIEWER: set from the PAGE
+    maximum: null            # REVIEWER: set from the PAGE; replace null with:
+    #   kinds: [...]         # one or more of DEATH, LIFE, TERM, FINE_ONLY, BY_REFERENCE
+    #   term_months: N       # months, not years; only when TERM is in kinds
+    #   fine_also: ...       # true or false, as the page reads
+    #   reference_note: ...  # the provision's own words; only when BY_REFERENCE is in kinds
     min_term_months: null    # REVIEWER: only if the limb prescribes one
+    quoted_clause: null
     compoundable: null       # not this pass (D-036 vi)
     status: DRAFT
     definition_punishment_split: false
@@ -1264,8 +1586,13 @@ rows:
     section: '109'
     variant: 'L2'   # REVIEWER: rename to the limb as printed
     counterpart_id: 'IPC_1860-307'
-    maximum: null            # REVIEWER: set from the PAGE
+    maximum: null            # REVIEWER: set from the PAGE; replace null with:
+    #   kinds: [...]         # one or more of DEATH, LIFE, TERM, FINE_ONLY, BY_REFERENCE
+    #   term_months: N       # months, not years; only when TERM is in kinds
+    #   fine_also: ...       # true or false, as the page reads
+    #   reference_note: ...  # the provision's own words; only when BY_REFERENCE is in kinds
     min_term_months: null    # REVIEWER: only if the limb prescribes one
+    quoted_clause: null
     compoundable: null       # not this pass (D-036 vi)
     status: DRAFT
     definition_punishment_split: false
@@ -1282,8 +1609,13 @@ rows:
     section: '109'
     variant: 'L3'   # REVIEWER: rename to the limb as printed
     counterpart_id: 'IPC_1860-307'
-    maximum: null            # REVIEWER: set from the PAGE
+    maximum: null            # REVIEWER: set from the PAGE; replace null with:
+    #   kinds: [...]         # one or more of DEATH, LIFE, TERM, FINE_ONLY, BY_REFERENCE
+    #   term_months: N       # months, not years; only when TERM is in kinds
+    #   fine_also: ...       # true or false, as the page reads
+    #   reference_note: ...  # the provision's own words; only when BY_REFERENCE is in kinds
     min_term_months: null    # REVIEWER: only if the limb prescribes one
+    quoted_clause: null
     compoundable: null       # not this pass (D-036 vi)
     status: DRAFT
     definition_punishment_split: false
@@ -1301,8 +1633,13 @@ rows:
     section: '117'
     variant: 'L1'   # REVIEWER: rename to the limb as printed
     counterpart_id: 'IPC_1860-325'
-    maximum: null            # REVIEWER: set from the PAGE
+    maximum: null            # REVIEWER: set from the PAGE; replace null with:
+    #   kinds: [...]         # one or more of DEATH, LIFE, TERM, FINE_ONLY, BY_REFERENCE
+    #   term_months: N       # months, not years; only when TERM is in kinds
+    #   fine_also: ...       # true or false, as the page reads
+    #   reference_note: ...  # the provision's own words; only when BY_REFERENCE is in kinds
     min_term_months: null    # REVIEWER: only if the limb prescribes one
+    quoted_clause: null
     compoundable: null       # not this pass (D-036 vi)
     status: DRAFT
     definition_punishment_split: true
@@ -1319,8 +1656,13 @@ rows:
     section: '117'
     variant: 'L2'   # REVIEWER: rename to the limb as printed
     counterpart_id: 'IPC_1860-325'
-    maximum: null            # REVIEWER: set from the PAGE
+    maximum: null            # REVIEWER: set from the PAGE; replace null with:
+    #   kinds: [...]         # one or more of DEATH, LIFE, TERM, FINE_ONLY, BY_REFERENCE
+    #   term_months: N       # months, not years; only when TERM is in kinds
+    #   fine_also: ...       # true or false, as the page reads
+    #   reference_note: ...  # the provision's own words; only when BY_REFERENCE is in kinds
     min_term_months: null    # REVIEWER: only if the limb prescribes one
+    quoted_clause: null
     compoundable: null       # not this pass (D-036 vi)
     status: DRAFT
     definition_punishment_split: true
@@ -1337,8 +1679,13 @@ rows:
     section: '117'
     variant: 'L3'   # REVIEWER: rename to the limb as printed
     counterpart_id: 'IPC_1860-325'
-    maximum: null            # REVIEWER: set from the PAGE
+    maximum: null            # REVIEWER: set from the PAGE; replace null with:
+    #   kinds: [...]         # one or more of DEATH, LIFE, TERM, FINE_ONLY, BY_REFERENCE
+    #   term_months: N       # months, not years; only when TERM is in kinds
+    #   fine_also: ...       # true or false, as the page reads
+    #   reference_note: ...  # the provision's own words; only when BY_REFERENCE is in kinds
     min_term_months: null    # REVIEWER: only if the limb prescribes one
+    quoted_clause: null
     compoundable: null       # not this pass (D-036 vi)
     status: DRAFT
     definition_punishment_split: true
@@ -1356,8 +1703,13 @@ rows:
     section: '105'
     variant: 'L1'   # REVIEWER: rename to the limb as printed
     counterpart_id: 'IPC_1860-304'
-    maximum: null            # REVIEWER: set from the PAGE
+    maximum: null            # REVIEWER: set from the PAGE; replace null with:
+    #   kinds: [...]         # one or more of DEATH, LIFE, TERM, FINE_ONLY, BY_REFERENCE
+    #   term_months: N       # months, not years; only when TERM is in kinds
+    #   fine_also: ...       # true or false, as the page reads
+    #   reference_note: ...  # the provision's own words; only when BY_REFERENCE is in kinds
     min_term_months: null    # REVIEWER: only if the limb prescribes one
+    quoted_clause: null
     compoundable: null       # not this pass (D-036 vi)
     status: DRAFT
     definition_punishment_split: false
@@ -1374,8 +1726,13 @@ rows:
     section: '105'
     variant: 'L2'   # REVIEWER: rename to the limb as printed
     counterpart_id: 'IPC_1860-304'
-    maximum: null            # REVIEWER: set from the PAGE
+    maximum: null            # REVIEWER: set from the PAGE; replace null with:
+    #   kinds: [...]         # one or more of DEATH, LIFE, TERM, FINE_ONLY, BY_REFERENCE
+    #   term_months: N       # months, not years; only when TERM is in kinds
+    #   fine_also: ...       # true or false, as the page reads
+    #   reference_note: ...  # the provision's own words; only when BY_REFERENCE is in kinds
     min_term_months: null    # REVIEWER: only if the limb prescribes one
+    quoted_clause: null
     compoundable: null       # not this pass (D-036 vi)
     status: DRAFT
     definition_punishment_split: false
@@ -1393,8 +1750,13 @@ rows:
     section: '304'
     variant: 'L1'   # REVIEWER: rename to the limb as printed
     counterpart_id: 'BNS_2023-105'
-    maximum: null            # REVIEWER: set from the PAGE
+    maximum: null            # REVIEWER: set from the PAGE; replace null with:
+    #   kinds: [...]         # one or more of DEATH, LIFE, TERM, FINE_ONLY, BY_REFERENCE
+    #   term_months: N       # months, not years; only when TERM is in kinds
+    #   fine_also: ...       # true or false, as the page reads
+    #   reference_note: ...  # the provision's own words; only when BY_REFERENCE is in kinds
     min_term_months: null    # REVIEWER: only if the limb prescribes one
+    quoted_clause: null
     compoundable: null       # not this pass (D-036 vi)
     status: DRAFT
     definition_punishment_split: false
@@ -1411,8 +1773,13 @@ rows:
     section: '304'
     variant: 'L2'   # REVIEWER: rename to the limb as printed
     counterpart_id: 'BNS_2023-105'
-    maximum: null            # REVIEWER: set from the PAGE
+    maximum: null            # REVIEWER: set from the PAGE; replace null with:
+    #   kinds: [...]         # one or more of DEATH, LIFE, TERM, FINE_ONLY, BY_REFERENCE
+    #   term_months: N       # months, not years; only when TERM is in kinds
+    #   fine_also: ...       # true or false, as the page reads
+    #   reference_note: ...  # the provision's own words; only when BY_REFERENCE is in kinds
     min_term_months: null    # REVIEWER: only if the limb prescribes one
+    quoted_clause: null
     compoundable: null       # not this pass (D-036 vi)
     status: DRAFT
     definition_punishment_split: false
@@ -1430,8 +1797,13 @@ rows:
     section: '191'
     variant: 'L1'   # REVIEWER: rename to the limb as printed
     counterpart_id: 'IPC_1860-147'
-    maximum: null            # REVIEWER: set from the PAGE
+    maximum: null            # REVIEWER: set from the PAGE; replace null with:
+    #   kinds: [...]         # one or more of DEATH, LIFE, TERM, FINE_ONLY, BY_REFERENCE
+    #   term_months: N       # months, not years; only when TERM is in kinds
+    #   fine_also: ...       # true or false, as the page reads
+    #   reference_note: ...  # the provision's own words; only when BY_REFERENCE is in kinds
     min_term_months: null    # REVIEWER: only if the limb prescribes one
+    quoted_clause: null
     compoundable: null       # not this pass (D-036 vi)
     status: DRAFT
     definition_punishment_split: true
@@ -1448,8 +1820,13 @@ rows:
     section: '191'
     variant: 'L2'   # REVIEWER: rename to the limb as printed
     counterpart_id: 'IPC_1860-147'
-    maximum: null            # REVIEWER: set from the PAGE
+    maximum: null            # REVIEWER: set from the PAGE; replace null with:
+    #   kinds: [...]         # one or more of DEATH, LIFE, TERM, FINE_ONLY, BY_REFERENCE
+    #   term_months: N       # months, not years; only when TERM is in kinds
+    #   fine_also: ...       # true or false, as the page reads
+    #   reference_note: ...  # the provision's own words; only when BY_REFERENCE is in kinds
     min_term_months: null    # REVIEWER: only if the limb prescribes one
+    quoted_clause: null
     compoundable: null       # not this pass (D-036 vi)
     status: DRAFT
     definition_punishment_split: true
@@ -1467,8 +1844,13 @@ rows:
     section: '307'
     variant: 'L1'   # REVIEWER: rename to the limb as printed
     counterpart_id: 'BNS_2023-109'
-    maximum: null            # REVIEWER: set from the PAGE
+    maximum: null            # REVIEWER: set from the PAGE; replace null with:
+    #   kinds: [...]         # one or more of DEATH, LIFE, TERM, FINE_ONLY, BY_REFERENCE
+    #   term_months: N       # months, not years; only when TERM is in kinds
+    #   fine_also: ...       # true or false, as the page reads
+    #   reference_note: ...  # the provision's own words; only when BY_REFERENCE is in kinds
     min_term_months: null    # REVIEWER: only if the limb prescribes one
+    quoted_clause: null
     compoundable: null       # not this pass (D-036 vi)
     status: DRAFT
     definition_punishment_split: false
@@ -1485,8 +1867,13 @@ rows:
     section: '307'
     variant: 'L2'   # REVIEWER: rename to the limb as printed
     counterpart_id: 'BNS_2023-109'
-    maximum: null            # REVIEWER: set from the PAGE
+    maximum: null            # REVIEWER: set from the PAGE; replace null with:
+    #   kinds: [...]         # one or more of DEATH, LIFE, TERM, FINE_ONLY, BY_REFERENCE
+    #   term_months: N       # months, not years; only when TERM is in kinds
+    #   fine_also: ...       # true or false, as the page reads
+    #   reference_note: ...  # the provision's own words; only when BY_REFERENCE is in kinds
     min_term_months: null    # REVIEWER: only if the limb prescribes one
+    quoted_clause: null
     compoundable: null       # not this pass (D-036 vi)
     status: DRAFT
     definition_punishment_split: false
@@ -1504,8 +1891,13 @@ rows:
     section: '137'
     variant: None
     counterpart_id: 'IPC_1860-363'
-    maximum: null            # REVIEWER: set from the PAGE
+    maximum: null            # REVIEWER: set from the PAGE; replace null with:
+    #   kinds: [...]         # one or more of DEATH, LIFE, TERM, FINE_ONLY, BY_REFERENCE
+    #   term_months: N       # months, not years; only when TERM is in kinds
+    #   fine_also: ...       # true or false, as the page reads
+    #   reference_note: ...  # the provision's own words; only when BY_REFERENCE is in kinds
     min_term_months: null    # REVIEWER: only if the limb prescribes one
+    quoted_clause: null
     compoundable: null       # not this pass (D-036 vi)
     status: DRAFT
     definition_punishment_split: true
@@ -1523,8 +1915,13 @@ rows:
     section: '340'
     variant: None
     counterpart_id: 'IPC_1860-471'
-    maximum: null            # REVIEWER: set from the PAGE
+    maximum: null            # REVIEWER: set from the PAGE; replace null with:
+    #   kinds: [...]         # one or more of DEATH, LIFE, TERM, FINE_ONLY, BY_REFERENCE
+    #   term_months: N       # months, not years; only when TERM is in kinds
+    #   fine_also: ...       # true or false, as the page reads
+    #   reference_note: ...  # the provision's own words; only when BY_REFERENCE is in kinds
     min_term_months: null    # REVIEWER: only if the limb prescribes one
+    quoted_clause: null
     compoundable: null       # not this pass (D-036 vi)
     status: DRAFT
     definition_punishment_split: true
@@ -1542,8 +1939,13 @@ rows:
     section: '85'
     variant: None
     counterpart_id: 'IPC_1860-498A'
-    maximum: null            # REVIEWER: set from the PAGE
+    maximum: null            # REVIEWER: set from the PAGE; replace null with:
+    #   kinds: [...]         # one or more of DEATH, LIFE, TERM, FINE_ONLY, BY_REFERENCE
+    #   term_months: N       # months, not years; only when TERM is in kinds
+    #   fine_also: ...       # true or false, as the page reads
+    #   reference_note: ...  # the provision's own words; only when BY_REFERENCE is in kinds
     min_term_months: null    # REVIEWER: only if the limb prescribes one
+    quoted_clause: null
     compoundable: null       # not this pass (D-036 vi)
     status: DRAFT
     definition_punishment_split: false
@@ -1561,8 +1963,13 @@ rows:
     section: '147'
     variant: None
     counterpart_id: 'BNS_2023-191'
-    maximum: null            # REVIEWER: set from the PAGE
+    maximum: null            # REVIEWER: set from the PAGE; replace null with:
+    #   kinds: [...]         # one or more of DEATH, LIFE, TERM, FINE_ONLY, BY_REFERENCE
+    #   term_months: N       # months, not years; only when TERM is in kinds
+    #   fine_also: ...       # true or false, as the page reads
+    #   reference_note: ...  # the provision's own words; only when BY_REFERENCE is in kinds
     min_term_months: null    # REVIEWER: only if the limb prescribes one
+    quoted_clause: null
     compoundable: null       # not this pass (D-036 vi)
     status: DRAFT
     definition_punishment_split: false
@@ -1580,8 +1987,13 @@ rows:
     section: '325'
     variant: None
     counterpart_id: 'BNS_2023-117'
-    maximum: null            # REVIEWER: set from the PAGE
+    maximum: null            # REVIEWER: set from the PAGE; replace null with:
+    #   kinds: [...]         # one or more of DEATH, LIFE, TERM, FINE_ONLY, BY_REFERENCE
+    #   term_months: N       # months, not years; only when TERM is in kinds
+    #   fine_also: ...       # true or false, as the page reads
+    #   reference_note: ...  # the provision's own words; only when BY_REFERENCE is in kinds
     min_term_months: null    # REVIEWER: only if the limb prescribes one
+    quoted_clause: null
     compoundable: null       # not this pass (D-036 vi)
     status: DRAFT
     definition_punishment_split: false
@@ -1599,8 +2011,13 @@ rows:
     section: '363'
     variant: None
     counterpart_id: 'BNS_2023-137'
-    maximum: null            # REVIEWER: set from the PAGE
+    maximum: null            # REVIEWER: set from the PAGE; replace null with:
+    #   kinds: [...]         # one or more of DEATH, LIFE, TERM, FINE_ONLY, BY_REFERENCE
+    #   term_months: N       # months, not years; only when TERM is in kinds
+    #   fine_also: ...       # true or false, as the page reads
+    #   reference_note: ...  # the provision's own words; only when BY_REFERENCE is in kinds
     min_term_months: null    # REVIEWER: only if the limb prescribes one
+    quoted_clause: null
     compoundable: null       # not this pass (D-036 vi)
     status: DRAFT
     definition_punishment_split: false
@@ -1618,8 +2035,13 @@ rows:
     section: '411'
     variant: None
     counterpart_id: 'BNS_2023-317'
-    maximum: null            # REVIEWER: set from the PAGE
+    maximum: null            # REVIEWER: set from the PAGE; replace null with:
+    #   kinds: [...]         # one or more of DEATH, LIFE, TERM, FINE_ONLY, BY_REFERENCE
+    #   term_months: N       # months, not years; only when TERM is in kinds
+    #   fine_also: ...       # true or false, as the page reads
+    #   reference_note: ...  # the provision's own words; only when BY_REFERENCE is in kinds
     min_term_months: null    # REVIEWER: only if the limb prescribes one
+    quoted_clause: null
     compoundable: null       # not this pass (D-036 vi)
     status: DRAFT
     definition_punishment_split: false
@@ -1637,8 +2059,13 @@ rows:
     section: '471'
     variant: None
     counterpart_id: 'BNS_2023-340'
-    maximum: null            # REVIEWER: set from the PAGE
+    maximum: null            # REVIEWER: set from the PAGE; replace null with:
+    #   kinds: [...]         # one or more of DEATH, LIFE, TERM, FINE_ONLY, BY_REFERENCE
+    #   term_months: N       # months, not years; only when TERM is in kinds
+    #   fine_also: ...       # true or false, as the page reads
+    #   reference_note: ...  # the provision's own words; only when BY_REFERENCE is in kinds
     min_term_months: null    # REVIEWER: only if the limb prescribes one
+    quoted_clause: null
     compoundable: null       # not this pass (D-036 vi)
     status: DRAFT
     definition_punishment_split: false
@@ -1656,8 +2083,13 @@ rows:
     section: '498A'
     variant: None
     counterpart_id: 'BNS_2023-85'
-    maximum: null            # REVIEWER: set from the PAGE
+    maximum: null            # REVIEWER: set from the PAGE; replace null with:
+    #   kinds: [...]         # one or more of DEATH, LIFE, TERM, FINE_ONLY, BY_REFERENCE
+    #   term_months: N       # months, not years; only when TERM is in kinds
+    #   fine_also: ...       # true or false, as the page reads
+    #   reference_note: ...  # the provision's own words; only when BY_REFERENCE is in kinds
     min_term_months: null    # REVIEWER: only if the limb prescribes one
+    quoted_clause: null
     compoundable: null       # not this pass (D-036 vi)
     status: DRAFT
     definition_punishment_split: false

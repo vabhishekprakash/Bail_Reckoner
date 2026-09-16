@@ -10,7 +10,7 @@ Justice posed it as a problem worth solving.
 
 This system does the arithmetic. It walks six statutory gates in a fixed order, shows
 every step, and cites the exact provision behind each one. It does not predict what a
-court will do, it scores no one, and it decides nothing. The output is a working a
+court will do, it scores no one, and it decides nothing. The output is a working report a
 legal-aid worker or jail officer can check line by line, plus a draft of the
 application the jail Superintendent is legally required to make.
 
@@ -52,17 +52,21 @@ results, and dense embeddings scored 0.000 on citation-style queries.
 
 ## Running it
 
-```
+```bash
 cd 06_src
-python -m venv .venv && .venv\Scripts\pip install -r requirements.lock
-.venv\Scripts\python -m pytest -q          # full suite, ~10 minutes
-.venv\Scripts\uvicorn --factory bail_reckoner.api.app:create_app
+python3 -m venv .venv
+.venv/bin/pip install -r requirements.lock    # Windows: .venv\Scripts\pip
+.venv/bin/python -c "from bail_reckoner.retrieval.corpus import build_corpus; build_corpus()"
+.venv/bin/python -m pytest -q                 # 435 pass, 1 skips by design, about 8 minutes
+.venv/bin/uvicorn --factory bail_reckoner.api.app:create_app
 ```
 
-Python 3.12 or newer is required: the lockfile pins numpy 2.5.2, which will not
-install on 3.11. A fresh clone needs the retrieval corpus rebuilt once (call
-`build_corpus()` from `bail_reckoner.retrieval.corpus`). Start with
-[DEVELOPER_GUIDE.md](DEVELOPER_GUIDE.md).
+You need Python 3.12. The lock file pins numpy 2.5.2, which needs 3.12 or newer, and
+rapidocr-onnxruntime 1.4.4, which does not install on 3.13.
+
+The corpus build takes about 30 seconds, and you run it once per clone. Without the
+corpus, the 18 retrieval tests (Layer A) skip rather than fail, and a fresh clone reports
+417 passed and 19 skipped. Start with [DEVELOPER_GUIDE.md](DEVELOPER_GUIDE.md).
 
 ## How AI was used
 
