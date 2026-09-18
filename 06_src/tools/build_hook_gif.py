@@ -11,10 +11,11 @@ during development), so a future edit changes only what it means to change.
 
 Two rules this file exists to keep:
 
-* **The closing card states no row count.** The first version ended on "Verified statutory
-  rows in the database: 0", which went stale the moment a reviewer signed the first five and
-  left the image contradicting the README section beneath it. The card now says where the
-  count comes from (every response states it) rather than what it is.
+* **The closing card's row count is read, never typed.** The first version ended on "Verified
+  statutory rows in the database: 0" as a literal, which went stale the moment a reviewer
+  signed the first five and left the image contradicting the README section beneath it. The
+  count is now taken from the signed rows in the review queue each time this runs, so the
+  only way for the image to be wrong is for nobody to rebuild it after a signing.
 * **The walk is SYNTHETIC and says so.** Section 901 is a fixture, not a statute, and the
   command line carries `--mode synthetic`. Nothing here may show a real offence's maximum:
   that would put an unverified-looking number in the most-read image of the project.
@@ -73,18 +74,39 @@ WALK: list[Line] = [
     ),
 ]
 
-CARD: list[Line] = [
-    (3, X_MARGIN, "SYNTHETIC DEMONSTRATION", True, BRIGHT),
-    (
-        5,
-        X_MARGIN,
-        "Offences outside the verified database abstain rather than guess.",
-        False,
-        BRIGHT,
-    ),
-    (6, X_MARGIN, "Every response states how many verified rows exist.", False, BRIGHT),
-    (8, X_MARGIN, "A calculator with citations. Never a decision-maker.", False, GREY),
-]
+def _verified_count() -> int:
+    """Signed rows in the review queue, counted by the loader that builds the database.
+
+    Imported here rather than at module top: this runs as a script from tools/, which puts
+    tools/ rather than 06_src/ on the path, and the package is not installed.
+    """
+    import sys
+
+    src = str(Path(__file__).resolve().parents[1])
+    if src not in sys.path:
+        sys.path.insert(0, src)
+    from bail_reckoner.statutes.review_queue import load_verified_rows
+
+    rows, _skipped = load_verified_rows()
+    return len(rows)
+
+
+def _card(verified: int) -> list[Line]:
+    """Same shape as the original card; the count is live and the paragraph that claimed the
+    system computes nothing about any real offence is replaced by what is true at any count."""
+    return [
+        (3, X_MARGIN, "SYNTHETIC DEMONSTRATION", True, BRIGHT),
+        (5, X_MARGIN, f"Verified statutory rows in the database: {verified}", True, BRIGHT),
+        (
+            7,
+            X_MARGIN,
+            "Offences outside the verified database abstain rather than guess.",
+            False,
+            BRIGHT,
+        ),
+        (8, X_MARGIN, "Every response states how many verified rows exist.", False, BRIGHT),
+        (10, X_MARGIN, "A calculator with citations. Never a decision-maker.", False, GREY),
+    ]
 
 # (lines shown, cursor row, cursor after that line's text or None for an idle cursor, ms).
 Step = tuple[int, int, bool, int]
@@ -162,7 +184,7 @@ def build() -> Path:
             cursor = (X_IDLE_CURSOR, cursor_row)
         frames.append(_render(lines, cursor))
         durations.append(milliseconds)
-    frames.append(_render(CARD, None))
+    frames.append(_render(_card(_verified_count()), None))
     durations.append(CARD_MS)
 
     palette = frames[0].quantize(colors=32)
@@ -181,4 +203,7 @@ def build() -> Path:
 
 if __name__ == "__main__":
     path = build()
-    print(f"wrote {path} ({path.stat().st_size:,} bytes, {len(STEPS) + 1} frames)")
+    print(
+        f"wrote {path} ({path.stat().st_size:,} bytes, {len(STEPS) + 1} frames, "
+        f"{_verified_count()} verified rows on the closing card)"
+    )
