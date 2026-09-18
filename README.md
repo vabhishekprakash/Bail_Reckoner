@@ -2,7 +2,7 @@
 
 # Bail Reckoner
 
-![A terminal walk through the six gates of Section 479, ending on the project's governing fact: zero verified rows](05_docs/assets/hook.gif)
+![A terminal walk through the six gates of Section 479, recorded while the verified row count was still zero](05_docs/assets/hook.gif)
 
 India's law entitles an undertrial prisoner to release once they have spent half the
 maximum possible sentence in jail awaiting trial, or a third of it for a first offence.
@@ -19,11 +19,13 @@ application the jail Superintendent is legally required to make.
 ## The honest status, first
 
 The engine is proved correct by 462 automated tests against synthetic fixtures. The
-database of real offence punishments contains zero verified rows, because a verified
-row requires a human to read the actual page of the actual statute and sign their
-name. A machine drafted the 86 rows in the review queue; the same machine signing them
-would be the machine agreeing with itself. Until those rows are signed, every
-demonstration you can run here is synthetic and labelled as such.
+database of real offence punishments holds 5 verified rows out of 86, so the system
+computes a real entitlement for those five offences and abstains on everything else. A
+verified row requires a human to read the actual page of the actual statute and sign
+their name. A machine drafted all 86 rows in the review queue; the same machine signing
+them would be the machine agreeing with itself. The other 81 are unsigned drafts, and
+no draft row is visible to the engine, so a demonstration on one of those offences runs
+on synthetic fixtures, labelled as such.
 
 This is the project's central design position. Where the law is unsettled, the system
 flags and routes to a human. Where a value could not be detected, it says so instead
@@ -34,6 +36,43 @@ time converted into a rule with a test.
 The git history here starts at a handful of commits because the original repository was
 lost and the finished project was re-uploaded. The commit count is not the development
 record.
+
+## A real computation
+
+Theft under IPC section 379, one of the five signed rows. The maximum comes from the
+printed page a person read and signed; the custody dates are illustrative. Abridged
+here: the full report also carries the multiple-case assessment and the standing
+caveats about State amendments and special statutes.
+
+```text
+ SECTION 479 BNSS 2023 — ENTITLEMENT COMPUTATION REPORT
+
+STATUS
+  Statutory entitlement to release under Section 479(1), BNSS 2023 is
+  established on the inputs provided.
+
+CUSTODY
+  Date of arrest:       10 January 2025
+  Computed as on:       18 September 2026
+  Custody undergone:    617 days
+  Effective custody:    617 days
+
+CASE Illustrative example, not a real case  (pending)
+  Offence: Theft
+    Section:            379
+    Maximum sentence:   3 years
+    Fraction applied:   one-third
+    Threshold:          12 months
+    Status: threshold reached on 10 January 2026
+
+Legally reviewed by: ______________________    Date: ____________
+  Statute version:      BNSS 2023@2025-10-06+dt-0.2.0+20976f7d
+  Law in force on:      2026-09-18
+  Inputs hash:          b3a7cee0f0bb40ea2633a1a00f54c34369a98bf2f1dc2022dff0294c826ae430
+```
+
+The review line stays blank because no advocate has reviewed this project. An offence
+whose row is still unsigned returns `OFFENCE_NOT_IN_DATABASE` instead of a number.
 
 ## What is inside
 
@@ -62,6 +101,7 @@ cd 06_src
 python3 -m venv .venv
 .venv/bin/pip install -r requirements.lock
 .venv/bin/python -c "from bail_reckoner.retrieval.corpus import build_corpus; build_corpus()"
+.venv/bin/python -c "from bail_reckoner.statutes.review_queue import build_database; print(build_database())"
 .venv/bin/python -m pytest -q                 # 461 pass, 1 skips by design, about 10 minutes
 .venv/bin/uvicorn --factory bail_reckoner.api.app:create_app
 ```
@@ -71,7 +111,12 @@ rapidocr-onnxruntime 1.4.4, which does not install on 3.13.
 
 The corpus build takes about 30 seconds, and you run it once per clone. Without the
 corpus, the 18 retrieval tests (Layer A) skip rather than fail, and a fresh clone reports
-443 passed and 19 skipped. Start with [DEVELOPER_GUIDE.md](DEVELOPER_GUIDE.md).
+443 passed and 19 skipped.
+
+The second build loads the signed rows from the review queue into the penalty store and
+prints the row counts, `{'DRAFT': 0, 'VERIFIED': 5}` today. Run it again after signing a
+row; without it the API serves an empty store and every offence abstains. Start with
+[DEVELOPER_GUIDE.md](DEVELOPER_GUIDE.md).
 
 ## How AI was used
 
@@ -79,8 +124,8 @@ I built this with an AI coding agent (Anthropic's Claude) working under my direc
 It wrote code, drafted documents, and ran verification. Every consequential decision
 came to me for approval, every statutory text was checked against the official gazette
 or India Code, and the review of actual law pages is human work that no machine output
-replaces: the database ships with zero verified rows until a person reads the page and
-signs. The AI is not an author here. I built this project, and a complete engineering
+replaces: the database carried zero verified rows until a person read the pages and
+signed the first five. The AI is not an author here. I built this project, and a complete engineering
 log of the AI-assisted sessions, including every decision and the reasoning behind it,
 is kept outside this repository and is available on request. Documents here
 sometimes cite that log's entry numbers (D-numbers) or its files by name

@@ -13,15 +13,16 @@ label in it is indicative, never verified.)**
 
 ## 0. The one fact that governs everything else
 
-**The system currently computes nothing about any real offence.** It is fully built and
-heavily tested, but its database of offence punishments contains **zero verified rows**,
-because verifying a row means a human reading the actual page of the actual statute and
-signing their name, and that act is deliberately reserved for a human. A machine
-drafted those rows; if the same machine "verified" them, the verification would be the
-machine agreeing with itself, and every number downstream would be circular. Until the
-86-row review queue is signed, every demonstration runs on synthetic fixtures, made up
-and clearly labelled as such. This is a design position, not an accident, and it is the
-first thing to understand about the codebase.
+**The system computes real entitlement for five offences and nothing about any other.**
+It is fully built and heavily tested, and its database of offence punishments holds
+**5 verified rows out of 86**, because verifying a row means a human reading the actual
+page of the actual statute and signing their name, and that act is deliberately reserved
+for a human. A machine drafted all 86; if the same machine "verified" them, the
+verification would be the machine agreeing with itself, and every number downstream
+would be circular. The other 81 rows are unsigned and invisible to the engine, so a
+demonstration on one of those offences runs on synthetic fixtures, made up and clearly
+labelled as such. This is a design position, not an accident, and it is the first thing
+to understand about the codebase.
 
 ## 1. What this project is
 
@@ -54,8 +55,8 @@ The honest status of each layer (never say "all layers built" without this table
 | **B, extraction** | Reads case text into candidate offences for a human to confirm | **A seam with no model.** A deterministic pattern-matcher plus a mandatory human confirmation step. No trainable model is feasible in this environment, and the record says so plainly. |
 
 Around them sits a REST API (FastAPI) whose every response carries an honesty envelope
-("verified rows: 0", with a warning, until that changes) and which returns engine
-refusals as clear 422 responses carrying the reason instead of blank server errors.
+(the verified row count, with an unmissable warning while that count is zero) and which
+returns engine refusals as clear 422 responses carrying the reason instead of blank server errors.
 There is a server-rendered web interface under hard design constraints: no colour or
 icon ever encodes an outcome, nothing hides behind a toggle, and affirmations are never
 pre-ticked. A deterministic PDF generator produces the s.479(3) application in pure
@@ -123,7 +124,7 @@ Bail_Reckoner\
 
 Section 5 walks a first-time setup step by step. The short version: Python 3.12, venv
 in `06_src/.venv`, install from `requirements.lock`, rebuild the retrieval corpus once,
-then `pytest`. The full suite runs green from a cold clone; we know because a cold
+build the penalty database from the signed rows, then `pytest`. The full suite runs green from a cold clone; we know because a cold
 clone once caught a real line-endings bug the working checkout could never see.
 
 ## 5. A beginner's guidebook: running this project
@@ -159,7 +160,18 @@ be built once from the law texts that are:
 It prints 2245. If it prints anything else, stop and check that the PDFs in `01_law`
 are intact; the test suite verifies their hashes.
 
-**Step 4. Run the tests.** This is the fastest way to know your setup is healthy:
+**Step 4. Build the penalty database.** The signed rows in the review queue are text
+until this loads them into the store the API reads:
+
+```bash
+.venv/bin/python -c "from bail_reckoner.statutes.review_queue import build_database; print(build_database())"
+```
+
+It prints the row counts, `{'DRAFT': 0, 'VERIFIED': 5}` today. Unsigned rows are skipped,
+and a row that claims to be signed but is missing a field stops the load and names itself.
+Run this again after signing a row; nothing else picks the change up.
+
+**Step 5. Run the tests.** This is the fastest way to know your setup is healthy:
 
 ```bash
 .venv/bin/python -m pytest -q
@@ -168,15 +180,16 @@ are intact; the test suite verifies their hashes.
 Expect every test green, with exactly one skip that announces itself and explains why. The
 run takes about 10 minutes; most of that is one test that reads a large PDF.
 
-**Step 5. Start the server and open the page.**
+**Step 6. Start the server and open the page.**
 
 ```bash
 .venv/bin/uvicorn --factory bail_reckoner.api.app:create_app
 ```
 
 Then open `http://127.0.0.1:8000` in a browser. Fill in an arrest date, a section
-number such as 901, and tick the affirmations. Pick "synthetic" as the source of
-maxima, since no verified rows exist yet. Press compute. The page shows the full
+number and the affirmations. Pick "verified" with IPC section 379, one of the five
+signed rows, or "synthetic" with section 901 to exercise the labelled fixtures. An
+offence whose row is unsigned abstains. Press compute. The page shows the full
 report, character for character the same document the tests pin, and can produce the
 draft court application as a PDF.
 

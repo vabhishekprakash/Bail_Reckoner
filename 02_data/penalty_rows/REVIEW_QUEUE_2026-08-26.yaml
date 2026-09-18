@@ -55,6 +55,10 @@
 #   6. TYPE this row's punishment clause into `quoted_clause`, verbatim from the page.
 #      Never paste it from `extractor_output_do_not_rely_on`; this field is the audit record.
 #   7. Put your name in `verified_by`, the date in `verified_on`, set `status: VERIFIED`.
+#      Then REBUILD the store, or nothing downstream sees the row. From 06_src:
+#        python -c "from bail_reckoner.statutes.review_queue import build_database; print(build_database())"
+#      It prints the row counts. Unsigned rows are skipped; a row that claims to be
+#      signed but is missing a field stops the load and names itself.
 #      `verified_against` needs no field of its own: it is this row's READ_THIS_PAGE,
 #      which already names the file, the page and the section.
 #

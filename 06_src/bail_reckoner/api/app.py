@@ -48,12 +48,16 @@ from bail_reckoner.reporting.render_application_text import render_application_t
 from bail_reckoner.reporting.render_text import render_text
 from bail_reckoner.reporting.report import build_report
 from bail_reckoner.statutes.decision_table import DecisionTable, load_decision_table
+from bail_reckoner.statutes.repository import DEFAULT_DB_PATH
 from bail_reckoner.statutes.sources import source_inventory_line
 
 __all__ = ["create_app", "DEFAULT_AUDIT_PATH", "DEFAULT_REPOSITORY_PATH"]
 
 # Runtime artefacts stay inside the repo (C1); both are derived/append-only and gitignored.
-DEFAULT_REPOSITORY_PATH = Path(__file__).resolve().parents[3] / ".cache" / "api_penalty.sqlite3"
+# The API serves the store `build_database()` writes from the signed review queue, not a
+# second database of its own: with two paths, every row a reviewer signed would land in one
+# file while /v1/meta read the other and reported zero for ever.
+DEFAULT_REPOSITORY_PATH = DEFAULT_DB_PATH
 DEFAULT_AUDIT_PATH = Path(__file__).resolve().parents[3] / "07_runtime" / "audit_log.jsonl"
 
 
