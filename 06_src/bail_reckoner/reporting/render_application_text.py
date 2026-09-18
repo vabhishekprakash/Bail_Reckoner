@@ -90,6 +90,12 @@ def render_application_text(application: Application) -> str:
             out.append(f"  Offence: {row.label}")
             out.append(_field("  Section:", row.section))
             out.append(_field("  Maximum sentence:", row.max_sentence_text))
+            # No mandatory-minimum line here, and that is the decision, not an omission
+            # (D-096). This filing asks the court for release on the s.479 arithmetic, which
+            # runs on the maximum; the minimum is context for a report's reader, not a fact
+            # this document claims, and a filing that volunteers unrequested sentencing
+            # context is doing something other than what it says. The value is on the row
+            # (`row.min_term_text`) if that is ever revisited; the report prints it.
             if row.fraction_text is not None:
                 out.append(_field("  Fraction applied:", row.fraction_text))
             if row.threshold_text is not None:
