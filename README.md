@@ -2,7 +2,9 @@
 
 # Bail Reckoner
 
-![A terminal walk through the six gates of Section 479, recorded while the verified row count was still zero](05_docs/assets/hook.gif)
+![A terminal walk through the six gates of Section 479 on a synthetic case, ending on the standing position: offences outside the verified database abstain rather than guess](05_docs/assets/hook.gif)
+
+*The database now holds five; every response states the current count.*
 
 India's law entitles an undertrial prisoner to release once they have spent half the
 maximum possible sentence in jail awaiting trial, or a third of it for a first offence.
