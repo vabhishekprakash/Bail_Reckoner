@@ -90,8 +90,8 @@ class ComputeRequest(BaseModel):
     mode: Literal["verified", "synthetic"] = Field(
         default="verified",
         description=(
-            "'verified' resolves offences against the verified penalty database only — "
-            "which, while zero verified rows exist, resolves nothing and abstains. "
+            "'verified' resolves offences against the verified penalty database only, and "
+            "abstains on any offence whose row is unsigned. "
             "'synthetic' resolves against the labelled synthetic fixtures (9xx sections) "
             "for demonstration, and every response says so unmissably."
         ),
@@ -104,7 +104,8 @@ class Envelope(BaseModel):
     mode: Literal["verified", "synthetic"]
     verified_row_count: int
     data_warning: str
-    """Unmissable while zero verified rows exist or the synthetic fixtures are in use.
+    """States what the figures rest on: the number of verified rows resolution ran against,
+    or an unmissable warning when that number is zero or the synthetic fixtures are in use.
     Clients must render it; it is part of the payload, not a header."""
 
     statute_version: str

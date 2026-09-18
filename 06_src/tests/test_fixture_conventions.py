@@ -1,13 +1,15 @@
 """Enforce the synthetic-fixture convention (Abhishek, 2026-08-19).
 
 The rule: **a real statutory section may only appear in a test fixture or golden file once it
-comes from a verified row.** No verified rows exist yet, so today every section a fixture
-cites must be synthetic — the 9xx convention, labelled as such. A convention recorded in a
-comment fails the same way the vocabulary list did (D-070); this module is the enforcement.
+comes from a verified row.** Every section a fixture cites must therefore be synthetic — the
+9xx convention, labelled as such. A convention recorded in a comment fails the same way the
+vocabulary list did (D-070); this module is the enforcement.
 
-When verified rows exist, the allowance widens: a section is then also acceptable if it is
-resolved from a verified row at fixture-build time. Extend `_is_allowed_section` at that
-point — deliberately, with the row's provenance — rather than weakening the pattern.
+Signed rows make the rule matter more, not less: IPC ss.304A and 379 and NDPS s.20 are now
+live, so a fixture that cited one would read as law while carrying whatever number the test
+happened to need. The allowance widens only by resolving a section from a verified row at
+fixture-build time. Extend `_is_allowed_section` at that point — deliberately, with the
+row's provenance — rather than weakening the pattern.
 """
 
 from __future__ import annotations
@@ -28,8 +30,8 @@ _SYNTHETIC_BARE = re.compile(r"^9\d\d[A-Z]?(\(\d+\))?$")
 
 
 def _is_allowed_section(display: str) -> bool:
-    # No verified rows exist yet; only synthetic sections are allowed. See module docstring
-    # for how this widens once they do.
+    # Only synthetic sections are allowed: a fixture never borrows a real section, whether or
+    # not that section has a signed row. See the module docstring for how this widens.
     return bool(_SYNTHETIC_DISPLAY.match(display.strip()))
 
 

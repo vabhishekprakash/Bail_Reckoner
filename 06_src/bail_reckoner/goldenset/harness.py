@@ -125,8 +125,10 @@ class FixtureProvider:
     """Maximum-sentence lookup from a SYNTHETIC fixture file, for smoke runs only.
 
     The file must declare itself synthetic in its header; this is fixture data standing in for
-    the verified penalty database while it has no verified rows, and it must never be mistaken
-    for law. `version_id` feeds the STALE check exactly as the real database's content hash will.
+    the verified penalty database wherever a smoke run needs a maximum, and it must never be
+    mistaken for law. It is never consulted for an offence that has a verified row: the
+    database answers those. `version_id` feeds the STALE check exactly as the real database's
+    content hash does.
     """
 
     def __init__(

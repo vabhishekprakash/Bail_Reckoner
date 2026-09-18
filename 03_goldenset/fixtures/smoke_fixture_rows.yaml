@@ -1,5 +1,6 @@
-# SYNTHETIC FIXTURE DATA — NOT LAW. Every row below is invented for harness smoke runs while the
-# penalty database has no verified rows (D-065 first step). Section numbers are deliberately
+# SYNTHETIC FIXTURE DATA — NOT LAW. Every row below is invented for harness smoke runs that
+# need a maximum without depending on the penalty database (D-065 first step); signed rows are
+# read from the database itself and never from here. Section numbers are deliberately
 # fake (9xx) so nothing here can be mistaken for a real offence. No real accused person's data.
 version_id: FIXTURE-smoke-batch0-v1
 rows:
