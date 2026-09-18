@@ -90,21 +90,20 @@ rows:
     counterpart_id: 'BNS_2023-106'
     special_statute: null            # gate-3 special statute, from the drafting seed
     special_statute_provision: null  # the barring provision, e.g. 's.37'
-    maximum: null            # REVIEWER: set from the PAGE; replace null with:
-    #   kinds: [...]         # one or more of DEATH, LIFE, TERM, FINE_ONLY, BY_REFERENCE
-    #   term_months: N       # months, not years; only when TERM is in kinds
-    #   fine_also: ...       # true or false, as the page reads
-    #   reference_note: ...  # the provision's own words; only when BY_REFERENCE is in kinds
-    min_term_months: null    # REVIEWER: only if the limb prescribes one
-    quoted_clause: null
-    verified_on: null
-    compoundable: null       # not this pass (D-036 vi)
-    status: DRAFT
+    maximum:
+      kinds: [TERM]
+      term_months: 24
+      fine_also: true
+    min_term_months: null
+    quoted_clause: '304A. Causing death by negligence.—Whoever causes the death of any person by doing any rash or negligent act not amounting to culpable homicide, shall be punished with imprisonment of either description for a term which may extend to two years, or with fine, or with both.'
+    verified_on: 2026-09-17
+    compoundable: null
+    status: VERIFIED
     definition_punishment_split: false
     state_amendment_present: true
     source: 'IPC_1860_Act45_IndiaCode_repealed_file.pdf'
     READ_THIS_PAGE: 'IPC_1860_Act45_IndiaCode_repealed_file.pdf, printed p. 75 (PDF page index 74), s.304A'
-    verified_by: 'model-draft (unverified)'
+    verified_by: 'Vallamalla Abhishek Prakash (repository owner; not a legal professional)'
     extractor_output_do_not_rely_on: '1[304A. Causing death by negligence .—Whoever causes the death of any person by doing any rash or negligent act not amounting to culpable homicide, shall be punished with imprisonment of either description for a term which may extend to two years, or with fine, or with both.] STATE AMENDMENTS Himachal Pradesh.— After Section 304 A of the Indian Penal Code, 1860, in its application to the State of Himachal Pradesh, the following section shall be added, namely: — “304-AA. Causing death or injury by driving a public service vehicle while in a s tate of intoxication.—Whoever, while in a state of intoxication, drives or attempts to drive a publ ic service vehicle and causes the death of any person not amounting to culpable homicide, or causes any bodily injury likely to cause death, shall be punished with imprisonment for life, or im prisonment of either description for a term which may extend to seven years, and shall also be liable to fine, as if the act by which death or bodily injury is caused, is done with the knowledge that he is lik ely by such act to cause death or cause such bodily injury as is likely to cause death. Explanation. —“Public service vehicle” means any motor vehicle used or adapted to be used for the carriage of passengers for hire or reward, and includes a maxicab, a motorcab, contract carriage and stage carriage”. [Vide Himachal Pradesh Act 19 of 1997, sec. 2]. In Section 304-AA of the Indian Penal Code, 1860, in its application to the State of Himachal Pradesh, — (a) for the words “a public service vehicle” where ever these occur, the words “any vehicle” shall be substituted; and (b) the Explanation shall be omitted. [Vide Himachal Pradesh Act 7 of 2012, s. 2]'
 
   # ── IPC_1860-379 · Theft · 1 limb(s) · STATE AMENDMENT PRESENT (L-002)
@@ -117,21 +116,20 @@ rows:
     counterpart_id: 'BNS_2023-303'
     special_statute: null            # gate-3 special statute, from the drafting seed
     special_statute_provision: null  # the barring provision, e.g. 's.37'
-    maximum: null            # REVIEWER: set from the PAGE; replace null with:
-    #   kinds: [...]         # one or more of DEATH, LIFE, TERM, FINE_ONLY, BY_REFERENCE
-    #   term_months: N       # months, not years; only when TERM is in kinds
-    #   fine_also: ...       # true or false, as the page reads
-    #   reference_note: ...  # the provision's own words; only when BY_REFERENCE is in kinds
-    min_term_months: null    # REVIEWER: only if the limb prescribes one
-    quoted_clause: null
-    verified_on: null
-    compoundable: null       # not this pass (D-036 vi)
-    status: DRAFT
+    maximum:
+      kinds: [TERM]
+      term_months: 36
+      fine_also: true
+    min_term_months: null
+    quoted_clause: '379. Punishment for theft.—Whoever commits theft shall be punished with imprisonment of either description for a term which may extend to three years, or with fine, or with both.'
+    verified_on: 2026-09-17
+    compoundable: null
+    status: VERIFIED
     definition_punishment_split: false
     state_amendment_present: true
     source: 'IPC_1860_Act45_IndiaCode_repealed_file.pdf'
     READ_THIS_PAGE: 'IPC_1860_Act45_IndiaCode_repealed_file.pdf, printed p. 95 (PDF page index 94), s.379'
-    verified_by: 'model-draft (unverified)'
+    verified_by: 'Vallamalla Abhishek Prakash (repository owner; not a legal professional)'
     extractor_output_do_not_rely_on: '379. Punishment for theft .—Whoever commits theft shall be punished with imprisonment of either description for a term which may extend to three years, or with fine, or with both. STATE AMENDMENT Gujarat.— In the Indian Penal Code, 1860 (XLV of 1860), after section 379, the following sections shall be inserted, namely:—'
 
   # ── NDPS_1985-20 · Contravention in relation to cannabis plant and cannabis · 3 limb(s)
@@ -141,24 +139,23 @@ rows:
     regime: NDPS_1985
     section: '20'
     variant: 'small_quantity'   # REVIEWER: rename to the limb as printed
-    counterpart_id: None
+    counterpart_id: null
     special_statute: 'NDPS'          # gate-3 special statute, from the drafting seed
     special_statute_provision: 's.37'
-    maximum: null            # REVIEWER: set from the PAGE; replace null with:
-    #   kinds: [...]         # one or more of DEATH, LIFE, TERM, FINE_ONLY, BY_REFERENCE
-    #   term_months: N       # months, not years; only when TERM is in kinds
-    #   fine_also: ...       # true or false, as the page reads
-    #   reference_note: ...  # the provision's own words; only when BY_REFERENCE is in kinds
-    min_term_months: null    # REVIEWER: only if the limb prescribes one
-    quoted_clause: null
-    verified_on: null
-    compoundable: null       # not this pass (D-036 vi)
-    status: DRAFT
+    maximum:
+      kinds: [TERM]
+      term_months: 12
+      fine_also: true
+    min_term_months: null
+    quoted_clause: '(A) and involves small quantity, with rigorous imprisonment for a term which may extend to one year, or with fine which may extend to ten thousand rupees, or with both;'
+    verified_on: 2026-09-17
+    compoundable: null
+    status: VERIFIED
     definition_punishment_split: false
     state_amendment_present: false
     source: 'NDPS_1985_Act61_IndiaCode_asOn_2022-01-03.pdf'
     READ_THIS_PAGE: 'NDPS_1985_Act61_IndiaCode_asOn_2022-01-03.pdf, printed p. 16 (PDF page index 15), s.20'
-    verified_by: 'model-draft (unverified)'
+    verified_by: 'Vallamalla Abhishek Prakash (repository owner; not a legal professional)'
     extractor_output_do_not_rely_on: '20. Punishment for contravention in relation to cannabis plant and cannabis .—Whoever, in contravention of any provision of this Act or any rule or order made or condition of licence granted thereunder,— (a) cultivates any cannabis plant; or 1. Subs. by Act 16 of 2014, s. 7, for “six months” (w.e.f. 1-5-2014). 2. Subs. by s. 8, ibid., for “six months” (w.e.f. 1-5-2014). (b) produces, manufactures, possesses, sells, purchases, transports, imports inter -State, ex ports inter-State or uses cannabis, shall be punishable,— 1[(i) where such contravention relates to clause ( a) with rigorous imprisonment for a term which may extend to ten years , and shall also be liable to fine which may ex tend to one lakh rupees; and (ii) where such contravention relates to sub-clause (b),— (A) and involves small quantity, with rigorous imprisonment for a term which may extend to 2[one year], or with fine which may extend to ten thousand rupees, or with both; (B) and involves quantity lesser than commercial quantity but greater than small quantity, with rigorous imprisonment for a term which may extend to ten years , and with fine whic h may extend to one lakh rupees; (C) and involves commercial quantity, with rigorous imprisonment for a term which shall not be less than ten years but which may extend to twenty years and shall also be liable to fine which shall not be less than one lakh rupees but which may extend to two lakh rupees: Provided that the court may, for reasons to be recorded in the judgment, impose a fine exceeding two lakh rupees.]'
 
   - offence_id: 'NDPS_1985-20#lesser_than_commercial'
@@ -167,24 +164,23 @@ rows:
     regime: NDPS_1985
     section: '20'
     variant: 'lesser_than_commercial'   # REVIEWER: rename to the limb as printed
-    counterpart_id: None
+    counterpart_id: null
     special_statute: 'NDPS'          # gate-3 special statute, from the drafting seed
     special_statute_provision: 's.37'
-    maximum: null            # REVIEWER: set from the PAGE; replace null with:
-    #   kinds: [...]         # one or more of DEATH, LIFE, TERM, FINE_ONLY, BY_REFERENCE
-    #   term_months: N       # months, not years; only when TERM is in kinds
-    #   fine_also: ...       # true or false, as the page reads
-    #   reference_note: ...  # the provision's own words; only when BY_REFERENCE is in kinds
-    min_term_months: null    # REVIEWER: only if the limb prescribes one
-    quoted_clause: null
-    verified_on: null
-    compoundable: null       # not this pass (D-036 vi)
-    status: DRAFT
+    maximum:
+      kinds: [TERM]
+      term_months: 120
+      fine_also: true
+    min_term_months: null
+    quoted_clause: '(B) and involves quantity lesser than commercial quantity but greater than small quantity, with rigorous imprisonment for a term which may extend to ten years, and with fine which may extend to one lakh rupees;'
+    verified_on: 2026-09-17
+    compoundable: null
+    status: VERIFIED
     definition_punishment_split: false
     state_amendment_present: false
     source: 'NDPS_1985_Act61_IndiaCode_asOn_2022-01-03.pdf'
     READ_THIS_PAGE: 'NDPS_1985_Act61_IndiaCode_asOn_2022-01-03.pdf, printed p. 16 (PDF page index 15), s.20'
-    verified_by: 'model-draft (unverified)'
+    verified_by: 'Vallamalla Abhishek Prakash (repository owner; not a legal professional)'
     extractor_output_do_not_rely_on: SAME_SECTION_TEXT_AS_FIRST_LIMB_ABOVE
 
   - offence_id: 'NDPS_1985-20#commercial_quantity'
@@ -193,24 +189,23 @@ rows:
     regime: NDPS_1985
     section: '20'
     variant: 'commercial_quantity'   # REVIEWER: rename to the limb as printed
-    counterpart_id: None
+    counterpart_id: null
     special_statute: 'NDPS'          # gate-3 special statute, from the drafting seed
     special_statute_provision: 's.37'
-    maximum: null            # REVIEWER: set from the PAGE; replace null with:
-    #   kinds: [...]         # one or more of DEATH, LIFE, TERM, FINE_ONLY, BY_REFERENCE
-    #   term_months: N       # months, not years; only when TERM is in kinds
-    #   fine_also: ...       # true or false, as the page reads
-    #   reference_note: ...  # the provision's own words; only when BY_REFERENCE is in kinds
-    min_term_months: null    # REVIEWER: only if the limb prescribes one
-    quoted_clause: null
-    verified_on: null
-    compoundable: null       # not this pass (D-036 vi)
-    status: DRAFT
+    maximum:
+      kinds: [TERM]
+      term_months: 240
+      fine_also: true
+    min_term_months: 120
+    quoted_clause: '(C) and involves commercial quantity, with rigorous imprisonment for a term which shall not be less than ten years but which may extend to twenty years and shall also be liable to fine which shall not be less than one lakh rupees but which may extend to two lakh rupees: Provided that the court may, for reasons to be recorded in the judgment, impose a fine exceeding two lakh rupees.'
+    verified_on: 2026-09-17
+    compoundable: null
+    status: VERIFIED
     definition_punishment_split: false
     state_amendment_present: false
     source: 'NDPS_1985_Act61_IndiaCode_asOn_2022-01-03.pdf'
     READ_THIS_PAGE: 'NDPS_1985_Act61_IndiaCode_asOn_2022-01-03.pdf, printed p. 16 (PDF page index 15), s.20'
-    verified_by: 'model-draft (unverified)'
+    verified_by: 'Vallamalla Abhishek Prakash (repository owner; not a legal professional)'
     extractor_output_do_not_rely_on: SAME_SECTION_TEXT_AS_FIRST_LIMB_ABOVE
 
   # ═══════════ PART 2 — PRIORITY (54 rows) ═══════════
