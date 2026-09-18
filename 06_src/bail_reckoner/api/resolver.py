@@ -75,6 +75,9 @@ class Resolver:
         maximum = None
         punishment_text: str | None = None
         punishment_citation: str | None = None
+        # Mandatory minimum: carried from the verified row so the report can print it. The
+        # synthetic fixtures hold no minimum, and none is invented for them.
+        min_term_months: int | None = None
         if synthetic:
             maximum = self.fixtures.resolve(regime, offence.section, offence.variant)
             if maximum is not None:
@@ -90,6 +93,7 @@ class Resolver:
                 maximum = row.maximum
                 punishment_text = row.provenance.quoted_text
                 punishment_citation = row.provenance.verified_against
+                min_term_months = row.min_term_months
 
         short = _REGIME_TO_CATEGORY_C.get(offence.regime)
         statute = None
@@ -113,6 +117,7 @@ class Resolver:
             special_statute_bar_in_scope=offence.bar_in_scope,
             punishment_text=punishment_text,
             punishment_citation=punishment_citation,
+            min_term_months=min_term_months,
         )
 
     def _case(self, case: CaseIn, synthetic: bool) -> PendingCase:

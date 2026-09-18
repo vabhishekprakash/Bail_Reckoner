@@ -255,6 +255,14 @@ class ChargedOffence:
     """Page-level citation for the punishment text, from the verified row's provenance
     (`verified_against`). The floor where the full text is unwieldy."""
 
+    min_term_months: int | None = None
+    """Mandatory minimum in months, where the limb prescribes one (D-061), from the verified
+    row. **Feeds no gate**: s.479 speaks only of the maximum, and no computation here reads
+    it. It travels with the offence so the report can print it, because a report that gives a
+    twenty-year maximum while saying nothing about a ten-year floor understates what the
+    person faces on conviction. None means no minimum prescribed, or not yet determined;
+    never substitute a value."""
+
 
 @dataclass(frozen=True, slots=True)
 class PendingCase:
@@ -385,6 +393,9 @@ class CaseInput:
                             if o.special_statute_bar_in_scope is None
                             else str(o.special_statute_bar_in_scope),
                             o.punishment_citation or "",
+                            # Hashed although no gate reads it: it is printed, and two
+                            # reports that differ on the page must not share an inputs hash.
+                            "" if o.min_term_months is None else str(o.min_term_months),
                         )
                     )
                     for o in case.offences

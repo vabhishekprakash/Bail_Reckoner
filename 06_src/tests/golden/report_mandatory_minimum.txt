@@ -12,70 +12,48 @@ STATUS
   route is not established on these inputs.
 
 LEGAL BASIS
-  On the inputs provided, an investigation, inquiry or trial in more than one
-  offence or in multiple cases is pending, which Section 479(2) makes a bar to
-  release on bail under this route.
-  Provision:            s.479(2)
-    "Notwithstanding anything in sub-section (1), and subject to the third
-    proviso thereof, where an investigation, inquiry or trial in more than one
-    offence or in multiple cases are pending against a person, he shall not be
-    released on bail by the Court."
-
-TWO QUALIFYING DATES ARISE
-  Two qualifying dates arise on these inputs because the law is unsettled:
-  measuring against the highest charged maximum, the qualifying date is 1
-  January 2029; measuring each offence against its own maximum, the earliest
-  threshold was reached on 1 July 2024. Which rule Section 479(1) requires has
-  not been settled; this report does not choose.
+  The custody undergone has not yet reached the period Section 479(1)
+  specifies. The date on which it will, on these inputs, is computed below.
+  Provision:            s.479(1)
+    "undergone detention for a period extending up to one-half of the maximum
+    period of imprisonment specified for that offence under that law, he shall
+    be released by the Court on bail"
 
 CUSTODY
-  Date of arrest:       1 January 2024
-  Computed as on:       1 January 2025
-  Custody undergone:    367 days
-  Effective custody:    367 days
+  Date of arrest:       10 January 2024
+  Computed as on:       1 August 2026
+  Custody undergone:    935 days
+  Effective custody:    935 days
 
-CASE FIR 21/2024, PS Eta  (pending)
-  Offence: Synthetic offence G
-    Section:            s.907 (synthetic)
-    Maximum sentence:   1 year
-    Fraction applied:   one-half
-    Threshold:          6 months
-    Status: threshold reached on 1 July 2024 — does not by itself establish
-    release: the Section 479(2) multiple-case bar applies on these inputs
-
-CASE FIR 34/2024, PS Theta  (pending)
-  Offence: Synthetic offence H
-    Section:            s.908 (synthetic)
-    Maximum sentence:   10 years
-    Fraction applied:   one-half
-    Threshold:          60 months
-    Status: threshold not yet reached; reached on 1 January 2029 on these
+CASE FIR 9/2024, PS Iota  (pending)
+  Offence: Synthetic offence I
+    Section:            s.909 (synthetic)
+    Maximum sentence:   20 years
+    Mandatory minimum:  10 years
+    Fraction applied:   one-third
+    Threshold:          80 months
+    Status: threshold not yet reached; reached on 10 September 2030 on these
     inputs
 
 CASES CONSIDERED
   The Section 479(2) multiple-case assessment was computed over the following
   cases, as supplied with the inputs:
-    - FIR 21/2024, PS Eta
-    - FIR 34/2024, PS Theta
+    - FIR 9/2024, PS Iota
   An undisclosed pending case would change this result.
 
 FOR HUMAN ATTENTION
   * The list of pending cases considered was supplied with the inputs and has
     not been verified against court records. Section 479(2) turns on every
     pending case; an undisclosed pending case would change this result.
-  * Custody has passed the maximum sentence prescribed for at least one
-    charged offence, but not the highest maximum among all charged offences.
-    Which of those the third proviso to Section 479(1) measures against is an
-    unsettled question of law. This report does not decide it; the matter
-    requires human review.
-  * A lower charged offence's own release threshold has been reached, while
-    the threshold computed from the highest charged maximum has not. Which of
-    those Section 479(1) requires is an unsettled question of law. Both dates
-    are shown in this report with the rule that yields each; this report does
-    not choose between them, and the matter requires human review.
   * The custody undergone has not yet reached the applicable threshold. This
     is not a finding against the person; the qualifying date is stated in this
     report and the computation should be repeated on or before that date.
+
+  Where a mandatory minimum sentence is prescribed, it is shown with the
+  offence above. Section 479 measures custody against the maximum alone, so a
+  minimum changes neither the threshold nor the qualifying date in this
+  report. It appears because the maximum alone does not state the full range
+  the provision prescribes on conviction.
 
   Maximum sentences in this report are taken from the central enactments and
   assume national uniformity. A State amendment altering a maximum that is
@@ -97,9 +75,9 @@ This report was generated from the inputs recorded above and can be re-derived
 against the statute version stamped below.
   Statute version:      BNSS 2023@2025-10-06+dt-0.2.0+20976f7d
   Language version:     0.2.0 (e73d373ad6cf)
-  Law in force on:      2025-01-01
-  Inputs hash:          26043e8ffc8b111c39b5430c1d519a60577222423e6a14c5b09e39c16c564b89
-  Computed on:          2025-01-01
+  Law in force on:      2026-08-01
+  Inputs hash:          b5c6dd152c479d5f3e474b0a30dd70aac8634db731d115047c5f7be63468d13b
+  Computed on:          2026-08-01
   Statutory sources on record: 13 accepted documents in 01_law/ (SOURCES.md;
   SHA-256 recorded at acquisition and re-verified by test)
 ==============================================================================

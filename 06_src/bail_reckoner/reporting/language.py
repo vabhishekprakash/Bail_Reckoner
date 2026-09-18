@@ -54,6 +54,7 @@ _TOP_KEYS = frozenset(
         "reason_short",
         "contested_threshold_line",
         "uniformity_note",
+        "mandatory_minimum_note",
         "special_statute_set_note",
         "cases_considered_intro",
         "cases_considered_caveat",
@@ -91,6 +92,7 @@ class ReportLanguage:
     reason_short: Mapping[str, str]
     contested_threshold_line: str
     uniformity_note: str
+    mandatory_minimum_note: str
     special_statute_set_note: str
     cases_considered_intro: str
     cases_considered_caveat: str
@@ -216,6 +218,9 @@ def load_report_language(path: Path | None = None) -> ReportLanguage:
         reason_short=_str_map("reason_short", data["reason_short"], _REASON_SHORT_KEYS),
         contested_threshold_line=_validated_contested_line(data),
         uniformity_note=_nonempty("uniformity_note", data["uniformity_note"]),
+        mandatory_minimum_note=_nonempty(
+            "mandatory_minimum_note", data["mandatory_minimum_note"]
+        ),
         special_statute_set_note=_nonempty(
             "special_statute_set_note", data["special_statute_set_note"]
         ),

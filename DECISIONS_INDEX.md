@@ -64,3 +64,4 @@ status suffix or an internal reference added nothing.
 | D-090 | 2026-09-02 | What "complete the entire project" means, and the completion scope |
 | D-091 | 2026-09-02 | Precedent corpus reads the Supreme Court's own Antil print; the mirror copy superseded |
 | D-092 | 2026-09-02 | API refusal-translation layer: engine refusals become 422s that carry their reason |
+| D-096 | 2026-09-18 | The mandatory minimum is shown in the report and stays out of the s.479(3) filing |

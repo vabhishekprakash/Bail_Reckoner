@@ -133,6 +133,32 @@ def _concluded_case_on_record() -> CaseInput:
     )
 
 
+def _mandatory_minimum_case() -> CaseInput:
+    """SYNTHETIC. A 20-year maximum carrying a 10-year mandatory minimum, shaped like the
+    NDPS commercial-quantity band. D-061: the minimum feeds no gate, and a report that gives
+    the maximum while staying silent about the floor understates what conviction means. No
+    golden carried a minimum before, which is why the omission survived unseen."""
+    return CaseInput(
+        date_of_arrest=date(2024, 1, 10),
+        evaluated_on=date(2026, 8, 1),
+        cases=(
+            PendingCase(
+                case_ref="FIR 9/2024, PS Iota",
+                offences=(
+                    ChargedOffence(
+                        offence_id="SYN-909",
+                        label="Synthetic offence I",
+                        section="s.909 (synthetic)",
+                        maximum=_term(240),
+                        min_term_months=120,
+                    ),
+                ),
+            ),
+        ),
+        prior_conviction_status=PriorConvictionStatus.NONE_DECLARED,
+    )
+
+
 def _contested_threshold_case() -> CaseInput:
     """SYNTHETIC. Two pending cases, 12- and 120-month maxima, custody 12 months: the lower
     offence's own threshold (6 months) is crossed, the governing threshold (60 months) is
@@ -283,6 +309,56 @@ class TestGoldenFiles:
 
     def test_contested_threshold_dual_dates(self) -> None:
         _check_golden("report_contested_threshold.txt", _render(_contested_threshold_case()))
+
+    def test_mandatory_minimum_is_shown(self) -> None:
+        _check_golden("report_mandatory_minimum.txt", _render(_mandatory_minimum_case()))
+
+
+class TestMandatoryMinimum:
+    """D-061: the floor is printed, and it changes no arithmetic."""
+
+    def test_the_minimum_appears_with_the_maximum(self) -> None:
+        rendered = _render(_mandatory_minimum_case())
+        assert "Mandatory minimum:" in rendered
+        assert "10 years" in rendered
+
+    def test_the_standing_note_explains_it_changes_no_date(self) -> None:
+        case = _mandatory_minimum_case()
+        report = build_report(case, evaluate(case, TABLE), TABLE, LANGUAGE, SOURCES_LINE)
+        assert report.mandatory_minimum_note is not None
+        assert "maximum alone" in report.mandatory_minimum_note
+
+    def test_a_report_without_a_minimum_says_nothing_about_minimums(self) -> None:
+        case = _entitled_case()
+        report = build_report(case, evaluate(case, TABLE), TABLE, LANGUAGE, SOURCES_LINE)
+        assert report.mandatory_minimum_note is None
+        assert "Mandatory minimum" not in render_text(report)
+
+    def test_the_threshold_is_computed_from_the_maximum_not_the_minimum(self) -> None:
+        """A 20-year maximum at one-third is 80 months, whatever the floor is."""
+        case = _mandatory_minimum_case()
+        decision = evaluate(case, TABLE)
+        (comp,) = decision.offence_computations
+        assert comp.threshold_months == 80
+        assert comp.offence.min_term_months == 120
+
+    def test_the_minimum_reaches_the_inputs_hash(self) -> None:
+        """Two computations that print different figures must not share a hash."""
+        with_minimum = _mandatory_minimum_case()
+        without = CaseInput(
+            date_of_arrest=with_minimum.date_of_arrest,
+            evaluated_on=with_minimum.evaluated_on,
+            cases=(
+                PendingCase(
+                    case_ref=with_minimum.cases[0].case_ref,
+                    offences=(
+                        _offence("SYN-909", "Synthetic offence I", "s.909 (synthetic)", 240),
+                    ),
+                ),
+            ),
+            prior_conviction_status=with_minimum.prior_conviction_status,
+        )
+        assert with_minimum.inputs_hash() != without.inputs_hash()
 
     def test_both_dates_named_with_their_rules(self) -> None:
         """D-075 (Abhishek): the qualifying date is the instruction a jail officer acts on;

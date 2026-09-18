@@ -15,7 +15,7 @@
 #    cannot ship without its reader-facing words being written deliberately.
 # ============================================================================
 
-language_version: "0.1.0"
+language_version: "0.2.0"
 
 facilitator_line: >-
   This document computes a statutory entitlement under Section 479 of the Bharatiya Nagarik
@@ -78,6 +78,12 @@ uniformity_note: >-
   uniformity. A State amendment altering a maximum that is absent from the stored
   consolidation cannot be detected by this system; where one is printed in the stored text it
   is flagged, but silence does not establish that none exists.
+
+mandatory_minimum_note: >-
+  Where a mandatory minimum sentence is prescribed, it is shown with the offence above.
+  Section 479 measures custody against the maximum alone, so a minimum changes neither the
+  threshold nor the qualifying date in this report. It appears because the maximum alone
+  does not state the full range the provision prescribes on conviction.
 
 special_statute_set_note: >-
   The special statutes checked for stringent bail tests are those recorded in this system:

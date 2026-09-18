@@ -116,6 +116,8 @@ def render_text(report: Report) -> str:
             out.append(f"  Offence: {row.label}")
             out.append(_field("  Section:", row.section))
             out.append(_field("  Maximum sentence:", row.max_sentence_text))
+            if row.min_term_text is not None:
+                out.append(_field("  Mandatory minimum:", row.min_term_text))
             if row.fraction_text is not None:
                 out.append(_field("  Fraction applied:", row.fraction_text))
             if row.threshold_text is not None:
@@ -145,6 +147,10 @@ def render_text(report: Report) -> str:
                 break_on_hyphens=False,
             )
             out.extend(wrapped)
+        out.append("")
+
+    if report.mandatory_minimum_note is not None:
+        out.extend(_wrap(report.mandatory_minimum_note, indent="  "))
         out.append("")
 
     out.extend(_wrap(report.uniformity_note, indent="  "))

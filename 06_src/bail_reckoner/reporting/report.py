@@ -88,6 +88,11 @@ class OffenceRow:
     label: str
     section: str
     max_sentence_text: str
+    min_term_text: str | None
+    """The mandatory minimum, where the limb prescribes one (D-061). Printed under the
+    maximum, never used in the arithmetic: a report that shows a twenty-year maximum and
+    stays silent about a ten-year floor understates what the person faces on conviction."""
+
     fraction_text: str | None
     threshold_text: str | None
     qualifying_date: date | None
@@ -171,6 +176,11 @@ class Report:
     Category C list is non-exhaustive, so the recorded five-statute set is not a closed
     enumeration and a stringent bar outside it produces no flag. Named rather than implied
     complete — the L-002 pattern; with no advocate available, final behaviour."""
+
+    mandatory_minimum_note: str | None
+    """Present only when a charged offence carries a mandatory minimum (D-061). Absent
+    otherwise: a standing sentence about minimums on a report that shows none would be
+    noise, and the point of the line is that a floor exists on this page."""
 
     uniformity_note: str
     """Standing on every report (L-002, second audit finding): the maxima assume national
@@ -287,6 +297,11 @@ def build_report(
                     label=offence.label,
                     section=offence.section,
                     max_sentence_text=_max_sentence_text(comp),
+                    min_term_text=(
+                        _term_text(offence.min_term_months)
+                        if offence.min_term_months is not None
+                        else None
+                    ),
                     fraction_text=(
                         _fraction_text(comp.fraction_applied)
                         if comp.fraction_applied is not None
@@ -316,6 +331,8 @@ def build_report(
         Finding(flag=flag, severity=severity_of(flag), text=language.flags[flag])
         for flag in sorted(decision.flags, key=lambda f: (-severity_of(f).value, f.name))
     )
+
+    any_minimum = any(row.min_term_text is not None for s in sections for row in s.offences)
 
     urgent = (
         UrgentNotice(heading=language.urgent_block_heading, body=language.urgent_block_body)
@@ -367,6 +384,7 @@ def build_report(
         footer_review_line=language.footer_review_line,
         footer_caption=language.footer_caption,
         special_statute_set_note=language.special_statute_set_note,
+        mandatory_minimum_note=language.mandatory_minimum_note if any_minimum else None,
         uniformity_note=language.uniformity_note,
         provenance=Provenance(
             statute_version=decision.statute_version,

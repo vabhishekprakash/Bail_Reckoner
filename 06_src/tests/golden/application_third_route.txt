@@ -129,7 +129,7 @@ version stamped below.
   Statute version:      BNSS 2023@2025-10-06+dt-0.2.0+20976f7d
   Language version:     0.1.0 (a17caefb3b98)
   Law in force on:      2026-08-01
-  Inputs hash:          c53ed99bd3e634ab12e59c1830e743ae81db964a6b8c617e9ef49ceb3c1d1183
+  Inputs hash:          5e972564cd487093e02250955750672d7c571c6f86e4b4722c643e7bf4573d3a
   Computed on:          2026-08-01
   Statutory sources on record: 13 accepted documents in 01_law/ (SOURCES.md;
   SHA-256 recorded at acquisition and re-verified by test)

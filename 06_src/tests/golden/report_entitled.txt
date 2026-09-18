@@ -61,9 +61,9 @@ Legally reviewed by: ______________________    Date: ____________
 This report was generated from the inputs recorded above and can be re-derived
 against the statute version stamped below.
   Statute version:      BNSS 2023@2025-10-06+dt-0.2.0+20976f7d
-  Language version:     0.1.0 (7327dc09f645)
+  Language version:     0.2.0 (e73d373ad6cf)
   Law in force on:      2026-08-01
-  Inputs hash:          8071b0325ad3687c39a89850e88e57f8a7ae17f36d5efa30a65a02922c1a62fe
+  Inputs hash:          6cd35f14998e76fde3fe20d4522ff267951794b4e605fb4388592e77b0e4a94e
   Computed on:          2026-08-01
   Statutory sources on record: 13 accepted documents in 01_law/ (SOURCES.md;
   SHA-256 recorded at acquisition and re-verified by test)

@@ -48,6 +48,7 @@ from bail_reckoner.reporting.report import (
     _fraction_text,
     _max_sentence_text,
     _months_text,
+    _term_text,
 )
 from bail_reckoner.statutes.decision_table import DecisionTable
 
@@ -346,6 +347,16 @@ def build_application(
                     label=offence.label,
                     section=offence.section,
                     max_sentence_text=_max_sentence_text(comp),
+                    # Carried, deliberately never printed (D-096). The filing asks the court
+                    # for release on the s.479 arithmetic, which runs on the maximum; the
+                    # minimum is context for a report's reader, not a fact this document
+                    # claims. A filing that volunteers unrequested sentencing context is
+                    # doing something other than what it says. The report prints it.
+                    min_term_text=(
+                        _term_text(offence.min_term_months)
+                        if offence.min_term_months is not None
+                        else None
+                    ),
                     fraction_text=(
                         _fraction_text(comp.fraction_applied)
                         if comp.fraction_applied is not None
