@@ -1,6 +1,6 @@
 [project]
 name = "bail-reckoner"
-version = "0.0.1"
+version = "0.1.0"
 description = "AI-Powered Bail Reckoner — computes statutory entitlement to release under Section 479 BNSS 2023, shows the arithmetic, cites the provision behind every step. Decision-support aid; never an autonomous decision-maker."
 requires-python = ">=3.12,<3.13"
 # Runtime dependencies are intentionally empty. Per D-050 the engine (Layer C) is stdlib-only:
