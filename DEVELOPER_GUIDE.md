@@ -88,7 +88,8 @@ detectable.
    docs), each with options, trade-offs, the cost accepted, and approval status.
    Disputed calls also went through a structured multi-perspective review before
    they stood. The log lives with the private engineering record and is available
-   on request.
+   on request; [DECISIONS_INDEX.md](DECISIONS_INDEX.md) lists the number, date and
+   title of every entry the code cites.
 5. **Every source document carries provenance.** `01_law/SOURCES.md` records 13
    accepted documents (10 statutes, 3 Supreme Court judgments) with SHA-256 hashes that
    a recurring test re-verifies, and a rejected list of five official-looking files
